@@ -1,0 +1,87 @@
+﻿<Window x:Class="CardioLeaf.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    Title="CardioLeaf Scanner" Height="350" Width="525" MinWidth="800" MinHeight="600" Background="White" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Margin="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="2" />
+				<ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+			<Grid Grid.Column="1" Margin="0">
+                <Grid.Background>
+                    <SolidColorBrush Color="#FFBBBBBB"/>
+                </Grid.Background>
+            </Grid>
+            <Grid Grid.Column="2" Margin="0" x:Name="DataGrid">
+                <!--<WindowsFormsHost Margin="0" x:Name="ChartHost" />-->
+            </Grid>
+            <Grid x:Name="NavigationColumn" Margin="0,10,0,0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid x:Name="SummaryTab" Grid.Row="0" Margin="0,0,0,0" Style="{DynamicResource GridStyle_hover}" MouseDown="SummaryTab_MouseDown" >
+                    <Label Content="SUMMARY" FontSize="25" Height="Auto" VerticalAlignment="Top"/>
+                    <Grid HorizontalAlignment="Left" Height="43.253" VerticalAlignment="Top" Width="100"/>
+                </Grid>
+                
+                <Grid x:Name="HeartRateTab" Grid.Row="1" Margin="0" Style="{DynamicResource GridStyle_hover}" MouseDown="HeartRateTab_MouseDown">
+                    <Label Content="HEART RATE" FontSize="20" Height="35" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="tbHeartRate" Margin="20,20,40,0" TextWrapping="Wrap" Text="72" TextAlignment="Right" FontSize="60" FontWeight="Bold" Foreground="#FF678E25"/>
+                    <Label Content="BPM" HorizontalAlignment="Right" Margin="0,0,15,0" VerticalAlignment="Bottom" Padding="0,0,0,11"/>
+                </Grid>
+
+                <Grid x:Name="ActivityTab" Grid.Row="2" Margin="0,0,0,0" Style="{DynamicResource GridStyle_hover}" MouseDown="ActivityTab_MouseDown">
+                    <Label Content="ACTIVITY INDEX" FontSize="20" Height="35" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="tbActivity" Margin="10,20,40,0" TextWrapping="Wrap" Text="38" TextAlignment="Right" FontSize="40" FontWeight="Bold" Foreground="#FF678E25"/>
+                    <Label Content="/100" HorizontalAlignment="Right" Margin="0,0,15,0" VerticalAlignment="Bottom" Padding="0,0,0,11"/>
+                </Grid>
+
+                <Grid x:Name="TempTab" Grid.Row="3" Margin="0,0,0,0" Style="{DynamicResource GridStyle_hover}" MouseDown="TempTab_MouseDown">
+                    <Label Content="TEMPERATURE" FontSize="20" Height="35" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="tbTemp" Margin="10,20,40,0" TextWrapping="Wrap" Text="36.4" TextAlignment="Right" FontSize="40" FontWeight="Bold" Foreground="#FF678E25"/>
+                    <Label HorizontalAlignment="Right" Margin="0,0,15,0" VerticalAlignment="Bottom" Padding="0,0,0,11">
+                        <Label.Content>
+                            <TextBlock>
+                                <Run BaselineAlignment="Superscript" FontSize="6pt">o</Run>C
+                            </TextBlock>
+                        </Label.Content>
+                    </Label>
+                </Grid>
+
+				<Grid Grid.Row="4" Margin="0" Visibility="Hidden">
+					<TextBox x:Name="tbStatus" Margin = "10" HorizontalAlignment="Left" Height="Auto" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="Auto"/>
+                </Grid>
+
+                <Grid x:Name="SettingsTab" Grid.Row="5" Margin="0,0,0,10" Style="{DynamicResource GridStyle_hover}" MouseDown="SettingsTab_MouseDown">
+                    <Label Content=" VIEW SETTINGS" FontSize="20" Height="35" VerticalAlignment="Top"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+        <Grid Margin="0" x:Name="top" Background="#d5d5d5">
+            <Image HorizontalAlignment="Left" Margin="10,10,0,10" Stretch="Uniform" Width="Auto" Source="Images/logo_CardioLeaf.png" />
+            <Button Content="CONNECT" x:Name="ConnectDisconnectButton" Margin="0,10,10,10" FontSize="20" Foreground="White" Background="#FFA8C213" Click="ConnectDisconnectButton_Click" HorizontalAlignment="Right" Width="150" />
+        </Grid>
+        <Grid Grid.Row="2" Margin="0" x:Name="grid2" Background="#d5d5d5">
+            <ComboBox x:Name="cbPort" Margin="0,5,5,0" HorizontalAlignment="Right" Width="106" Background="#00000000" DropDownOpened="cbPort_DropDownOpened" />
+            <Label Margin="5,0" HorizontalAlignment="Left" Width="106" Background="#00000000" x:Name="timerTick" />
+            <Label Margin="116,0,0,0" HorizontalAlignment="Left" Width="106" Background="#00000000" x:Name="DataRate" />
+        </Grid>
+    </Grid>
+</Window>
+
