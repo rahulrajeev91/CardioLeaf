@@ -20,9 +20,18 @@ namespace CardioLeaf
     /// </summary>
     public partial class Summary_Control : UserControl
     {
+        HeartRateChart HRChart = new HeartRateChart();     
+
         public Summary_Control()
         {
             InitializeComponent();
         }
+
+        private void UserControl_Initialized(object sender, EventArgs e)
+        {
+            HRChart.SetChartDisplayMode(1);     //show only 1 lead
+            ChartHost.Child = HRChart;
+        }
+
     }
 }

@@ -20,7 +20,7 @@
                     <SolidColorBrush Color="#FFBBBBBB"/>
                 </Grid.Background>
             </Grid>
-            <Grid Grid.Column="2" Margin="0" x:Name="DataGrid">
+            <Grid Grid.Column="2" Margin="0" x:Name="DataGrid" Background="#FFF3F3F3">
                 <!--<WindowsFormsHost Margin="0" x:Name="ChartHost" />-->
             </Grid>
             <Grid x:Name="NavigationColumn" Margin="0,10,0,0" Grid.Column="0">

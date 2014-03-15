@@ -7,6 +7,32 @@
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+        
+        /// <summary> 
+        /// changing chart modes
+        /// </summary>
+
+        //modes
+        //1-> only graph 2
+        //3-> all theree graphs
+        public void SetChartDisplayMode(int mode)
+        {
+            switch (mode)
+            {
+                case 1:
+                    this.HRChart.ChartAreas[0].Visible = false;
+                    this.HRChart.ChartAreas[1].Visible = true;
+                    this.HRChart.ChartAreas[2].Visible = false;
+                    break;
+                case 3:
+                    this.HRChart.ChartAreas[0].Visible = true;
+                    this.HRChart.ChartAreas[1].Visible = true;
+                    this.HRChart.ChartAreas[2].Visible = true;
+                    break;
+            }
+        }
+        
+
         /// <summary> 
         /// Clean up any resources being used.
         /// </summary>

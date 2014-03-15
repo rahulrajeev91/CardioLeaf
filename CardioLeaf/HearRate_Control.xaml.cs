@@ -29,6 +29,7 @@ namespace CardioLeaf
 
         private void UserControl_Initialized(object sender, EventArgs e)
         {
+            HRChart.SetChartDisplayMode(3);     //show all 3 leads
             ChartHost.Child = HRChart;
         }
     }
