@@ -45,7 +45,7 @@ namespace CardioLeaf
         #region connection variables
 
         private System.IO.Ports.SerialPort serialPort = new SerialPort();
-        private const int BAUD_RATE = 115200;
+        private const int BAUD_RATE = 9600;
 
         enum connectionStatus
         {
@@ -130,6 +130,7 @@ namespace CardioLeaf
             {
                 try
                 {
+                    sendDisconnectCommand();
                     serialPort.Close();
                 }
                 catch (Exception)
@@ -149,11 +150,14 @@ namespace CardioLeaf
                 if (serialPort.IsOpen)
                 {
                     connection = connectionStatus.connected;
+                    sendConnectCommand();
                     return true;
                 }
             }
             return false;
         }
+
+        
 
         private bool ComPortOpen()
         {
@@ -175,6 +179,35 @@ namespace CardioLeaf
         }
 
 
+        // TODO: Make sure that the connect and disconnect cannot change state without ack from cardioleaf
+        private void sendConnectCommand()
+        {
+            var connectCommand = new Byte[] {0xFF, 0xFE, 0x01, 0x00, 0x00};
+            sendDataOverSerial(connectCommand);
+        }
+
+        private void sendDisconnectCommand()
+        {
+            var connectCommand = new Byte[] { 0xFF, 0xFE, 0x01, 0x00, 0x01 };
+            sendDataOverSerial(connectCommand);
+        }
+        
+        private void sendDataOverSerial(Byte[] data)
+        {
+            if (serialPort.IsOpen)
+            {
+                try
+                {
+                    serialPort.Write(data, 0, data.Length);
+                }
+                catch (Exception)
+                {
+                    //exception caught
+                    throw;
+                }
+            }
+        }
+
         #endregion
 
         #region Timer functions
@@ -186,30 +219,11 @@ namespace CardioLeaf
                 //prevent overflow
                 resetCounter();
             timerTick.Content = counter;
-            //if (connection == connectionStatus.connected)
-            //{
-            //    ParseData();
-            //    if (points.Count > 0)
-            //        foreach (uint val in points)
-            //        {
-
-            //            /*//debug function
-            //            datacnt++;
-            //            if (datacnt > 10000)
-            //                datacnt = 0;
-            //            datacount.Content = datacnt.ToString();
-            //            */
-
-            //            IncDataRateCnt();
-            //            AddToChart(val);
-            //            addToHeartRateCalculation(val);
-            //            BeginHRComputation();
-            //            calcVpp(val);
-            //        }
-            //    ScrollCharts();
-            //}
+            if (connection == connectionStatus.connected)
+            {
+                ParseData();
+            }
         }
-
 
         private void oneSecStep_Tick(object sender, EventArgs e)
         {
@@ -242,6 +256,7 @@ namespace CardioLeaf
                 if (Connect())
                 {
                     ConnectDisconnectButton.Content = "DISCONNECT";
+                    HRPage.resetChart();
                 }
                 else
                     MessageBox.Show("Connection failed. Could not open COM port");
@@ -291,14 +306,17 @@ namespace CardioLeaf
                     //    SummaryPage = new Summary_Control();
                     //DataGrid.Children.Add(SummaryPage);
                     if (HRPage == null)
+                    {
                         HRPage = new HearRate_Control();
-                    DataGrid.Children.Add(HRPage);
+                        DataGrid.Children.Add(HRPage);
 
-                    //delete in final version
-                    SetTabStyle(CurrentPage,true); //set to default
-                    SetTabStyle(topage, false); //set to color
+                        //delete in final version
+                        SetTabStyle(CurrentPage, true); //set to default
+                        SetTabStyle(topage, false); //set to color
 
-                    HRPage.debugText.Text += "initialized Summary Page\n";
+                        HRPage.debugText.Text += "initialized Summary Page\n";
+                        
+                    }
                     break;
                 //case Page.HeartRate:
                 //    if (HRPage == null)
@@ -408,7 +426,8 @@ namespace CardioLeaf
         private void ParseData()
         {
             int byteCount = serialPort.BytesToRead;
-            uint val, payloadLength;
+            uint val1,val2,val3; 
+            uint payloadLength;
             Byte tempByte;
 
             //points.Clear();
@@ -431,7 +450,7 @@ namespace CardioLeaf
                         if (tempByte == 0xFF)
                         {
                             parseStep = ParseStatus.header2;
-                            //debugText.Text += "Hi";
+                            //HRPage.debugText.Text += "\nnew packet : FF ";
                         }
                         break;
 
@@ -447,7 +466,10 @@ namespace CardioLeaf
                         }
                         byteCount--;
                         if (tempByte == 0xFE)
+                        {
                             parseStep = ParseStatus.length;
+                            //HRPage.debugText.Text += "FE ";
+                        }
                         else
                             parseStep = ParseStatus.idle;   //reset
                         break;
@@ -456,6 +478,7 @@ namespace CardioLeaf
                         try
                         {
                             payloadLength = (Byte)serialPort.ReadByte();
+                            //HRPage.debugText.Text += payloadLength+" ";
                         }
                         catch (Exception)
                         {
@@ -482,20 +505,28 @@ namespace CardioLeaf
                             case 0x00:
                                 //Control
                                 parseStep = ParseStatus.control;
+                                parseStep = ParseStatus.idle;
+                                //HRPage.debugText.Text += "Control";
                                 break;
 
                             case 0x01:
                                 //Read
                                 parseStep = ParseStatus.read;
+                                parseStep = ParseStatus.idle;
+                                //HRPage.debugText.Text += "read";
                                 break;
                             
                             case 0x02:
                                 //Alerts
                                 parseStep = ParseStatus.alert;
+                                parseStep = ParseStatus.idle;
+                                //HRPage.debugText.Text += "alerts";
                                 break;
                             case 0x03:
                                 //Continious Data
                                 parseStep = ParseStatus.contDataPayload;
+                                //parseStep = ParseStatus.idle;
+                                //HRPage.debugText.Text += "payload";
                                 break;
                             default:
                                 parseStep = ParseStatus.idle;   //reset
@@ -509,80 +540,36 @@ namespace CardioLeaf
                     //    parseStep = ParseStatus.idle;       //reset
                     //    break;
 
-                    //case ParseStatus.contData_subtype:
-                    //    parseStep = ParseStatus.idle;       //reset
-                    //    break;
 
-                    //case ParseStatus.contDataPayload:
-                    //    try
-                    //    {
-                    //        val = (uint)serialPort.ReadByte();
-                    //        val = val * 256 + (uint)serialPort.ReadByte();
-                    //    }
-                    //    catch (Exception)
-                    //    {
-                    //        parseStep = ParseStatus.idle;
-                    //        break;
-                    //    }
-                    //    points.Add(val);    //add to PPG value list
-                    //    try
-                    //    {
-                    //        AccelerometerData((double)((int)serialPort.ReadByte() - 128) / 64.0, (double)((int)serialPort.ReadByte() - 128) / 64.0, (double)((int)serialPort.ReadByte() - 128) / 64.0);
-                    //    }
-                    //    catch (Exception)
-                    //    {
-                    //        parseStep = ParseStatus.idle;
-                    //        break;
-                    //    }
-                    //    byteCount -= 5;
-                    //    debugText.Text +=val +"\n";
+                    case ParseStatus.contDataPayload:
+                        try
+                        {
+                            val1 = (uint)serialPort.ReadByte();
+                            val1 = val1  + (uint)serialPort.ReadByte() * 256;
+                            val3 = (uint)serialPort.ReadByte();
+                            val3 = val3 + (uint)serialPort.ReadByte() * 256;
+                            val2 = val1 + val3;
+                        }
+                        catch (Exception)
+                        {
+                            parseStep = ParseStatus.idle;
+                            break;
+                        }  
+                        HRPage.AddToChart(val1,val2,val3);    //add to chart
+                        byteCount -= 2;
 
-                    //    parseStep = ParseStatus.idle;       //reset
-                    //    break;
+                        parseStep = ParseStatus.idle;       //reset
+                        break;
 
-                    //case ParseStatus.singleData_subtype:
-                    //    try
-                    //    {
-                    //        tempByte = (Byte)serialPort.ReadByte();
-                    //    }
-                    //    catch (Exception)
-                    //    {
-                    //        parseStep = ParseStatus.idle;
-                    //        break;
-                    //    }
-                    //    byteCount--;
-                    //    switch (tempByte)
-                    //    {
-                    //        case 0x00:
-                    //            try
-                    //            {
-                    //                tempByte = (Byte)serialPort.ReadByte();
-                    //            }
-                    //            catch (Exception)
-                    //            {
-                    //                parseStep = ParseStatus.idle;
-                    //                break;
-                    //            }
-                    //            byteCount--;
-                    //            temperature = (int)tempByte;    //set the temperature
-                    //            break;
-                    //        default:
-                    //            parseStep = ParseStatus.idle;
-                    //            break;
-                    //    }
-                    //    parseStep = ParseStatus.idle;
-                    //    break;
-
-                    //default:
-                    //    parseStep = ParseStatus.idle;
-                    //    break;
+                    default:
+                        parseStep = ParseStatus.idle;
+                        break;
 
                 }
             }
         }
 
         #endregion
-
 
     }
 }

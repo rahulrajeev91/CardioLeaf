@@ -87,6 +87,7 @@
             chartArea1.AxisY.MajorGrid.Enabled = false;
             chartArea1.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Silver;
             chartArea1.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea1.AxisY2.LabelStyle.Enabled = false;
             chartArea1.AxisY2.LineColor = System.Drawing.Color.Silver;
             chartArea1.AxisY2.LineWidth = 2;
             chartArea1.AxisY2.MajorGrid.Enabled = false;
@@ -111,6 +112,7 @@
             chartArea2.AxisY.MajorGrid.Enabled = false;
             chartArea2.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Silver;
             chartArea2.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea2.AxisY2.LabelStyle.Enabled = false;
             chartArea2.AxisY2.LineColor = System.Drawing.Color.Silver;
             chartArea2.AxisY2.LineWidth = 2;
             chartArea2.AxisY2.MajorGrid.Enabled = false;
@@ -135,6 +137,7 @@
             chartArea3.AxisY.MajorGrid.Enabled = false;
             chartArea3.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Silver;
             chartArea3.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea3.AxisY2.LabelStyle.Enabled = false;
             chartArea3.AxisY2.LineColor = System.Drawing.Color.Silver;
             chartArea3.AxisY2.LineWidth = 2;
             chartArea3.AxisY2.MajorGrid.Enabled = false;
@@ -174,7 +177,7 @@
             this.HRChart.Series.Add(series1);
             this.HRChart.Series.Add(series2);
             this.HRChart.Series.Add(series3);
-            this.HRChart.Size = new System.Drawing.Size(260, 260);
+            this.HRChart.Size = new System.Drawing.Size(265, 260);
             this.HRChart.TabIndex = 0;
             this.HRChart.Text = "chart1";
             // 
@@ -194,6 +197,6 @@
 
         #endregion
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart HRChart;
+        public System.Windows.Forms.DataVisualization.Charting.Chart HRChart;
     }
 }

@@ -11,8 +11,8 @@
             <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
         <WindowsFormsHost Margin="0,0,0,0" x:Name="ChartHost" Grid.Row="0" />
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" VerticalContentAlignment="Bottom" Margin="0,0,0,0" Background="White">
-            <TextBlock   x:Name="debugText" TextWrapping="Wrap"  Background="White" Foreground="#FF515151" Margin="10,10,10,10"/>
+        <ScrollViewer Grid.Row="1" VerticalContentAlignment="Bottom" Margin="0,0,0,0" Background="White">
+            <TextBox   x:Name="debugText" TextWrapping="Wrap"  Background="White" Foreground="#FF515151" Margin="10,10,10,10" Text="Application Started\n"/>
         </ScrollViewer>
 
     </Grid>
