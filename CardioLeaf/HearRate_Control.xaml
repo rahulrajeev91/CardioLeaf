@@ -7,9 +7,13 @@
              d:DesignHeight="300" d:DesignWidth="300" Initialized="UserControl_Initialized">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition/>
+            <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
         <WindowsFormsHost Margin="0,0,0,0" x:Name="ChartHost" Grid.Row="0" />
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" VerticalContentAlignment="Bottom" Margin="0,0,0,0" Background="White">
+            <TextBlock   x:Name="debugText" TextWrapping="Wrap"  Background="White" Foreground="#FF515151" Margin="10,10,10,10"/>
+        </ScrollViewer>
+
     </Grid>
 </UserControl>

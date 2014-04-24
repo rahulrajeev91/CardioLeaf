@@ -194,8 +194,9 @@ namespace CardioLeaf
                 if (!peakLock)
                 {    //if start of peak
                     if (interPeakCounter < (0.4 * ConvertHeartRateToCount(getAvgHR())) && hrArray.Count > 10)
+                    {
                         //false peak
-                        ;
+                    }
                     else
                         //real r peak
                         peakLock = true;

@@ -74,7 +74,7 @@
         </Grid>
 
         <Grid Margin="0" x:Name="top" Background="#d5d5d5">
-            <Image HorizontalAlignment="Left" Margin="10,10,0,10" Stretch="Uniform" Width="Auto" Source="Images/logo_CardioLeaf.png" />
+            <Image HorizontalAlignment="Left" Margin="10,5,0,2" Stretch="Uniform" Width="Auto" Source="Images/NUS.gif" />
             <Button Content="CONNECT" x:Name="ConnectDisconnectButton" Margin="0,10,10,10" FontSize="20" Foreground="White" Background="#FFA8C213" Click="ConnectDisconnectButton_Click" HorizontalAlignment="Right" Width="150" />
         </Grid>
         <Grid Grid.Row="2" Margin="0" x:Name="grid2" Background="#d5d5d5">
