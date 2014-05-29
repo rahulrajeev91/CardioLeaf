@@ -29,8 +29,9 @@ namespace CardioLeaf
         Temperature_Control TempPage = null;
         Activity_Control ActivityPage = null;
         Settings_Control SettingsPage = null;
+        Log_Control LogPage = null;
 
-        enum Page { Summary, HeartRate, Activity, Temp, Settings, Unknown };     //models the page tabs
+        enum Page { Summary, HeartRate, Activity, Temp, Settings, Log, Unknown };     //models the page tabs
         Page CurrentPage;
         #endregion
 
@@ -293,11 +294,11 @@ namespace CardioLeaf
         {
             if (CurrentPage != Page.Unknown && CurrentPage == topage) return false;
 
-            //DataGrid.Children.Clear();
+            DataGrid.Children.Clear();
 
             //change the tab color
-            //SetTabStyle(CurrentPage,true); //set to default
-            //SetTabStyle(topage, false); //set to color
+            SetTabStyle(CurrentPage,true); //set to default
+            SetTabStyle(topage, false); //set to color
 
             switch (topage)
             {
@@ -308,36 +309,42 @@ namespace CardioLeaf
                     if (HRPage == null)
                     {
                         HRPage = new HearRate_Control();
-                        DataGrid.Children.Add(HRPage);
+                        //DataGrid.Children.Add(HRPage);
 
-                        //delete in final version
-                        SetTabStyle(CurrentPage, true); //set to default
-                        SetTabStyle(topage, false); //set to color
+                        ////delete in final version
+                        //SetTabStyle(CurrentPage, true); //set to default
+                        //SetTabStyle(topage, false); //set to color
 
                         HRPage.debugText.Text += "initialized Summary Page\n";
-                        
                     }
+                    DataGrid.Children.Add(HRPage);
                     break;
-                //case Page.HeartRate:
-                //    if (HRPage == null)
-                //        HRPage = new HearRate_Control();
-                //    DataGrid.Children.Add(HRPage);
+                //case page.heartrate:
+                //    if (hrpage == null)
+                //        hrpage = new hearrate_control();
+                //    datagrid.children.add(hrpage);
                 //    break;
-                //case Page.Activity:
-                //    if (ActivityPage == null)
-                //        ActivityPage = new Activity_Control();
-                //    DataGrid.Children.Add(ActivityPage);
-                //    break;
-                //case Page.Temp:
-                //    if (TempPage == null)
-                //        TempPage = new Temperature_Control();
-                //    DataGrid.Children.Add(TempPage);
-                //    break;
-                //case Page.Settings:
-                //    if (SettingsPage == null)
-                //        SettingsPage = new Settings_Control();
-                //    DataGrid.Children.Add(SettingsPage);
-                //    break;
+                case Page.Activity:
+                    if (ActivityPage == null)
+                        ActivityPage = new Activity_Control();
+                    DataGrid.Children.Add(ActivityPage);
+                    break;
+                case Page.Temp:
+                    if (TempPage == null)
+                        TempPage = new Temperature_Control();
+                    DataGrid.Children.Add(TempPage);
+                    break;
+                case Page.Settings:
+                    if (SettingsPage == null)
+                        SettingsPage = new Settings_Control();
+                    DataGrid.Children.Add(SettingsPage);
+                    break;
+
+                case Page.Log:
+                    if (LogPage == null)
+                        LogPage = new Log_Control();
+                    DataGrid.Children.Add(LogPage);
+                    break;
                 default:
                     //ChangePage(Page.Summary);
                     break;
@@ -378,6 +385,9 @@ namespace CardioLeaf
                 case Page.Settings:
                     SetTabStyle(SettingsTab, toDefault);
                     break;
+                case Page.Log:
+                    SetTabStyle(LogTab, toDefault);
+                    break;
 
             }
             return true;
@@ -416,6 +426,11 @@ namespace CardioLeaf
         private void SettingsTab_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ChangePage(Page.Settings);
+        }
+
+        private void LogTab_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ChangePage(Page.Log);
         }
 		
 		

@@ -31,6 +31,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <Grid x:Name="SummaryTab" Grid.Row="0" Margin="0,0,0,0" Style="{DynamicResource GridStyle_hover}" MouseDown="SummaryTab_MouseDown" >
@@ -66,8 +67,12 @@
 					<TextBox x:Name="tbStatus" Margin = "10" HorizontalAlignment="Left" Height="Auto" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="Auto"/>
                 </Grid>
 
-                <Grid x:Name="SettingsTab" Grid.Row="5" Margin="0,0,0,10" Style="{DynamicResource GridStyle_hover}" MouseDown="SettingsTab_MouseDown">
-                    <Label Content=" VIEW SETTINGS" FontSize="20" Height="35" VerticalAlignment="Top"/>
+                <Grid x:Name="LogTab" Grid.Row="5" Margin="0,0,0,10" Style="{DynamicResource GridStyle_hover}" MouseDown="LogTab_MouseDown">
+                    <Label Content="VIEW LOG" FontSize="20" Height="35" VerticalAlignment="Top"/>
+                </Grid>
+
+                <Grid x:Name="SettingsTab" Grid.Row="6" Margin="0,0,0,10" Style="{DynamicResource GridStyle_hover}" MouseDown="SettingsTab_MouseDown">
+                    <Label Content="VIEW SETTINGS" FontSize="20" Height="35" VerticalAlignment="Top"/>
                 </Grid>
 
             </Grid>
