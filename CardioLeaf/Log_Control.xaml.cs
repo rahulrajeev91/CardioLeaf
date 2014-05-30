@@ -26,7 +26,7 @@ namespace CardioLeaf
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
 
             // Create an instance of the open file dialog box.
@@ -34,7 +34,7 @@ namespace CardioLeaf
 
             // Process input if the user clicked OK.
             openFileDialog1.InitialDirectory = "c:\\";
-            openFileDialog1.Filter = "csv files (*.csv)|*.csv";
+            openFileDialog1.Filter = "CardioLeaf Log files (*.cll)|*.cll";
             openFileDialog1.FilterIndex = 2;
             openFileDialog1.RestoreDirectory = true;
             openFileDialog1.Multiselect = false;
@@ -51,6 +51,36 @@ namespace CardioLeaf
                 }
                 fileStream.Close();
             }
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            System.IO.StreamWriter fs = null;
+            System.Windows.Forms.SaveFileDialog saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+
+            saveFileDialog1.Filter = "CardioLeaf Log files (*.cll)|*.cll";
+            saveFileDialog1.FilterIndex = 0;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    fs = new System.IO.StreamWriter(saveFileDialog1.OpenFile());
+                    fs.Write(tbFileContents.Text);
+                    fs.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                
+            }
+        }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+           tbFileContents.Text = "Click load to view a log file";
         }
     }
 }

@@ -13,9 +13,9 @@
             <RowDefinition Height="25*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Margin="10,10,10,0">
-            <Button Content="Clear" HorizontalAlignment="Right" Width="100" FontSize="20"/>
-            <Button Content="Save File" HorizontalAlignment="Right" Width="100" FontSize="20" Margin="0,0,120,0"/>
-            <Button Content="Load File" HorizontalAlignment="Right" Width="100" FontSize="20" Margin="0,0,240,0" Click="Button_Click"/>
+            <Button x:Name="btnClear" Content="Clear" HorizontalAlignment="Right" Width="100" FontSize="20" Click="btnClear_Click"/>
+            <Button x:Name="btnSave" Content="Save File" HorizontalAlignment="Right" Width="100" FontSize="20" Margin="0,0,120,0" Click="btnSave_Click"/>
+            <Button x:Name="btnLoad" Content="Load File" HorizontalAlignment="Right" Width="100" FontSize="20" Margin="0,0,240,0" Click="btnLoad_Click"/>
         </Grid>
         <Grid Grid.Row="1" Margin="10,10,10,0">
             <TextBox x:Name="tbFileContents" TextWrapping="Wrap" Text="TextBox"/>
