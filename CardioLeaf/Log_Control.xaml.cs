@@ -21,14 +21,16 @@ namespace CardioLeaf
     /// </summary>
     public partial class Log_Control : UserControl
     {
+
+        datatableControl dtController = new datatableControl();
         public Log_Control()
         {
             InitializeComponent();
+            datagridFormHost.Child = dtController;
         }
 
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
-
             // Create an instance of the open file dialog box.
             System.Windows.Forms.OpenFileDialog openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 
@@ -41,15 +43,17 @@ namespace CardioLeaf
 
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                // Open the selected file to read.
-                System.IO.Stream fileStream = openFileDialog1.OpenFile();
+                string filepath = openFileDialog1.FileName;
+                dtController.importCsv(filepath);
+                //// Open the selected file to read.
+                //System.IO.Stream fileStream = openFileDialog1.OpenFile();
 
-                using (System.IO.StreamReader reader = new System.IO.StreamReader(fileStream))
-                {
-                    // Read the first line from the file and write it the textbox.
-                    tbFileContents.Text = reader.ReadToEnd();
-                }
-                fileStream.Close();
+                //using (System.IO.StreamReader reader = new System.IO.StreamReader(fileStream))
+                //{
+                //    // Read the first line from the file and write it the textbox.
+                //    tbFileContents.Text = reader.ReadToEnd();
+                //}
+                //fileStream.Close();
             }
         }
 
@@ -64,23 +68,26 @@ namespace CardioLeaf
 
             if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                try
-                {
-                    fs = new System.IO.StreamWriter(saveFileDialog1.OpenFile());
-                    fs.Write(tbFileContents.Text);
-                    fs.Close();
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-                
+
+                string filepath = saveFileDialog1.FileName;
+                dtController.ExportCsv(filepath);
+                //try
+                //{
+                //    fs = new System.IO.StreamWriter(saveFileDialog1.OpenFile());
+                //    fs.Write(tbFileContents.Text);
+                //    fs.Close();
+                //}
+                //catch (Exception)
+                //{
+                //    throw;
+                //}
+
             }
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-           tbFileContents.Text = "Click load to view a log file";
+            dtController.ClearDT();
         }
     }
 }

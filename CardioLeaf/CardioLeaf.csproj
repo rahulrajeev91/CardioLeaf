@@ -71,6 +71,12 @@
     <Compile Include="Activity_Control.xaml.cs">
       <DependentUpon>Activity_Control.xaml</DependentUpon>
     </Compile>
+    <Compile Include="datatableControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="datatableControl.Designer.cs">
+      <DependentUpon>datatableControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="HearRate_Control.xaml.cs">
       <DependentUpon>HearRate_Control.xaml</DependentUpon>
     </Compile>
@@ -143,6 +149,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="datatableControl.resx">
+      <DependentUpon>datatableControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HeartRateChart.resx">
       <DependentUpon>HeartRateChart.cs</DependentUpon>
     </EmbeddedResource>

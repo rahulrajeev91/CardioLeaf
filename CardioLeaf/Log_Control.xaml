@@ -9,7 +9,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="26*"/>
-            <RowDefinition Height="2"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="25*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Margin="10,10,10,0">
@@ -18,10 +18,11 @@
             <Button x:Name="btnLoad" Content="Load File" HorizontalAlignment="Right" Width="100" FontSize="20" Margin="0,0,240,0" Click="btnLoad_Click"/>
         </Grid>
         <Grid Grid.Row="1" Margin="10,10,10,0">
-            <TextBox x:Name="tbFileContents" TextWrapping="Wrap" Text="TextBox"/>
-            <!--<DataGrid Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False">
+            <WindowsFormsHost x:Name="datagridFormHost" Margin="0,0,0,0"/>
+            <!--<DataGrid x:Name="dgLog" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False" Background="White" CanUserSortColumns="False" MinColumnWidth="40">
                 
             </DataGrid>-->
+
         </Grid>
         <Grid Grid.Row="2" Margin="10,0,10,10" Background="Black" Grid.RowSpan="2"/>
         <GridSplitter HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="2"/>
