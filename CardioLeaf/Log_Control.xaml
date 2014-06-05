@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Margin="10,10,10,0">
             <Button x:Name="btnClear" Content="Clear" HorizontalAlignment="Right" Width="100" FontSize="20" Click="btnClear_Click"/>
-            <Button x:Name="btnSave" Content="Save File" HorizontalAlignment="Right" Width="100" FontSize="20" Margin="0,0,120,0" Click="btnSave_Click"/>
+            <Button x:Name="btnSave" Content="Save File" FontSize="20" Margin="0,0,120,0" Click="btnSave_Click" HorizontalAlignment="Right" Width="100"/>
             <Button x:Name="btnLoad" Content="Load File" HorizontalAlignment="Right" Width="100" FontSize="20" Margin="0,0,240,0" Click="btnLoad_Click"/>
         </Grid>
         <Grid Grid.Row="1" Margin="10,10,10,0">
@@ -24,7 +24,16 @@
             </DataGrid>-->
 
         </Grid>
-        <Grid Grid.Row="2" Margin="10,0,10,10" Background="Black" Grid.RowSpan="2"/>
+        <Grid Grid.Row="3" Margin="10,0,10,10" Background="Black" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <WindowsFormsHost x:Name="ECGFormHost" Grid.Column="1"/>
+            <Button x:Name="btnReverse" Content="&lt;" MouseEnter="btnReverse_MouseEnter" MouseLeave="btnReverse_MouseLeave" IsEnabled="False"/>
+            <Button x:Name="btnForward" Content="&gt;" Margin="0,0,0,0" Grid.Column="2" MouseEnter="btnForward_MouseEnter" MouseLeave="btnForward_MouseLeave"/>
+        </Grid>
         <GridSplitter HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="2"/>
     </Grid>
 </UserControl>

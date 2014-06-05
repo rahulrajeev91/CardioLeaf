@@ -20,8 +20,8 @@
             switch (mode)
             {
                 case 1:
-                    this.HRChart.ChartAreas[0].Visible = false;
-                    this.HRChart.ChartAreas[1].Visible = true;
+                    this.HRChart.ChartAreas[0].Visible = true;
+                    this.HRChart.ChartAreas[1].Visible = false;
                     this.HRChart.ChartAreas[2].Visible = false;
                     break;
                 case 3:

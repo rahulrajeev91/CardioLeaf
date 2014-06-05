@@ -63,7 +63,7 @@ namespace CardioLeaf
         public void AddToChart(uint val)
         {
             chart1.Series[0].Points.AddY(val);
-            ScrollCharts();
+            ScrollCharts(1);
         }
 
         public void AddToChart(uint val1, uint val2, uint val3 )    //for 3 lead data
@@ -71,16 +71,19 @@ namespace CardioLeaf
             chart1.Series[0].Points.AddY(val1);
             chart1.Series[1].Points.AddY(val2);
             chart1.Series[2].Points.AddY(val3);
-            ScrollCharts();
+            ScrollCharts(3);
         }
 
-        private void ScrollCharts()
+        private void ScrollCharts(int cnt)
         {
             while (chart1.Series[0].Points.Count >= MAX_POINTS)
             {
                 chart1.Series[0].Points.RemoveAt(0);
-                chart1.Series[1].Points.RemoveAt(0);
-                chart1.Series[2].Points.RemoveAt(0);
+                if (cnt == 3)
+                {
+                    chart1.Series[1].Points.RemoveAt(0);
+                    chart1.Series[2].Points.RemoveAt(0);
+                }
             }
         }
 

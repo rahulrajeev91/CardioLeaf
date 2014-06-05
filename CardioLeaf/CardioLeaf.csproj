@@ -71,6 +71,7 @@
     <Compile Include="Activity_Control.xaml.cs">
       <DependentUpon>Activity_Control.xaml</DependentUpon>
     </Compile>
+    <Compile Include="datagridSelectedData.cs" />
     <Compile Include="datatableControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
