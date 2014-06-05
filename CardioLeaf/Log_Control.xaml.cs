@@ -38,7 +38,7 @@ namespace CardioLeaf
             InitializeComponent();
             dtController = new datatableControl(this); //passing in the pointer to the current class
             datagridFormHost.Child = dtController;
-            HRChartControl.SetChartDisplayMode(1);     //show all 3 leads
+            HRChartControl.SetChartDisplayMode(1);     //show 1 lead
             ECGFormHost.Child = HRChartControl;
 
             chart1 = HRChartControl.HRChart;
