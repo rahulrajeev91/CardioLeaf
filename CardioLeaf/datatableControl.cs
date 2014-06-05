@@ -166,7 +166,12 @@ namespace CardioLeaf
 
             for (int i = row; i < dataGridView1.Rows.Count && dataToSend.selectedPoints.Count < 300; i++)
             {
-                val = int.Parse(dataGridView1.Rows[i].Cells[col].Value.ToString());
+                try
+                {
+                    val = int.Parse(dataGridView1.Rows[i].Cells[col].Value.ToString());
+                }
+                catch (Exception) { }
+
                 dataToSend.selectedPoints.Add(val);
             }
 
