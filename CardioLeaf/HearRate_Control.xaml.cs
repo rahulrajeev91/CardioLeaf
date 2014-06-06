@@ -24,12 +24,8 @@ namespace CardioLeaf
 
         #region Plot data variables
         
-        ChartControl HRChartControl = new ChartControl();
+        ChartControl ECGChartControl = new ChartControl(12);
         private System.Collections.ArrayList points = new System.Collections.ArrayList();
-        const int MAX_POINTS = 300;
-
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-
         #endregion
 
         public HearRate_Control()
@@ -39,54 +35,21 @@ namespace CardioLeaf
 
         private void UserControl_Initialized(object sender, EventArgs e)
         {
-            HRChartControl.SetChartDisplayMode(3);     //show all 3 leads
-            ChartHost.Child = HRChartControl;
-
-            chart1 = HRChartControl.modularChart;
-            resetChart();
-        }
-
-        public void resetChart()
-        {
-            chart1.Series[0].Points.Clear();
-            chart1.Series[1].Points.Clear();
-            chart1.Series[2].Points.Clear();
-
-            chart1.Series[0].Points.Add(0);
-            chart1.Series[1].Points.Add(0);
-            chart1.Series[2].Points.Add(0);
-        }
-
-
-        #region Chart Functions
-
-        public void AddToChart(uint val)
-        {
-            chart1.Series[0].Points.AddY(val);
-            ScrollCharts(1);
+            ChartHost.Child = ECGChartControl;
+            ECGChartControl.resetChart();
         }
 
         public void AddToChart(uint val1, uint val2, uint val3 )    //for 3 lead data
         {
-            chart1.Series[0].Points.AddY(val1);
-            chart1.Series[1].Points.AddY(val2);
-            chart1.Series[2].Points.AddY(val3);
-            ScrollCharts(3);
+            //chart1.Series[0].Points.AddY(val1);
+            //chart1.Series[1].Points.AddY(val2);
+            //chart1.Series[2].Points.AddY(val3);
+            //ScrollCharts(3);
         }
 
-        private void ScrollCharts(int cnt)
+        public void AddToChart(int[][] values)    //for 12 lead data
         {
-            while (chart1.Series[0].Points.Count >= MAX_POINTS)
-            {
-                chart1.Series[0].Points.RemoveAt(0);
-                if (cnt == 3)
-                {
-                    chart1.Series[1].Points.RemoveAt(0);
-                    chart1.Series[2].Points.RemoveAt(0);
-                }
-            }
+            ECGChartControl.AddToChart(values,12);
         }
-
-        #endregion
     }
 }

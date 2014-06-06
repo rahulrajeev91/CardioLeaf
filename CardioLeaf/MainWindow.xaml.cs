@@ -588,3 +588,15 @@ namespace CardioLeaf
 
     }
 }
+
+//parse function writes to all the pagez simu;ltaneously:
+// 12 leads: HR,
+// 1 lead : summary
+// activity page, summary
+// temp page, summary
+// also save to log using the correct filename
+
+// steps : make HR page work... then worry qabt the others. need to have a separate thread for the incoming data and the data processing
+
+
+

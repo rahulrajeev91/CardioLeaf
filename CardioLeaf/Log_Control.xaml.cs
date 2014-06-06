@@ -167,12 +167,3 @@ namespace CardioLeaf
         }
     }
 }
-
-
-/*
- * todos :
- *  - add a timer function that fires 100 times/sec (aprox rate)
- *  - read choice from table
- *  - load L<=300points at start
- *  - disable buttons that are not useful
-*/
