@@ -20,7 +20,7 @@ namespace CardioLeaf
     /// </summary>
     public partial class Summary_Control : UserControl
     {
-        HeartRateChart HRChart = new HeartRateChart();     
+        ChartControl HRChart = new ChartControl();     
 
         public Summary_Control()
         {

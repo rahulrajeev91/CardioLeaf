@@ -24,7 +24,7 @@ namespace CardioLeaf
 
         #region Plot data variables
         
-        HeartRateChart HRChartControl = new HeartRateChart();
+        ChartControl HRChartControl = new ChartControl();
         private System.Collections.ArrayList points = new System.Collections.ArrayList();
         const int MAX_POINTS = 300;
 
@@ -42,7 +42,7 @@ namespace CardioLeaf
             HRChartControl.SetChartDisplayMode(3);     //show all 3 leads
             ChartHost.Child = HRChartControl;
 
-            chart1 = HRChartControl.HRChart;
+            chart1 = HRChartControl.modularChart;
             resetChart();
         }
 

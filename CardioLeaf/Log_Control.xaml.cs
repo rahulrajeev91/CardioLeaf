@@ -23,7 +23,7 @@ namespace CardioLeaf
     {
 
         datatableControl dtController;
-        HeartRateChart HRChartControl = new HeartRateChart();
+        ChartControl LogChartControl = new ChartControl(1);
         private System.Collections.ArrayList points = new System.Collections.ArrayList();
         const int MAX_POINTS = 300;
 
@@ -31,71 +31,26 @@ namespace CardioLeaf
         Boolean reverseChartMove = false;
 
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1 = null;
+        private System.Windows.Forms.DataVisualization.Charting.Chart logChart = null;
 
         public Log_Control()
         {
             InitializeComponent();
             dtController = new datatableControl(this); //passing in the pointer to the current class
             datagridFormHost.Child = dtController;
-            HRChartControl.SetChartDisplayMode(1);     //show 1 lead
-            ECGFormHost.Child = HRChartControl;
-
-            chart1 = HRChartControl.HRChart;
-            resetChart();
+            //LogChartControl.SetChartDisplayMode(1);     //show 1 lead
+            ECGFormHost.Child = LogChartControl;
+            resetLogChart();
         }
 
-        public void resetChart()
+        public void resetLogChart()
         {
-            chart1.Series[0].Points.Clear();
-            chart1.Series[0].Points.Add(0);
+            LogChartControl.resetChart();
 
             btnReverse.IsEnabled = true;
             btnForward.IsEnabled = true;
         }
 
-
-        #region Chart Functions
-
-        public void AddToChart(int val, Boolean isForward)
-        {
-            if (isForward)
-            {
-                chart1.Series[0].Points.AddY(val);
-                ScrollChartsForward();
-                resizeChart(val);
-            }
-            else
-            {
-                //TODO : run reverse
-            }
-        }
-
-        private void resizeChart(int val)
-        {
-            chart1.ChartAreas[0].RecalculateAxesScale();
-
-            //if (Math.Abs(chart1.ChartAreas[0].AxisY.Minimum) < Math.Abs(chart1.ChartAreas[0].AxisY.Maximum))
-            //    chart1.ChartAreas[0].AxisY.Minimum = -chart1.ChartAreas[0].AxisY.Maximum;
-            //else
-            //    chart1.ChartAreas[0].AxisY.Maximum = -chart1.ChartAreas[0].AxisY.Minimum;
-
-
-            //if (val > chart1.ChartAreas[0].AxisY.Maximum)
-            //    chart1.ChartAreas[0].AxisY.Maximum = val * 1.1;
-            //else if (val < chart1.ChartAreas[0].AxisY.Minimum)
-            //    chart1.ChartAreas[0].AxisY.Minimum = val;
-        }
-
-        private void ScrollChartsForward()
-        {
-            while (chart1.Series[0].Points.Count >= MAX_POINTS)
-            {
-                chart1.Series[0].Points.RemoveAt(0);
-            }
-        }
-
-        #endregion
 
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
@@ -202,14 +157,13 @@ namespace CardioLeaf
 
         internal void drawGraph(datagridSelectedData dataReceived)
         {
-            resetChart();
+            resetLogChart();
             if (dataReceived.isBeginning)
                 btnReverse.IsEnabled = false;
             if (dataReceived.isEnd)
                 btnForward.IsEnabled = false;
 
-            foreach (int val in dataReceived.selectedPoints)
-                AddToChart(val,true);
+            LogChartControl.AddToChart(dataReceived.selectedPoints.ToArray<int>());
         }
     }
 }

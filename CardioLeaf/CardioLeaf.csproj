@@ -71,6 +71,7 @@
     <Compile Include="Activity_Control.xaml.cs">
       <DependentUpon>Activity_Control.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CLSettings.cs" />
     <Compile Include="datagridSelectedData.cs" />
     <Compile Include="datatableControl.cs">
       <SubType>UserControl</SubType>
@@ -81,11 +82,11 @@
     <Compile Include="HearRate_Control.xaml.cs">
       <DependentUpon>HearRate_Control.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HeartRateChart.cs">
+    <Compile Include="ChartControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HeartRateChart.Designer.cs">
-      <DependentUpon>HeartRateChart.cs</DependentUpon>
+    <Compile Include="ChartControl.Designer.cs">
+      <DependentUpon>ChartControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Log_Control.xaml.cs">
       <DependentUpon>Log_Control.xaml</DependentUpon>
@@ -153,8 +154,8 @@
     <EmbeddedResource Include="datatableControl.resx">
       <DependentUpon>datatableControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HeartRateChart.resx">
-      <DependentUpon>HeartRateChart.cs</DependentUpon>
+    <EmbeddedResource Include="ChartControl.resx">
+      <DependentUpon>ChartControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

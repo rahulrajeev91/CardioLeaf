@@ -1,72 +1,11 @@
 ﻿namespace CardioLeaf
 {
-    partial class HeartRateChart
+    partial class ChartControl
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-
-        
-        /// <summary> 
-        /// changing chart modes
-        /// </summary>
-
-        //modes
-        //1-> only graph 2
-        //3-> all theree graphs
-        public void SetChartDisplayMode(int mode)
-        {
-            switch (mode)
-            {
-                case 1:
-                    this.HRChart.ChartAreas[0].Visible = true;
-                    this.HRChart.ChartAreas[1].Visible = false;
-                    this.HRChart.ChartAreas[2].Visible = false;
-                    this.HRChart.ChartAreas[3].Visible = false;
-                    this.HRChart.ChartAreas[4].Visible = false;
-                    this.HRChart.ChartAreas[5].Visible = false;
-                    this.HRChart.ChartAreas[6].Visible = false;
-                    this.HRChart.ChartAreas[7].Visible = false;
-                    this.HRChart.ChartAreas[8].Visible = false;
-                    this.HRChart.ChartAreas[9].Visible = false;
-                    this.HRChart.ChartAreas[10].Visible = false;
-                    this.HRChart.ChartAreas[11].Visible = false;
-                    
-                    break;
-                case 3:
-                    this.HRChart.ChartAreas[0].Visible = true;
-                    this.HRChart.ChartAreas[1].Visible = true;
-                    this.HRChart.ChartAreas[2].Visible = true;
-                    this.HRChart.ChartAreas[3].Visible = false;
-                    this.HRChart.ChartAreas[4].Visible = false;
-                    this.HRChart.ChartAreas[5].Visible = false;
-                    this.HRChart.ChartAreas[6].Visible = false;
-                    this.HRChart.ChartAreas[7].Visible = false;
-                    this.HRChart.ChartAreas[8].Visible = false;
-                    this.HRChart.ChartAreas[9].Visible = false;
-                    this.HRChart.ChartAreas[10].Visible = false;
-                    this.HRChart.ChartAreas[11].Visible = false;
-                   
-                    break;
-                case 12:
-                    this.HRChart.ChartAreas[0].Visible = true;
-                    this.HRChart.ChartAreas[1].Visible = true;
-                    this.HRChart.ChartAreas[2].Visible = true;
-                    this.HRChart.ChartAreas[3].Visible = true;
-                    this.HRChart.ChartAreas[4].Visible = true;
-                    this.HRChart.ChartAreas[5].Visible = true;
-                    this.HRChart.ChartAreas[6].Visible = true;
-                    this.HRChart.ChartAreas[7].Visible = true;
-                    this.HRChart.ChartAreas[8].Visible = true;
-                    this.HRChart.ChartAreas[9].Visible = true;
-                    this.HRChart.ChartAreas[10].Visible = true;
-                    this.HRChart.ChartAreas[11].Visible = true;
-                    
-                    break;
-            }
-        }
-        
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -125,18 +64,18 @@
             System.Windows.Forms.DataVisualization.Charting.Series series22 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series23 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series24 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HeartRateChart));
-            this.HRChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)(this.HRChart)).BeginInit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartControl));
+            this.modularChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            ((System.ComponentModel.ISupportInitialize)(this.modularChart)).BeginInit();
             this.SuspendLayout();
             // 
-            // HRChart
+            // modularChart
             // 
-            this.HRChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.modularChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.HRChart.BackColor = System.Drawing.Color.Transparent;
-            this.HRChart.BorderlineColor = System.Drawing.Color.Transparent;
+            this.modularChart.BackColor = System.Drawing.Color.Transparent;
+            this.modularChart.BorderlineColor = System.Drawing.Color.Transparent;
             chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
             chartArea1.AxisX.LabelStyle.Enabled = false;
             chartArea1.AxisX.LineColor = System.Drawing.Color.White;
@@ -437,21 +376,21 @@
             chartArea12.BorderColor = System.Drawing.Color.Transparent;
             chartArea12.BorderWidth = 0;
             chartArea12.Name = "ChartArea12";
-            this.HRChart.ChartAreas.Add(chartArea1);
-            this.HRChart.ChartAreas.Add(chartArea2);
-            this.HRChart.ChartAreas.Add(chartArea3);
-            this.HRChart.ChartAreas.Add(chartArea4);
-            this.HRChart.ChartAreas.Add(chartArea5);
-            this.HRChart.ChartAreas.Add(chartArea6);
-            this.HRChart.ChartAreas.Add(chartArea7);
-            this.HRChart.ChartAreas.Add(chartArea8);
-            this.HRChart.ChartAreas.Add(chartArea9);
-            this.HRChart.ChartAreas.Add(chartArea10);
-            this.HRChart.ChartAreas.Add(chartArea11);
-            this.HRChart.ChartAreas.Add(chartArea12);
-            this.HRChart.Location = new System.Drawing.Point(0, 0);
-            this.HRChart.Margin = new System.Windows.Forms.Padding(0);
-            this.HRChart.Name = "HRChart";
+            this.modularChart.ChartAreas.Add(chartArea1);
+            this.modularChart.ChartAreas.Add(chartArea2);
+            this.modularChart.ChartAreas.Add(chartArea3);
+            this.modularChart.ChartAreas.Add(chartArea4);
+            this.modularChart.ChartAreas.Add(chartArea5);
+            this.modularChart.ChartAreas.Add(chartArea6);
+            this.modularChart.ChartAreas.Add(chartArea7);
+            this.modularChart.ChartAreas.Add(chartArea8);
+            this.modularChart.ChartAreas.Add(chartArea9);
+            this.modularChart.ChartAreas.Add(chartArea10);
+            this.modularChart.ChartAreas.Add(chartArea11);
+            this.modularChart.ChartAreas.Add(chartArea12);
+            this.modularChart.Location = new System.Drawing.Point(0, 0);
+            this.modularChart.Margin = new System.Windows.Forms.Padding(0);
+            this.modularChart.Name = "modularChart";
             series1.BorderColor = System.Drawing.Color.Transparent;
             series1.BorderWidth = 0;
             series1.ChartArea = "ChartArea1";
@@ -618,50 +557,50 @@
             series24.Color = System.Drawing.Color.Tomato;
             series24.Name = "Series24";
             series24.SmartLabelStyle.Enabled = false;
-            this.HRChart.Series.Add(series1);
-            this.HRChart.Series.Add(series2);
-            this.HRChart.Series.Add(series3);
-            this.HRChart.Series.Add(series4);
-            this.HRChart.Series.Add(series5);
-            this.HRChart.Series.Add(series6);
-            this.HRChart.Series.Add(series7);
-            this.HRChart.Series.Add(series8);
-            this.HRChart.Series.Add(series9);
-            this.HRChart.Series.Add(series10);
-            this.HRChart.Series.Add(series11);
-            this.HRChart.Series.Add(series12);
-            this.HRChart.Series.Add(series13);
-            this.HRChart.Series.Add(series14);
-            this.HRChart.Series.Add(series15);
-            this.HRChart.Series.Add(series16);
-            this.HRChart.Series.Add(series17);
-            this.HRChart.Series.Add(series18);
-            this.HRChart.Series.Add(series19);
-            this.HRChart.Series.Add(series20);
-            this.HRChart.Series.Add(series21);
-            this.HRChart.Series.Add(series22);
-            this.HRChart.Series.Add(series23);
-            this.HRChart.Series.Add(series24);
-            this.HRChart.Size = new System.Drawing.Size(265, 260);
-            this.HRChart.TabIndex = 0;
-            this.HRChart.Text = "chart1";
+            this.modularChart.Series.Add(series1);
+            this.modularChart.Series.Add(series2);
+            this.modularChart.Series.Add(series3);
+            this.modularChart.Series.Add(series4);
+            this.modularChart.Series.Add(series5);
+            this.modularChart.Series.Add(series6);
+            this.modularChart.Series.Add(series7);
+            this.modularChart.Series.Add(series8);
+            this.modularChart.Series.Add(series9);
+            this.modularChart.Series.Add(series10);
+            this.modularChart.Series.Add(series11);
+            this.modularChart.Series.Add(series12);
+            this.modularChart.Series.Add(series13);
+            this.modularChart.Series.Add(series14);
+            this.modularChart.Series.Add(series15);
+            this.modularChart.Series.Add(series16);
+            this.modularChart.Series.Add(series17);
+            this.modularChart.Series.Add(series18);
+            this.modularChart.Series.Add(series19);
+            this.modularChart.Series.Add(series20);
+            this.modularChart.Series.Add(series21);
+            this.modularChart.Series.Add(series22);
+            this.modularChart.Series.Add(series23);
+            this.modularChart.Series.Add(series24);
+            this.modularChart.Size = new System.Drawing.Size(265, 260);
+            this.modularChart.TabIndex = 0;
+            this.modularChart.Text = "chart1";
             // 
-            // HeartRateChart
+            // ChartControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.Controls.Add(this.HRChart);
-            this.Name = "HeartRateChart";
+            this.Controls.Add(this.modularChart);
+            this.Name = "ChartControl";
             this.Size = new System.Drawing.Size(300, 300);
-            ((System.ComponentModel.ISupportInitialize)(this.HRChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modularChart)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        public System.Windows.Forms.DataVisualization.Charting.Chart HRChart;
+        public System.Windows.Forms.DataVisualization.Charting.Chart modularChart;
     }
 }

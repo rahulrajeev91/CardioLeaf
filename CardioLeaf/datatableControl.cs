@@ -12,6 +12,9 @@ namespace CardioLeaf
 {
     public partial class datatableControl : UserControl
     {
+
+        private bool loadingFlag = false;
+
         Log_Control parent_LogControl = null;
         private int row, col;
 
@@ -29,6 +32,8 @@ namespace CardioLeaf
 
         public Boolean importCsv(string csvPath)
         {
+            loadingFlag = true;
+
             dataGridView1.Rows.Clear();
             try
             {
@@ -46,21 +51,21 @@ namespace CardioLeaf
                     }
                     fileReader.Dispose();
                     fileReader.Close();
+                    
+                    loadingFlag = false;
+                    return true;
                 }
                 else
-                {
                     MessageBox.Show("Log file doesnt exist.");
-                    return false;
-                }
-
-                return true;
-
             }
             catch (Exception)
             {
                 MessageBox.Show("Load Error");
-                return false;
+                
             }
+            
+            loadingFlag = false; 
+                return false;
         }
 
         internal Boolean ExportCsv(string CsvFpath)
@@ -117,35 +122,10 @@ namespace CardioLeaf
             e.Graphics.DrawString(rowIdx, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //int col = e.ColumnIndex;
-            //int row = e.RowIndex;
-
-            //if (row < 0 || col < 0)
-            //    return;
-
-            //int val = 0;
-            //datagridSelectedData dataToSend = new datagridSelectedData();
-
-            //if (dataGridView1.Rows.Count <= row + 300)
-            //    dataToSend.isEnd = true;
-
-            //if (row == 0)
-            //    dataToSend.isBeginning = true;
-
-            //for (int i = row; i < dataGridView1.Rows.Count && dataToSend.selectedPoints.Count < 300; i++)
-            //{
-            //    val = int.Parse(dataGridView1.Rows[i].Cells[col].Value.ToString());
-            //    dataToSend.selectedPoints.Add(val);
-            //}
-
-            //parent_LogControl.drawGraph(dataToSend);
-
-        }
-
         private void dataGridView1_CellStateChanged(object sender, DataGridViewCellStateChangedEventArgs e)
         {
+            if (loadingFlag)
+                return;
             if (e.StateChanged != System.Windows.Forms.DataGridViewElementStates.Selected)
                 return;
 
@@ -158,13 +138,13 @@ namespace CardioLeaf
             int val = 0;
             datagridSelectedData dataToSend = new datagridSelectedData();
 
-            if (dataGridView1.Rows.Count <= row + 300)
+            if (dataGridView1.Rows.Count <= row + CLSettings.GraphWidth)
                 dataToSend.isEnd = true;
 
             if (row == 0)
                 dataToSend.isBeginning = true;
 
-            for (int i = row; i < dataGridView1.Rows.Count && dataToSend.selectedPoints.Count < 300; i++)
+            for (int i = row; i < dataGridView1.Rows.Count && dataToSend.selectedPoints.Count < CLSettings.GraphWidth; i++)
             {
                 try
                 {
@@ -182,16 +162,16 @@ namespace CardioLeaf
 
         internal void down()
         {
-            if (row >= dataGridView1.Rows.Count-10)
+            if (row >= dataGridView1.Rows.Count)
                 return;
-            dataGridView1.CurrentCell = dataGridView1.Rows[row + 10].Cells[col];
+            dataGridView1.CurrentCell = dataGridView1.Rows[row + 1].Cells[col];
         }
 
         internal void up()
         {
-            if (row <= 10)
+            if (row <= 0)
                 return;
-            dataGridView1.CurrentCell = dataGridView1.Rows[row - 10].Cells[col];
+            dataGridView1.CurrentCell = dataGridView1.Rows[row - 1].Cells[col];
         }
     }
 }
