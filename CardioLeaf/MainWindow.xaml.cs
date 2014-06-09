@@ -25,12 +25,12 @@ namespace CardioLeaf
 
         #region Tab Control variables
 
-        Summary_Control SummaryPage = null;
-        HearRate_Control HRPage = null;
-        Temperature_Control TempPage = null;
-        Activity_Control ActivityPage = null;
-        Settings_Control SettingsPage = null;
-        Log_Control LogPage = null;
+        Summary_Control SummaryPage = new Summary_Control();
+        HearRate_Control HRPage = new HearRate_Control();
+        Temperature_Control TempPage = new Temperature_Control();
+        Activity_Control ActivityPage = new Activity_Control();
+        Settings_Control SettingsPage = new Settings_Control();
+        Log_Control LogPage = new Log_Control();
 
         enum Page { Summary, HeartRate, Activity, Temp, Settings, Log, Unknown };     //models the page tabs
         Page CurrentPage;
@@ -336,34 +336,22 @@ namespace CardioLeaf
             switch (topage)
             {
                 case Page.Summary:
-                    if (SummaryPage == null)
-                        SummaryPage = new Summary_Control();
                     DataGrid.Children.Add(SummaryPage);
                     break;
                 case Page.HeartRate:
-                    if (HRPage == null)
-                        HRPage = new HearRate_Control();
                     DataGrid.Children.Add(HRPage);
                     break;
                 case Page.Activity:
-                    if (ActivityPage == null)
-                        ActivityPage = new Activity_Control();
                     DataGrid.Children.Add(ActivityPage);
                     break;
                 case Page.Temp:
-                    if (TempPage == null)
-                        TempPage = new Temperature_Control();
                     DataGrid.Children.Add(TempPage);
                     break;
                 case Page.Settings:
-                    if (SettingsPage == null)
-                        SettingsPage = new Settings_Control();
                     DataGrid.Children.Add(SettingsPage);
                     break;
 
                 case Page.Log:
-                    if (LogPage == null)
-                        LogPage = new Log_Control();
                     DataGrid.Children.Add(LogPage);
                     break;
                 default:
@@ -637,8 +625,8 @@ namespace CardioLeaf
                 DisplayData(DataList);
         }
         #endregion
-        
-        
+
+        #region display Data
         private void DisplayData(List<ECGImpAccData> DataList)
         {
 
@@ -657,6 +645,7 @@ namespace CardioLeaf
             // temp page, summary
             // also save to log using the correct filename
         }
+        #endregion
 
     }
 }
