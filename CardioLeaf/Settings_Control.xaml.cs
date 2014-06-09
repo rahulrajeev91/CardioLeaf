@@ -18,11 +18,16 @@ namespace CardioLeaf
     /// <summary>
     /// Interaction logic for Settings_Control.xaml
     /// </summary>
-    public partial class Settings_Control : UserControl
+    public partial class Settings_Control : UserControl, ChildControl
     {
         public Settings_Control()
         {
             InitializeComponent();
+        }
+
+        public void Reset()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -71,6 +71,7 @@
     <Compile Include="Activity_Control.xaml.cs">
       <DependentUpon>Activity_Control.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChildControl.cs" />
     <Compile Include="CLSettings.cs" />
     <Compile Include="datagridSelectedData.cs" />
     <Compile Include="datatableControl.cs">
@@ -79,6 +80,7 @@
     <Compile Include="datatableControl.Designer.cs">
       <DependentUpon>datatableControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ECGImpAccData.cs" />
     <Compile Include="HearRate_Control.xaml.cs">
       <DependentUpon>HearRate_Control.xaml</DependentUpon>
     </Compile>

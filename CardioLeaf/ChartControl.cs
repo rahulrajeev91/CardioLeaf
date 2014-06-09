@@ -126,15 +126,15 @@ namespace CardioLeaf
 
         internal void AddToChart(int[][] values,int type)
         {
-            if (type != 3 || type != 12)
+            if (type != 3 && type != 12)
                 return;
             foreach (int[] points in values)
             {
-                if (points.Length != type)
-                    continue;
+                //if (points.Length != type)
+                //    continue;
                 for (int i = 0; i < type; i++)
                     this.modularChart.Series[i * 2].Points.AddY(points[i]);
-                ScrollCharts(1);
+                ScrollCharts(type);
             }
             UpdateChartScale();
         }

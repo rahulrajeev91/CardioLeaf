@@ -24,6 +24,7 @@ namespace CardioLeaf
         // Variables
 
         #region Tab Control variables
+
         Summary_Control SummaryPage = null;
         HearRate_Control HRPage = null;
         Temperature_Control TempPage = null;
@@ -66,10 +67,11 @@ namespace CardioLeaf
             length,
             type,
             subType,
-            control,
+            control,    
             read,
             alert,
-            contDataPayload,
+            contDataPayload_old, 
+            contDataPayload_EcgImpAcc,
         }
         ParseStatus parseStep = ParseStatus.idle;
         #endregion
@@ -257,7 +259,7 @@ namespace CardioLeaf
                 if (Connect())
                 {
                     ConnectDisconnectButton.Content = "DISCONNECT";
-                    HRPage.resetChart();
+                    ResetAll();
                 }
                 else
                     MessageBox.Show("Connection failed. Could not open COM port");
@@ -277,6 +279,12 @@ namespace CardioLeaf
 
         }
 
+        private void ResetAll()
+        {
+            resetCounter();
+            ResetChild(CurrentPage);
+        }
+
         #endregion
 
         #region onclose function
@@ -289,6 +297,31 @@ namespace CardioLeaf
 		#endregion
 
         #region TabControl Functions
+
+        private void ResetChild(Page CurrentPage)
+        {
+            switch (CurrentPage)
+            {
+                case Page.Summary:
+                    SummaryPage.Reset();
+                    break;
+                case Page.HeartRate:
+                    HRPage.Reset();
+                    break;
+                case Page.Activity:
+                    ActivityPage.Reset();
+                    break;
+                case Page.Temp:
+                    TempPage.Reset();
+                    break;
+                case Page.Settings:
+                    SettingsPage.Reset();
+                    break;
+                case Page.Log:
+                    LogPage.Reset();
+                    break;
+            }
+        }
 
         private bool ChangePage(Page topage)
         {
@@ -303,27 +336,15 @@ namespace CardioLeaf
             switch (topage)
             {
                 case Page.Summary:
-                    //if (SummaryPage == null)
-                    //    SummaryPage = new Summary_Control();
-                    //DataGrid.Children.Add(SummaryPage);
+                    if (SummaryPage == null)
+                        SummaryPage = new Summary_Control();
+                    DataGrid.Children.Add(SummaryPage);
+                    break;
+                case Page.HeartRate:
                     if (HRPage == null)
-                    {
                         HRPage = new HearRate_Control();
-                        //DataGrid.Children.Add(HRPage);
-
-                        ////delete in final version
-                        //SetTabStyle(CurrentPage, true); //set to default
-                        //SetTabStyle(topage, false); //set to color
-
-                        HRPage.debugText.Text += "initialized Summary Page\n";
-                    }
                     DataGrid.Children.Add(HRPage);
                     break;
-                //case page.heartrate:
-                //    if (hrpage == null)
-                //        hrpage = new hearrate_control();
-                //    datagrid.children.add(hrpage);
-                //    break;
                 case Page.Activity:
                     if (ActivityPage == null)
                         ActivityPage = new Activity_Control();
@@ -441,8 +462,13 @@ namespace CardioLeaf
         private void ParseData()
         {
             int byteCount = serialPort.BytesToRead;
-            uint val1,val2,val3; 
-            uint payloadLength;
+
+            //int val1,val2,val3;
+
+            List<ECGImpAccData> DataList = new List<ECGImpAccData>();
+            ECGImpAccData DataPoint;
+            int[] ecgData,accData,impData ;
+            int payloadLength;
             Byte tempByte;
 
             //points.Clear();
@@ -463,10 +489,7 @@ namespace CardioLeaf
                         }
                         byteCount--;
                         if (tempByte == 0xFF)
-                        {
                             parseStep = ParseStatus.header2;
-                            //HRPage.debugText.Text += "\nnew packet : FF ";
-                        }
                         break;
 
                     case ParseStatus.header2:
@@ -481,10 +504,7 @@ namespace CardioLeaf
                         }
                         byteCount--;
                         if (tempByte == 0xFE)
-                        {
                             parseStep = ParseStatus.length;
-                            //HRPage.debugText.Text += "FE ";
-                        }
                         else
                             parseStep = ParseStatus.idle;   //reset
                         break;
@@ -493,7 +513,6 @@ namespace CardioLeaf
                         try
                         {
                             payloadLength = (Byte)serialPort.ReadByte();
-                            //HRPage.debugText.Text += payloadLength+" ";
                         }
                         catch (Exception)
                         {
@@ -521,81 +540,131 @@ namespace CardioLeaf
                                 //Control
                                 parseStep = ParseStatus.control;
                                 parseStep = ParseStatus.idle;
-                                //HRPage.debugText.Text += "Control";
                                 break;
 
                             case 0x01:
                                 //Read
                                 parseStep = ParseStatus.read;
                                 parseStep = ParseStatus.idle;
-                                //HRPage.debugText.Text += "read";
                                 break;
                             
                             case 0x02:
                                 //Alerts
                                 parseStep = ParseStatus.alert;
                                 parseStep = ParseStatus.idle;
-                                //HRPage.debugText.Text += "alerts";
                                 break;
                             case 0x03:
                                 //Continious Data
-                                parseStep = ParseStatus.contDataPayload;
+                                parseStep = ParseStatus.contDataPayload_old;
                                 //parseStep = ParseStatus.idle;
-                                //HRPage.debugText.Text += "payload";
                                 break;
+
+                            case 0x05:
+                                //Continious Data
+                                parseStep = ParseStatus.contDataPayload_EcgImpAcc;
+                                //parseStep = ParseStatus.idle;
+                                break;
+
                             default:
                                 parseStep = ParseStatus.idle;   //reset
                                 break;
                         }
                         break;
 
-                    //case ParseStatus.alert:
-                    //    //debugText.Text += "Alert!\n";
-                    //    //showFall();
-                    //    parseStep = ParseStatus.idle;       //reset
-                    //    break;
 
+                    case ParseStatus.contDataPayload_old:   //old format
+                        //try
+                        //{
+                        //    val1 = (int)serialPort.ReadByte();
+                        //    val1 = val1  + (int)serialPort.ReadByte() * 256;
+                        //    val3 = (int)serialPort.ReadByte();
+                        //    val3 = val3 + (int)serialPort.ReadByte() * 256;
+                        //    val2 = val1 + val3;
+                        //}
+                        //catch (Exception)
+                        //{
+                        //    parseStep = ParseStatus.idle;
+                        //    break;
+                        //}  
+                        ////HRPage.AddToChart(val1,val2,val3);      //add to chart
+                        //byteCount -= 2;
 
-                    case ParseStatus.contDataPayload:
+                        parseStep = ParseStatus.idle;           //reset
+                        break;
+
+                    case ParseStatus.contDataPayload_EcgImpAcc:   //0X05 FORMAT
+
+                        DataPoint = new ECGImpAccData();
+                        ecgData = new int[8];
+                        accData = new int[3];
+                        impData = new int[2];
                         try
                         {
-                            val1 = (uint)serialPort.ReadByte();
-                            val1 = val1  + (uint)serialPort.ReadByte() * 256;
-                            val3 = (uint)serialPort.ReadByte();
-                            val3 = val3 + (uint)serialPort.ReadByte() * 256;
-                            val2 = val1 + val3;
+                            for(int i = 0 ; i < 8 ; i++)
+                            {
+                                ecgData[i] = (int)serialPort.ReadByte();
+                                ecgData[i] = ecgData[i] + (int)serialPort.ReadByte() * 256;
+                                byteCount -= 2;
+                            }
+                            for (int i = 0; i < 2; i++)
+                            {
+                                impData[i] = (int)serialPort.ReadByte();
+                                impData[i] = impData[i] + (int)serialPort.ReadByte() * 256;
+                                byteCount -= 2;
+                            }
+
+                            for (int i = 0; i < 3; i++)
+                            {
+                                accData[i] = (int)serialPort.ReadByte();
+                                byteCount -= 1;
+                            }
+
+                            DataPoint.updateData(ecgData, accData, impData);
+
+                            DataList.Add(DataPoint);        //adding the data point to the data list collection
                         }
                         catch (Exception)
                         {
                             parseStep = ParseStatus.idle;
                             break;
-                        }  
-                        HRPage.AddToChart(val1,val2,val3);    //add to chart
-                        byteCount -= 2;
+                        }
 
-                        parseStep = ParseStatus.idle;       //reset
-                        break;
-
-                    default:
                         parseStep = ParseStatus.idle;
                         break;
-
                 }
             }
+            if (DataList.Count > 0)
+                DisplayData(DataList);
         }
-
         #endregion
+        
+        
+        private void DisplayData(List<ECGImpAccData> DataList)
+        {
+
+            List<int[]> ecgDataList = new List<int[]>();
+            foreach(ECGImpAccData dataPoint in DataList)
+            {
+                ecgDataList.Add(dataPoint.getEcgData());
+            }
+
+            HRPage.AddToChart(ecgDataList.ToArray());
+            SummaryPage.AddToChart(ecgDataList.ToArray());
+            //parse function writes to all the pagez simu;ltaneously:
+            // 12 leads: HR,
+            // 1 lead : summary
+            // activity page, summary
+            // temp page, summary
+            // also save to log using the correct filename
+        }
 
     }
 }
 
-//parse function writes to all the pagez simu;ltaneously:
-// 12 leads: HR,
-// 1 lead : summary
-// activity page, summary
-// temp page, summary
-// also save to log using the correct filename
 
+// TODO and task organization
+
+// update the connection and disconnect procedures to acount for errors
 // steps : make HR page work... then worry qabt the others. need to have a separate thread for the incoming data and the data processing
 
 

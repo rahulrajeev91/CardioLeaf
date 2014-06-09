@@ -18,7 +18,7 @@ namespace CardioLeaf
     /// <summary>
     /// Interaction logic for HearRate_Control.xaml
     /// </summary>
-    public partial class HearRate_Control : UserControl
+    public partial class HearRate_Control : UserControl, ChildControl
     {
         
 
@@ -39,7 +39,7 @@ namespace CardioLeaf
             ECGChartControl.resetChart();
         }
 
-        public void AddToChart(uint val1, uint val2, uint val3 )    //for 3 lead data
+        public void AddToChart(int val1, int val2, int val3 )    //for 3 lead data
         {
             //chart1.Series[0].Points.AddY(val1);
             //chart1.Series[1].Points.AddY(val2);
@@ -51,5 +51,7 @@ namespace CardioLeaf
         {
             ECGChartControl.AddToChart(values,12);
         }
+
+        public void Reset() { }
     }
 }

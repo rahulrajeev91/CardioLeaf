@@ -18,11 +18,16 @@ namespace CardioLeaf
     /// <summary>
     /// Interaction logic for Temperature_Control.xaml
     /// </summary>
-    public partial class Temperature_Control : UserControl
+    public partial class Temperature_Control : UserControl, ChildControl
     {
         public Temperature_Control()
         {
             InitializeComponent();
+        }
+
+        public void Reset()
+        {
+            throw new NotImplementedException();
         }
     }
 }

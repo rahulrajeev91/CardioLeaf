@@ -18,9 +18,10 @@ namespace CardioLeaf
     /// <summary>
     /// Interaction logic for Summary_Control.xaml
     /// </summary>
-    public partial class Summary_Control : UserControl
+    public partial class Summary_Control : UserControl, ChildControl
     {
-        ChartControl HRChart = new ChartControl();     
+        ChartControl SummaryChartControl = new ChartControl(); 
+        private System.Collections.ArrayList points = new System.Collections.ArrayList();    
 
         public Summary_Control()
         {
@@ -29,9 +30,15 @@ namespace CardioLeaf
 
         private void UserControl_Initialized(object sender, EventArgs e)
         {
-            HRChart.SetChartDisplayMode(1);     //show only 1 lead
-            ChartHost.Child = HRChart;
+            SummaryChartControl.SetChartDisplayMode(3);     //show only 1 lead
+            ChartHost.Child = SummaryChartControl;
         }
 
+        public void AddToChart(int[][] values)    //for 12 lead data
+        {
+            SummaryChartControl.AddToChart(values, 3);
+        }
+
+        public void Reset() { }
     }
 }

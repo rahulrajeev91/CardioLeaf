@@ -19,7 +19,7 @@ namespace CardioLeaf
     /// <summary>
     /// Interaction logic for Log_Control.xaml
     /// </summary>
-    public partial class Log_Control : UserControl
+    public partial class Log_Control : UserControl, ChildControl
     {
 
         datatableControl dtController;
@@ -164,6 +164,11 @@ namespace CardioLeaf
                 btnForward.IsEnabled = false;
 
             LogChartControl.AddToChart(dataReceived.selectedPoints.ToArray<int>());
+        }
+
+        public void Reset()
+        {
+            //do nothing
         }
     }
 }

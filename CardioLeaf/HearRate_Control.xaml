@@ -8,7 +8,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="150"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <WindowsFormsHost Margin="0,0,0,0" x:Name="ChartHost" Grid.Row="0" />
         <ScrollViewer Grid.Row="1" VerticalContentAlignment="Bottom" Margin="0,0,0,0" Background="White">

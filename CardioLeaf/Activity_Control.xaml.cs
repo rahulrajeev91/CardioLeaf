@@ -18,11 +18,15 @@ namespace CardioLeaf
     /// <summary>
     /// Interaction logic for Activity_Control.xaml
     /// </summary>
-    public partial class Activity_Control : UserControl
+    public partial class Activity_Control : UserControl, ChildControl
     {
         public Activity_Control()
         {
             InitializeComponent();
+        }
+
+        public void Reset()
+        {
         }
     }
 }
