@@ -1,8 +1,12 @@
-﻿<Window x:Class="CardioLeaf.MainWindow"
+﻿<Window 
+    x:Class="CardioLeaf.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-    Title="CardioLeaf Scanner" Height="350" Width="525" MinWidth="800" MinHeight="600" Background="White" Loaded="Window_Loaded" Closing="Window_Closing">
+    xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="CardioLeaf Scanner" Height="750" Width="993" MinWidth="800" MinHeight="600" Background="White" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
@@ -13,9 +17,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="2" />
-				<ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-			<Grid Grid.Column="1" Margin="0">
+            <Grid Grid.Column="1" Margin="0">
                 <Grid.Background>
                     <SolidColorBrush Color="#FFBBBBBB"/>
                 </Grid.Background>
@@ -38,20 +42,14 @@
                     <Label Content="SUMMARY" FontSize="25" Height="Auto" VerticalAlignment="Top"/>
                     <Grid HorizontalAlignment="Left" Height="43.253" VerticalAlignment="Top" Width="100"/>
                 </Grid>
-                
+
                 <Grid x:Name="HeartRateTab" Grid.Row="1" Margin="0" Style="{DynamicResource GridStyle_hover}" MouseDown="HeartRateTab_MouseDown">
                     <Label Content="HEART RATE" FontSize="20" Height="35" VerticalAlignment="Top"/>
                     <TextBlock x:Name="tbHeartRate" Margin="20,20,40,0" TextWrapping="Wrap" Text="72" TextAlignment="Right" FontSize="60" FontWeight="Bold" Foreground="#FF678E25"/>
                     <Label Content="BPM" HorizontalAlignment="Right" Margin="0,0,15,0" VerticalAlignment="Bottom" Padding="0,0,0,11"/>
                 </Grid>
 
-                <Grid x:Name="ActivityTab" Grid.Row="2" Margin="0,0,0,0" Style="{DynamicResource GridStyle_hover}" MouseDown="ActivityTab_MouseDown">
-                    <Label Content="ACTIVITY INDEX" FontSize="20" Height="35" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="tbActivity" Margin="10,20,40,0" TextWrapping="Wrap" Text="38" TextAlignment="Right" FontSize="40" FontWeight="Bold" Foreground="#FF678E25"/>
-                    <Label Content="/100" HorizontalAlignment="Right" Margin="0,0,15,0" VerticalAlignment="Bottom" Padding="0,0,0,11"/>
-                </Grid>
-
-                <Grid x:Name="TempTab" Grid.Row="3" Margin="0,0,0,0" Style="{DynamicResource GridStyle_hover}" MouseDown="TempTab_MouseDown">
+                <Grid x:Name="TempTab" Grid.Row="2" Margin="0,0,0,0" Style="{DynamicResource GridStyle_hover}" MouseDown="TempTab_MouseDown">
                     <Label Content="TEMPERATURE" FontSize="20" Height="35" VerticalAlignment="Top"/>
                     <TextBlock x:Name="tbTemp" Margin="10,20,40,0" TextWrapping="Wrap" Text="36.4" TextAlignment="Right" FontSize="40" FontWeight="Bold" Foreground="#FF678E25"/>
                     <Label HorizontalAlignment="Right" Margin="0,0,15,0" VerticalAlignment="Bottom" Padding="0,0,0,11">
@@ -63,8 +61,57 @@
                     </Label>
                 </Grid>
 
-				<Grid Grid.Row="4" Margin="0" Visibility="Hidden">
-					<TextBox x:Name="tbStatus" Margin = "10" HorizontalAlignment="Left" Height="Auto" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="Auto"/>
+                
+                <Grid x:Name="ActivityTab" Grid.Row="3" Margin="0,0,0,0" Style="{DynamicResource GridStyle_hover}" MouseDown="ActivityTab_MouseDown">
+                    <Label Content="ACTIVITY INDEX" FontSize="20" Height="35" VerticalAlignment="Top"/>
+                    <Grid Margin="0,30,0,0" Height="200">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="154*" />
+                            <RowDefinition Height="27*" />
+                        </Grid.RowDefinitions>
+                        <ed:Arc 
+                			ArcThickness="20" 
+                			ArcThicknessUnit="Pixel" 
+                			EndAngle="155" 
+                			Margin="16.449,9.615,18,0" 
+                			Stretch="None" 
+                			StartAngle="-155" OpacityMask="Black" Fill="White" Stroke="#FFBFBFBF" />
+
+                        <ed:Arc 
+                			x:Name="arcActivity" 
+                			ArcThickness="20" 
+                			ArcThicknessUnit="Pixel" 
+                			EndAngle="-155" 
+                			Margin="16.449,9.615,18,0" 
+                			Stretch="None" 
+                			Stroke="Gray" 
+                			StartAngle="-155" OpacityMask="Black" Fill="#FFD5D5D5" />
+                        <TextBlock x:Name="tbActivityIndex" Margin="0,30,0,0" TextWrapping="Wrap" Text="0" HorizontalAlignment="Center" FontSize="48" FontWeight="Bold" Foreground="#FF678E25" Height="56" VerticalAlignment="Top" OpacityMask="Black"/>
+                        <TextBlock x:Name="tbActivityStatus" Margin="0,90,0,0" TextWrapping="Wrap" Text="--" FontSize="18.667" Foreground="#FF747474" Height="27.551" VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <Grid Margin="0,5,0,5" x:Name="Grid2" Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Margin="0,0,0,0" Text="X:" Width="Auto" TextAlignment="Right" />
+                            <TextBlock Margin="0,0,10,0"  x:Name ="tbxVal" Width="Auto" TextAlignment="Right" Grid.Column="1" Foreground="#FFD24726"/>
+                            <TextBlock Margin="0,0,0,0" Text="Y:" TextAlignment="Right" Width="Auto" Grid.Column="2"/>
+                            <TextBlock Margin="0,0,10,0"  x:Name ="tbyVal" Width="Auto" TextAlignment="Right" Grid.Column="3" Foreground="#FFD24726"/>
+                            <TextBlock Margin="0,0,0,0" Text="Z:" TextAlignment="Right" Width="Auto" Grid.Column="4"/>
+                            <TextBlock Margin="0,0,10,0"  x:Name ="tbzVal" Width="Auto" TextAlignment="Right" Grid.Column="5" Foreground="#FFD24726"/>
+
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="4" Margin="0" Visibility="Hidden">
+                    <TextBox x:Name="tbStatus" Margin = "10" HorizontalAlignment="Left" Height="Auto" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="Auto"/>
                 </Grid>
 
                 <Grid x:Name="LogTab" Grid.Row="5" Margin="0,0,0,10" Style="{DynamicResource GridStyle_hover}" MouseDown="LogTab_MouseDown">

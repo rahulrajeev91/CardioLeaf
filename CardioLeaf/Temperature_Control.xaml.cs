@@ -20,9 +20,12 @@ namespace CardioLeaf
     /// </summary>
     public partial class Temperature_Control : UserControl, ChildControl
     {
+        GraphControl TemperatureGraphControl = new GraphControl();
+
         public Temperature_Control()
         {
             InitializeComponent();
+            TempChartHost.Child = TemperatureGraphControl;
         }
 
         public void Reset()

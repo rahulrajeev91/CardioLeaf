@@ -6,6 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock Margin="10,142" VerticalAlignment="Center" TextAlignment="Center" >Activity Page : can show individual ACC leads, ans the arc Viewer</TextBlock>
+        <WindowsFormsHost x:Name="ActivityChartHost"/>
     </Grid>
 </UserControl>

@@ -20,9 +20,11 @@ namespace CardioLeaf
     /// </summary>
     public partial class Activity_Control : UserControl, ChildControl
     {
+        ChartControl ActivityChart = new ChartControl(3);
         public Activity_Control()
         {
             InitializeComponent();
+            ActivityChartHost.Child = ActivityChart;
         }
 
         public void Reset()

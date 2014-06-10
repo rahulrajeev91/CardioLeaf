@@ -38,6 +38,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
@@ -81,6 +82,12 @@
       <DependentUpon>datatableControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ECGImpAccData.cs" />
+    <Compile Include="GraphControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GraphControl.Designer.cs">
+      <DependentUpon>GraphControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="HearRate_Control.xaml.cs">
       <DependentUpon>HearRate_Control.xaml</DependentUpon>
     </Compile>
@@ -158,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChartControl.resx">
       <DependentUpon>ChartControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GraphControl.resx">
+      <DependentUpon>GraphControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -6,6 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Label Content="Temp Page" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <WindowsFormsHost x:Name="TempChartHost" />
+
     </Grid>
 </UserControl>

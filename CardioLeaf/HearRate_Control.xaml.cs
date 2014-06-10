@@ -25,7 +25,6 @@ namespace CardioLeaf
         #region Plot data variables
         
         ChartControl ECGChartControl = new ChartControl(12);
-        private System.Collections.ArrayList points = new System.Collections.ArrayList();
         #endregion
 
         public HearRate_Control()
