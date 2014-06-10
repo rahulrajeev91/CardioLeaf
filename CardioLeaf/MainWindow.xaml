@@ -29,6 +29,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -62,16 +63,24 @@
                         </Label.Content>
                     </Label>
                 </Grid>
-
-				<Grid Grid.Row="4" Margin="0" Visibility="Hidden">
-					<TextBox x:Name="tbStatus" Margin = "10" HorizontalAlignment="Left" Height="Auto" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="Auto"/>
+                
+                <Grid x:Name="PpgTab" Grid.Row="4" Margin="0,0,0,0" Style="{DynamicResource GridStyle_hover}" MouseDown="PpgTab_MouseDown">
+                    <Label Content="PPG" FontSize="20" Height="35" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="tbPpg" Margin="10,20,40,0" TextWrapping="Wrap" Text="90%" TextAlignment="Right" FontSize="40" FontWeight="Bold" Foreground="#FF678E25"/>
+                    <Label HorizontalAlignment="Right" Margin="0,0,15,0" VerticalAlignment="Bottom" Padding="0,0,0,11">
+                        <Label.Content>
+                            <TextBlock>
+                                <Run BaselineAlignment="Superscript" FontSize="6pt">o</Run>C
+                            </TextBlock>
+                        </Label.Content>
+                    </Label>
                 </Grid>
 
-                <Grid x:Name="LogTab" Grid.Row="5" Margin="0,0,0,10" Style="{DynamicResource GridStyle_hover}" MouseDown="LogTab_MouseDown">
+                <Grid x:Name="LogTab" Grid.Row="6" Margin="0,0,0,10" Style="{DynamicResource GridStyle_hover}" MouseDown="LogTab_MouseDown">
                     <Label Content="VIEW LOG" FontSize="20" Height="35" VerticalAlignment="Top"/>
                 </Grid>
 
-                <Grid x:Name="SettingsTab" Grid.Row="6" Margin="0,0,0,10" Style="{DynamicResource GridStyle_hover}" MouseDown="SettingsTab_MouseDown">
+                <Grid x:Name="SettingsTab" Grid.Row="7" Margin="0,0,0,10" Style="{DynamicResource GridStyle_hover}" MouseDown="SettingsTab_MouseDown">
                     <Label Content="VIEW SETTINGS" FontSize="20" Height="35" VerticalAlignment="Top"/>
                 </Grid>
 

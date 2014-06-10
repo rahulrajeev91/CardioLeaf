@@ -29,10 +29,11 @@ namespace CardioLeaf
         HearRate_Control HRPage = null;
         Temperature_Control TempPage = null;
         Activity_Control ActivityPage = null;
+        Ppg_Control PpgPage = null;
         Settings_Control SettingsPage = null;
         Log_Control LogPage = null;
 
-        enum Page { Summary, HeartRate, Activity, Temp, Settings, Log, Unknown };     //models the page tabs
+        enum Page { Summary, HeartRate, Activity, Temp, Ppg, Settings, Log, Unknown };     //models the page tabs
         Page CurrentPage;
         #endregion
 
@@ -355,6 +356,11 @@ namespace CardioLeaf
                         TempPage = new Temperature_Control();
                     DataGrid.Children.Add(TempPage);
                     break;
+                case Page.Ppg:
+                    if (PpgPage == null)
+                        PpgPage = new Ppg_Control();
+                    DataGrid.Children.Add(PpgPage);
+                    break;
                 case Page.Settings:
                     if (SettingsPage == null)
                         SettingsPage = new Settings_Control();
@@ -403,6 +409,9 @@ namespace CardioLeaf
                 case Page.Temp:
                     SetTabStyle(TempTab, toDefault);
                     break;
+                case Page.Ppg:
+                    SetTabStyle(PpgTab, toDefault);
+                    break;
                 case Page.Settings:
                     SetTabStyle(SettingsTab, toDefault);
                     break;
@@ -442,6 +451,11 @@ namespace CardioLeaf
         private void TempTab_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ChangePage(Page.Temp);
+        }
+
+        private void PpgTab_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            ChangePage(Page.Ppg);
         }
 
         private void SettingsTab_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
