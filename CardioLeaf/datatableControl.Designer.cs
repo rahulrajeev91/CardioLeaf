@@ -48,7 +48,6 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -82,93 +81,93 @@
             // Column1
             // 
             this.Column1.FillWeight = 445.5399F;
-            this.Column1.HeaderText = "Column1";
+            this.Column1.HeaderText = "Lead III";
             this.Column1.Name = "Column1";
-            this.Column1.Width = 73;
+            this.Column1.Width = 68;
             // 
             // Column2
             // 
             this.Column2.FillWeight = 292.9986F;
-            this.Column2.HeaderText = "Column2";
+            this.Column2.HeaderText = "Lead I";
             this.Column2.Name = "Column2";
-            this.Column2.Width = 73;
+            this.Column2.Width = 62;
             // 
             // Column3
             // 
             this.Column3.FillWeight = 192.7367F;
-            this.Column3.HeaderText = "Column3";
+            this.Column3.HeaderText = "V1";
             this.Column3.Name = "Column3";
-            this.Column3.Width = 73;
+            this.Column3.Width = 45;
             // 
             // Column4
             // 
             this.Column4.FillWeight = 126.8368F;
-            this.Column4.HeaderText = "Column4";
+            this.Column4.HeaderText = "V2";
             this.Column4.Name = "Column4";
-            this.Column4.Width = 73;
+            this.Column4.Width = 45;
             // 
             // Column5
             // 
             this.Column5.FillWeight = 83.52235F;
-            this.Column5.HeaderText = "Column5";
+            this.Column5.HeaderText = "V3";
             this.Column5.Name = "Column5";
-            this.Column5.Width = 73;
+            this.Column5.Width = 45;
             // 
             // Column6
             // 
             this.Column6.FillWeight = 55.05276F;
-            this.Column6.HeaderText = "Column6";
+            this.Column6.HeaderText = "V4";
             this.Column6.Name = "Column6";
-            this.Column6.Width = 73;
+            this.Column6.Width = 45;
             // 
             // Column7
             // 
             this.Column7.FillWeight = 36.34035F;
-            this.Column7.HeaderText = "Column7";
+            this.Column7.HeaderText = "V5";
             this.Column7.Name = "Column7";
-            this.Column7.Width = 73;
+            this.Column7.Width = 45;
             // 
             // Column8
             // 
             this.Column8.FillWeight = 24.04111F;
-            this.Column8.HeaderText = "Column8";
+            this.Column8.HeaderText = "V6";
             this.Column8.Name = "Column8";
-            this.Column8.Width = 73;
+            this.Column8.Width = 45;
             // 
             // Column9
             // 
             this.Column9.FillWeight = 15.9571F;
-            this.Column9.HeaderText = "Column9";
+            this.Column9.HeaderText = "Lead II";
             this.Column9.Name = "Column9";
-            this.Column9.Width = 73;
+            this.Column9.Width = 65;
             // 
             // Column10
             // 
             this.Column10.FillWeight = 11.51849F;
-            this.Column10.HeaderText = "Column10";
+            this.Column10.HeaderText = "aVL";
             this.Column10.Name = "Column10";
-            this.Column10.Width = 79;
+            this.Column10.Width = 51;
             // 
             // Column11
             // 
             this.Column11.FillWeight = 7.414588F;
-            this.Column11.HeaderText = "Column11";
+            this.Column11.HeaderText = "aVF";
             this.Column11.Name = "Column11";
-            this.Column11.Width = 79;
+            this.Column11.Width = 51;
             // 
             // Column12
             // 
             this.Column12.FillWeight = 4.832787F;
-            this.Column12.HeaderText = "Column12";
+            this.Column12.HeaderText = "aV";
             this.Column12.Name = "Column12";
-            this.Column12.Width = 79;
+            this.Column12.Width = 45;
             // 
             // Column13
             // 
             this.Column13.FillWeight = 3.208555F;
-            this.Column13.HeaderText = "Column13";
+            this.Column13.HeaderText = "";
             this.Column13.Name = "Column13";
-            this.Column13.Width = 79;
+            this.Column13.Width = 19;
             // 
             // datatableControl
             // 

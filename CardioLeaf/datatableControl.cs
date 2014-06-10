@@ -162,14 +162,14 @@ namespace CardioLeaf
 
         internal void down()
         {
-            if (row >= dataGridView1.Rows.Count)
+            if (row >= dataGridView1.Rows.Count || dataGridView1.Rows.Count==0)
                 return;
             dataGridView1.CurrentCell = dataGridView1.Rows[row + 1].Cells[col];
         }
 
         internal void up()
         {
-            if (row <= 0)
+            if (row <= 0 || dataGridView1.Rows.Count == 0)
                 return;
             dataGridView1.CurrentCell = dataGridView1.Rows[row - 1].Cells[col];
         }
