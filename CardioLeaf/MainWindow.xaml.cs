@@ -30,10 +30,11 @@ namespace CardioLeaf
         Temperature_Control TempPage = null;
         Activity_Control ActivityPage = null;
         Ppg_Control PpgPage = null;
+        Imp_Control ImpPage = null;
         Settings_Control SettingsPage = null;
         Log_Control LogPage = null;
 
-        enum Page { Summary, HeartRate, Activity, Temp, Ppg, Settings, Log, Unknown };     //models the page tabs
+        enum Page { Summary, HeartRate, Activity, Temp, Ppg, Imp, Settings, Log, Unknown };     //models the page tabs
         Page CurrentPage;
         #endregion
 
@@ -315,6 +316,9 @@ namespace CardioLeaf
                 case Page.Temp:
                     TempPage.Reset();
                     break;
+                case Page.Imp:
+                    ImpPage.Reset();
+                    break;
                 case Page.Settings:
                     SettingsPage.Reset();
                     break;
@@ -360,6 +364,11 @@ namespace CardioLeaf
                     if (PpgPage == null)
                         PpgPage = new Ppg_Control();
                     DataGrid.Children.Add(PpgPage);
+                    break;
+                case Page.Imp:
+                    if (ImpPage == null)
+                        ImpPage = new Imp_Control();
+                    DataGrid.Children.Add(ImpPage);
                     break;
                 case Page.Settings:
                     if (SettingsPage == null)
@@ -456,6 +465,11 @@ namespace CardioLeaf
         private void PpgTab_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ChangePage(Page.Ppg);
+        }
+
+        private void ImpTab_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ChangePage(Page.Imp);
         }
 
         private void SettingsTab_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -671,6 +685,8 @@ namespace CardioLeaf
             // temp page, summary
             // also save to log using the correct filename
         }
+
+
 
     }
 }

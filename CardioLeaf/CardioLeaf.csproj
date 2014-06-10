@@ -90,6 +90,9 @@
     <Compile Include="ChartControl.Designer.cs">
       <DependentUpon>ChartControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Imp_Control.xaml.cs">
+      <DependentUpon>Imp_Control.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Log_Control.xaml.cs">
       <DependentUpon>Log_Control.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HearRate_Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Imp_Control.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

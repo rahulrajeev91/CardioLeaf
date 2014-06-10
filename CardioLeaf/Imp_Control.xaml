@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="CardioLeaf.Ppg_Control"
+﻿<UserControl x:Class="CardioLeaf.Imp_Control"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,6 +7,6 @@
              d:DesignHeight="300" d:DesignWidth="300" Initialized="UserControl_Initialized">
     <Grid>
         <WindowsFormsHost Margin="0,0,0,0" x:Name="ChartHost" Grid.Row="0" />
-        <Label Content="Ppg Page" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="Impedance Page" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
     </Grid>
 </UserControl>

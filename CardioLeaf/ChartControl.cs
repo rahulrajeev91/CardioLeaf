@@ -56,6 +56,23 @@ namespace CardioLeaf
                     this.modularChart.ChartAreas[11].Visible = false;
 
                     break;
+
+                case 2:
+                    this.modularChart.ChartAreas[0].Visible = true;
+                    this.modularChart.ChartAreas[1].Visible = true;
+                    this.modularChart.ChartAreas[2].Visible = false;
+                    this.modularChart.ChartAreas[3].Visible = false;
+                    this.modularChart.ChartAreas[4].Visible = false;
+                    this.modularChart.ChartAreas[5].Visible = false;
+                    this.modularChart.ChartAreas[6].Visible = false;
+                    this.modularChart.ChartAreas[7].Visible = false;
+                    this.modularChart.ChartAreas[8].Visible = false;
+                    this.modularChart.ChartAreas[9].Visible = false;
+                    this.modularChart.ChartAreas[10].Visible = false;
+                    this.modularChart.ChartAreas[11].Visible = false;
+
+                    break;
+
                 case 3:
                     this.modularChart.ChartAreas[0].Visible = true;
                     this.modularChart.ChartAreas[1].Visible = true;
@@ -126,7 +143,7 @@ namespace CardioLeaf
 
         internal void AddToChart(int[][] values,int type)
         {
-            if (type != 3 && type != 12)
+            if (type != 2 && type != 3 && type != 12)
                 return;
             foreach (int[] points in values)
             {

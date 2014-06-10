@@ -16,29 +16,29 @@ using System.Windows.Shapes;
 namespace CardioLeaf
 {
     /// <summary>
-    /// Interaction logic for Ppg_Control.xaml
+    /// Interaction logic for Imp_Control.xaml
     /// </summary>
-    public partial class Ppg_Control : UserControl, ChildControl
+    public partial class Imp_Control : UserControl, ChildControl
     {
         #region Plot data variables
-        ChartControl PpgChartControl = new ChartControl(2);
-        private System.Collections.ArrayList points = new System.Collections.ArrayList();        
+        ChartControl ImpChartControl = new ChartControl(2);
+        private System.Collections.ArrayList points = new System.Collections.ArrayList();
         #endregion
 
-        public Ppg_Control()
+        public Imp_Control()
         {
             InitializeComponent();
         }
 
         private void UserControl_Initialized(object sender, EventArgs e)
         {
-            ChartHost.Child = PpgChartControl;
-            PpgChartControl.resetChart();
+            ChartHost.Child = ImpChartControl;
+            ImpChartControl.resetChart();
         }
 
         public void AddToChart(int[][] values)    //for 2 PPG
         {
-            PpgChartControl.AddToChart(values, 2);
+            ImpChartControl.AddToChart(values, 2);
         }
 
         public void Reset() { }
