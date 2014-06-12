@@ -631,13 +631,21 @@ namespace CardioLeaf
         {
 
             List<int[]> ecgDataList = new List<int[]>();
+            List<double[]> accDataList = new List<double[]>();
+            
             foreach(ECGImpAccData dataPoint in DataList)
             {
                 ecgDataList.Add(dataPoint.getEcgData());
+                accDataList.Add(dataPoint.getAccData());
             }
 
+            
             HRPage.AddToChart(ecgDataList.ToArray());
             SummaryPage.AddToChart(ecgDataList.ToArray());
+            
+            ActivityPage.AddToChart(accDataList.ToArray());
+            UpdateActivityTabData(DataList.Last().getAccData(), DataList.Last().getSmoothenActivityVal());
+
             //parse function writes to all the pagez simu;ltaneously:
             // 12 leads: HR,
             // 1 lead : summary
@@ -645,6 +653,33 @@ namespace CardioLeaf
             // temp page, summary
             // also save to log using the correct filename
         }
+
+        private void UpdateActivityTabData(double[] acc, double smoothenedMag)
+        {
+            tbxVal.Text = acc[0].ToString();
+            tbyVal.Text = acc[1].ToString();
+            tbzVal.Text = acc[2].ToString();
+
+
+            smoothenedMag *= 2.5;    //multiplier
+
+
+            if (smoothenedMag > 100)
+                smoothenedMag = 100;
+            else if (smoothenedMag < 0)
+                smoothenedMag = 0;
+
+            arcActivity.EndAngle = smoothenedMag * 300 - 150;
+            tbActivityIndex.Text = ((int)smoothenedMag).ToString();
+            if (smoothenedMag < 33)
+                tbActivityStatus.Text = "RELAXED";
+            else if (smoothenedMag < 33)
+                tbActivityStatus.Text = "MODERATE";
+            else
+                tbActivityStatus.Text = "INTENSIVE";
+
+        }
+
         #endregion
 
     }

@@ -9,9 +9,16 @@ namespace CardioLeaf
     class ECGImpAccData
     {
         int[] points = new int[12];             //12 points in the data
-        int[] acc = new int[3];                 //0-x, 1-y, 2-z
+        double[] acc = new double[3];           //0-x, 1-y, 2-z
+        double acc_magnitude;
         int[] impedence = new int[2];           //0-Resistive, 1-Capacitive
         //const double HIGHPASS_DEGREE = 0.5;   //TODO : add high pass filter 
+
+        private static double smoothenedMagnitude;
+        private static double[] gravity = { 0, 0, 0 };
+
+        private const double GRAVITY_LOW_PASS_MULTIPLIER = 0.8;
+        private const double MAGNITUDE_SMOOTHENING = 0.95; 
 
         //public ECGImpAccData()
         //{
@@ -30,6 +37,7 @@ namespace CardioLeaf
         {
             for (int i = 0; i < 3; i++)
                 acc[i] = raw_acc[i];        //use the conversion factor
+            acc_magnitude = GetSmoothenedAccMagnitude(acc);
 
         }
 
@@ -51,5 +59,36 @@ namespace CardioLeaf
         {
             return points;
         }
+
+        public double[] getAccData()
+        {
+            return acc;
+        }
+
+        public double getSmoothenActivityVal()
+        {
+            return smoothenedMagnitude;
+        }
+
+
+        # region "accelerometer"
+        
+        private double GetSmoothenedAccMagnitude(double[] acc)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                gravity[i] = GRAVITY_LOW_PASS_MULTIPLIER * gravity[i] + (1 - GRAVITY_LOW_PASS_MULTIPLIER) * acc[i];
+                acc[i] -= gravity[i];
+            }
+
+            double magnitude = Math.Pow((Math.Pow(acc[0], 2) + Math.Pow(acc[1], 2) + Math.Pow(acc[2], 2)), 0.5);
+            smoothenedMagnitude = MAGNITUDE_SMOOTHENING * smoothenedMagnitude + (1 - MAGNITUDE_SMOOTHENING) * magnitude;
+
+            return smoothenedMagnitude;
+        }
+        #endregion
+
     }
+
+
 }

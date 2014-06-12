@@ -139,6 +139,19 @@ namespace CardioLeaf
             UpdateChartScale();
         }
 
+        internal void AddToChart(double[][] activityData, int type)
+        {
+            if (type != 3)
+                return;
+            foreach (double[] points in activityData)
+            {
+                for (int i = 0; i < type; i++)
+                    this.modularChart.Series[i * 2].Points.AddY(points[i]);
+                ScrollCharts(type);
+            }
+            UpdateChartScale();
+        }
+
         internal void UpdateChartScale()
         {
             foreach (var chartarea in this.modularChart.ChartAreas)

@@ -21,14 +21,26 @@ namespace CardioLeaf
     public partial class Activity_Control : UserControl, ChildControl
     {
         ChartControl ActivityChart = new ChartControl(3);
+        //private double[] acc = new double[3];
+
+        
+
         public Activity_Control()
         {
             InitializeComponent();
             ActivityChartHost.Child = ActivityChart;
         }
 
+        internal void AddToChart(double[][] activityData)
+        {
+            ActivityChart.AddToChart(activityData,3);
+        }
+
         public void Reset()
         {
         }
+
+        
     }
 }
+ 
