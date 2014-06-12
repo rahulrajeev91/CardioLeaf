@@ -30,9 +30,11 @@ namespace CardioLeaf
         Temperature_Control TempPage = new Temperature_Control();
         Activity_Control ActivityPage = new Activity_Control();
         Settings_Control SettingsPage = new Settings_Control();
+        Ppg_Control PpgPage = new Ppg_Control();
+        Imp_Control ImpPage = new Imp_Control();
         Log_Control LogPage = new Log_Control();
 
-        enum Page { Summary, HeartRate, Activity, Temp, Settings, Log, Unknown };     //models the page tabs
+        enum Page { Summary, HeartRate, Activity, Temp, Ppg, Imp, Settings, Log, Unknown };     //models the page tabs
         Page CurrentPage;
         #endregion
 
@@ -314,6 +316,9 @@ namespace CardioLeaf
                 case Page.Temp:
                     TempPage.Reset();
                     break;
+                case Page.Imp:
+                    ImpPage.Reset();
+                    break;
                 case Page.Settings:
                     SettingsPage.Reset();
                     break;
@@ -346,6 +351,12 @@ namespace CardioLeaf
                     break;
                 case Page.Temp:
                     DataGrid.Children.Add(TempPage);
+                    break;
+                case Page.Ppg:
+                    DataGrid.Children.Add(PpgPage);
+                    break;
+                case Page.Imp:
+                    DataGrid.Children.Add(ImpPage);
                     break;
                 case Page.Settings:
                     DataGrid.Children.Add(SettingsPage);
@@ -391,6 +402,9 @@ namespace CardioLeaf
                 case Page.Temp:
                     SetTabStyle(TempTab, toDefault);
                     break;
+                case Page.Ppg:
+                    SetTabStyle(PpgTab, toDefault);
+                    break;
                 case Page.Settings:
                     SetTabStyle(SettingsTab, toDefault);
                     break;
@@ -430,6 +444,16 @@ namespace CardioLeaf
         private void TempTab_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ChangePage(Page.Temp);
+        }
+
+        private void PpgTab_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            ChangePage(Page.Ppg);
+        }
+
+        private void ImpTab_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ChangePage(Page.Imp);
         }
 
         private void SettingsTab_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -681,7 +705,6 @@ namespace CardioLeaf
         }
 
         #endregion
-
     }
 }
 
