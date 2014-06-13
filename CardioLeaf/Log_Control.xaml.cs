@@ -31,8 +31,6 @@ namespace CardioLeaf
         Boolean reverseChartMove = false;
 
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart logChart = null;
-
         public Log_Control()
         {
             InitializeComponent();

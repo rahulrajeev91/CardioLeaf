@@ -62,7 +62,7 @@
                         </Label.Content>
                     </Label>
                 </Grid>
-                
+
                 <Grid x:Name="ActivityTab" Grid.Row="3" Margin="0,0,0,0" Style="{DynamicResource GridStyle_hover}" MouseDown="ActivityTab_MouseDown">
                     <Label Content="ACTIVITY INDEX" FontSize="20" Height="35" VerticalAlignment="Top"/>
                     <Grid Margin="0,30,0,0" Height="200">
@@ -120,7 +120,7 @@
                 <Grid x:Name="ImpTab" Grid.Row="5" Margin="0,0,0,0" Style="{DynamicResource GridStyle_hover}" MouseDown="ImpTab_MouseDown">
                     <Label Content="RESPIRATORY RATE" FontSize="20" Height="35" VerticalAlignment="Top"/>
                     <TextBlock x:Name="tbImp" Margin="10,20,40,0" TextWrapping="Wrap" Text="20" TextAlignment="Right" FontSize="40" FontWeight="Bold" Foreground="#FF678E25"/>
-                    
+
                     <Label Content="BPM" HorizontalAlignment="Right" Margin="0,0,11,-4" VerticalAlignment="Bottom" Padding="0,0,0,11"/>
                 </Grid>
 
@@ -135,9 +135,15 @@
             </Grid>
         </Grid>
 
-        <Grid Margin="0" x:Name="top" Background="#d5d5d5">
-            <Image HorizontalAlignment="Left" Margin="10,5,0,2" Stretch="Uniform" Width="Auto" Source="Images/NUS.gif" />
-            <Button Content="CONNECT" x:Name="ConnectDisconnectButton" Margin="0,10,10,10" FontSize="20" Foreground="White" Background="#FFA8C213" Click="ConnectDisconnectButton_Click" HorizontalAlignment="Right" Width="150" />
+        <Grid x:Name="top" Background="#d5d5d5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="98"/>
+                <ColumnDefinition Width="170"/>
+            </Grid.ColumnDefinitions>
+            <Image HorizontalAlignment="Left" Margin="10,5,0,2" Stretch="Uniform" Width="129" Source="Images/NUS.gif" />
+            <Button Content="CONNECT" x:Name="ConnectDisconnectButton" Margin="10" FontSize="20" Foreground="White" Background="#FFA8C213" Click="ConnectDisconnectButton_Click" Grid.Column="2" />
+            <Image x:Name="imgBatt" Margin="20,15,10,15" Source="Images/full.png" Grid.Column="1"/>
         </Grid>
         <Grid Grid.Row="2" Margin="0" x:Name="grid2" Background="#d5d5d5">
             <ComboBox x:Name="cbPort" Margin="0,5,5,0" HorizontalAlignment="Right" Width="106" Background="#00000000" DropDownOpened="cbPort_DropDownOpened" />

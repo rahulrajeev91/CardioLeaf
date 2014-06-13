@@ -634,7 +634,7 @@ namespace CardioLeaf
                                 break;
 
                             case 0x07:
-                                //ambient temp
+                                //ambient temp-not implemented
                                 parseStep = ParseStatus.idle;
                                 break;
 
