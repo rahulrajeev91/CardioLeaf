@@ -72,6 +72,7 @@ namespace CardioLeaf
             control,    
             read,
             alert,
+            temp,
             contDataPayload_old, 
             contDataPayload_EcgImpAcc,
         }
@@ -479,7 +480,7 @@ namespace CardioLeaf
 
             List<ECGImpAccData> DataList = new List<ECGImpAccData>();
             ECGImpAccData DataPoint;
-            int[] ecgData,accData,impData ;
+            int[] ecgData,impData, accData;
             int payloadLength;
             Byte tempByte;
 
@@ -563,7 +564,6 @@ namespace CardioLeaf
                             case 0x02:
                                 //Alerts
                                 parseStep = ParseStatus.alert;
-                                parseStep = ParseStatus.idle;
                                 break;
                             case 0x03:
                                 //Continious Data
@@ -583,6 +583,70 @@ namespace CardioLeaf
                         }
                         break;
 
+                    case ParseStatus.alert:
+
+                        try
+                        {
+                            tempByte = (Byte)serialPort.ReadByte();
+                        }
+                        catch (Exception)
+                        {
+                            parseStep = ParseStatus.idle;
+                            break;
+                        }
+                        byteCount--;
+
+
+                        switch (tempByte)
+                        {
+                            case 0x00:
+                                //Free fall TODO
+                                parseStep = ParseStatus.idle;
+                                break;
+
+                            case 0x01:
+                                //battery overheat TODO
+                                parseStep = ParseStatus.idle;
+                                break;
+                            
+                            case 0x02:
+                                //Marker TODO
+                                parseStep = ParseStatus.idle;
+                                break;
+                            case 0x03:
+                                //Lead Status TODO
+                                parseStep = ParseStatus.idle;
+                                break;
+
+                            case 0x04:
+                                //CL Connected !TODO
+                                parseStep = ParseStatus.idle;
+                                break;
+
+                            case 0x05:
+                                //CL Disconnected !TODO
+                                parseStep = ParseStatus.idle;
+                                break;
+
+                            case 0x06:
+                                //Batt. Strength TODO
+                                parseStep = ParseStatus.idle;
+                                break;
+
+                            case 0x07:
+                                //Ambient temperature 
+                                parseStep = ParseStatus.temp;
+                                break;
+
+                            default:
+                                parseStep = ParseStatus.idle;   //reset
+                                break;
+                        }
+                        break;
+
+                    case ParseStatus.temp:
+                        parseStep = ParseStatus.idle;   //reset
+                        break;
 
                     case ParseStatus.contDataPayload_old:   //old format
                         //try
@@ -624,10 +688,10 @@ namespace CardioLeaf
                                 impData[i] = impData[i] + (int)serialPort.ReadByte() * 256;
                                 byteCount -= 2;
                             }
-
+                           
                             for (int i = 0; i < 3; i++)
                             {
-                                accData[i] = (int)serialPort.ReadByte();
+                                accData[i] = Convert.ToInt32((sbyte)serialPort.ReadByte());
                                 byteCount -= 1;
                             }
 
@@ -693,11 +757,12 @@ namespace CardioLeaf
             else if (smoothenedMag < 0)
                 smoothenedMag = 0;
 
-            arcActivity.EndAngle = smoothenedMag * 300 - 150;
+            arcActivity.EndAngle = (smoothenedMag * 3.10) - 155;       //modify the activity arc
+
             tbActivityIndex.Text = ((int)smoothenedMag).ToString();
             if (smoothenedMag < 33)
                 tbActivityStatus.Text = "RELAXED";
-            else if (smoothenedMag < 33)
+            else if (smoothenedMag < 66)
                 tbActivityStatus.Text = "MODERATE";
             else
                 tbActivityStatus.Text = "INTENSIVE";

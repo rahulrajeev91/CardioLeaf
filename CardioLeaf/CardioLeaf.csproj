@@ -81,6 +81,7 @@
     <Compile Include="datatableControl.Designer.cs">
       <DependentUpon>datatableControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DSPStaticVariables.cs" />
     <Compile Include="ECGImpAccData.cs" />
     <Compile Include="GraphControl.cs">
       <SubType>UserControl</SubType>

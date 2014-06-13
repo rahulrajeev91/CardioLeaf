@@ -14,11 +14,10 @@ namespace CardioLeaf
         int[] impedence = new int[2];           //0-Resistive, 1-Capacitive
         //const double HIGHPASS_DEGREE = 0.5;   //TODO : add high pass filter 
 
-        private static double smoothenedMagnitude;
-        private static double[] gravity = { 0, 0, 0 };
+       
 
         private const double GRAVITY_LOW_PASS_MULTIPLIER = 0.8;
-        private const double MAGNITUDE_SMOOTHENING = 0.95; 
+        private const double MAGNITUDE_SMOOTHENING = 0.999; 
 
         //public ECGImpAccData()
         //{
@@ -36,7 +35,7 @@ namespace CardioLeaf
         private void addToAcc(int[] raw_acc)
         {
             for (int i = 0; i < 3; i++)
-                acc[i] = raw_acc[i];        //use the conversion factor
+                acc[i] = raw_acc[i];
             acc_magnitude = GetSmoothenedAccMagnitude(acc);
 
         }
@@ -67,7 +66,7 @@ namespace CardioLeaf
 
         public double getSmoothenActivityVal()
         {
-            return smoothenedMagnitude;
+            return DSPStaticVariables.smoothenedMagnitude;
         }
 
 
@@ -75,16 +74,19 @@ namespace CardioLeaf
         
         private double GetSmoothenedAccMagnitude(double[] acc)
         {
+
+            double[] tempAcc = new double[3];
             for (int i = 0; i < 3; i++)
             {
-                gravity[i] = GRAVITY_LOW_PASS_MULTIPLIER * gravity[i] + (1 - GRAVITY_LOW_PASS_MULTIPLIER) * acc[i];
-                acc[i] -= gravity[i];
+                tempAcc[i] = acc[i];
+                DSPStaticVariables.gravity[i] = GRAVITY_LOW_PASS_MULTIPLIER * DSPStaticVariables.gravity[i] + (1 - GRAVITY_LOW_PASS_MULTIPLIER) * tempAcc[i];
+                tempAcc[i] -= DSPStaticVariables.gravity[i];
             }
 
-            double magnitude = Math.Pow((Math.Pow(acc[0], 2) + Math.Pow(acc[1], 2) + Math.Pow(acc[2], 2)), 0.5);
-            smoothenedMagnitude = MAGNITUDE_SMOOTHENING * smoothenedMagnitude + (1 - MAGNITUDE_SMOOTHENING) * magnitude;
+            double magnitude = Math.Pow((Math.Pow(tempAcc[0], 2) + Math.Pow(tempAcc[1], 2) + Math.Pow(tempAcc[2], 2)), 0.5);
+            DSPStaticVariables.smoothenedMagnitude = MAGNITUDE_SMOOTHENING * DSPStaticVariables.smoothenedMagnitude + (1 - MAGNITUDE_SMOOTHENING) * magnitude;
 
-            return smoothenedMagnitude;
+            return DSPStaticVariables.smoothenedMagnitude;
         }
         #endregion
 
