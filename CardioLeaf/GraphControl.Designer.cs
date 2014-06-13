@@ -48,14 +48,13 @@
             chartArea1.AxisX.LineWidth = 2;
             chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(164)))), ((int)(((byte)(164)))));
             chartArea1.AxisX.MajorTickMark.Enabled = false;
-            chartArea1.AxisX.Maximum = 10D;
             chartArea1.AxisX.Minimum = 0D;
             chartArea1.AxisY.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(164)))), ((int)(((byte)(164)))));
             chartArea1.AxisY.LineWidth = 2;
             chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(164)))), ((int)(((byte)(164)))));
             chartArea1.AxisY.MajorTickMark.LineColor = System.Drawing.Color.DimGray;
             chartArea1.AxisY.Maximum = 45D;
-            chartArea1.AxisY.Minimum = 25D;
+            chartArea1.AxisY.Minimum = 15D;
             chartArea1.AxisY.MinorGrid.Enabled = true;
             chartArea1.AxisY.MinorGrid.Interval = 0.2D;
             chartArea1.AxisY.MinorGrid.LineColor = System.Drawing.Color.Gainsboro;

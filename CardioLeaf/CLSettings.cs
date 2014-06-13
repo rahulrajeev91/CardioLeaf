@@ -10,6 +10,7 @@ namespace CardioLeaf
     {
 
         private static int _graphWidth = 300;
+        private static int _tempWidth = 50;
         public static int GraphWidth
         {
             get { return _graphWidth; }
@@ -18,6 +19,16 @@ namespace CardioLeaf
                     _graphWidth = value; 
             }
         }
-        
+
+
+        public static int tempGraphWidth
+        {
+            get { return _tempWidth; }
+            set
+            {
+                if (value > 10 && value < 1000)
+                    _tempWidth = value;
+            }
+        }
     }
 }

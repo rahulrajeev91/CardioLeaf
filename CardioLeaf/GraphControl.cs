@@ -22,13 +22,18 @@ namespace CardioLeaf
         {
             ChartDesign.Series[0].Points.Clear();
             ChartDesign.Series[0].Points.AddY(0);
-            //ChartDesign.Series[0].Points.AddY(32.5);
-            //ChartDesign.Series[0].Points.AddY(33.5);
-            //ChartDesign.Series[0].Points.AddY(37);
-            //ChartDesign.Series[0].Points.AddY(37.25);
-            //ChartDesign.Series[0].Points.AddY(36.5);
-            //ChartDesign.Series[0].Points.AddY(42.5);
-            //ChartDesign.Series[0].Points.AddY(40.5);
+        }
+
+        internal void AddToGraph(double convertedTemp)
+        {
+            ChartDesign.Series[0].Points.AddY(convertedTemp);
+            ScrollGraph();
+        }
+
+        private void ScrollGraph()
+        {
+            while (ChartDesign.Series[0].Points.Count > CLSettings.tempGraphWidth)
+                ChartDesign.Series[0].Points.RemoveAt(0);
         }
     }
 }

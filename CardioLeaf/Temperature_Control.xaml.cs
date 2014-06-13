@@ -30,7 +30,18 @@ namespace CardioLeaf
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
+
+        internal void AddToGraph(double convertedTemp)
+        {
+            TemperatureGraphControl.AddToGraph(convertedTemp);
+        }
+
+        internal double ConvertRawTemp(int raw)
+        {
+            return 1 / (((Math.Log(((double)raw + 1) / (4095 - (double)raw))) / 4250) + (1 / 298.15)) - 273.15;
+        }
+
     }
 }

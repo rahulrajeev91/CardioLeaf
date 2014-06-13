@@ -634,7 +634,12 @@ namespace CardioLeaf
                                 break;
 
                             case 0x07:
-                                //Ambient temperature 
+                                //ambient temp
+                                parseStep = ParseStatus.idle;
+                                break;
+
+                            case 0x08:
+                                //body temperature 
                                 parseStep = ParseStatus.temp;
                                 break;
 
@@ -645,7 +650,28 @@ namespace CardioLeaf
                         break;
 
                     case ParseStatus.temp:
-                        parseStep = ParseStatus.idle;   //reset
+                        int bodyTemperature_rawValue;
+                        double convertedTemp;
+                        
+                        try
+                        {
+                            bodyTemperature_rawValue = (int)serialPort.ReadByte();
+                            bodyTemperature_rawValue = bodyTemperature_rawValue + (int)serialPort.ReadByte() * 256;
+                            byteCount -= 2;
+
+
+                            convertedTemp = TempPage.ConvertRawTemp(bodyTemperature_rawValue);
+                            TempPage.AddToGraph(convertedTemp);
+                            UpdateTempratureTabData(convertedTemp);
+
+                        }
+                        catch (Exception)
+                        {
+                            parseStep = ParseStatus.idle;
+                            break;
+                        }
+
+                        parseStep = ParseStatus.idle;
                         break;
 
                     case ParseStatus.contDataPayload_old:   //old format
@@ -712,6 +738,8 @@ namespace CardioLeaf
             if (DataList.Count > 0)
                 DisplayData(DataList);
         }
+
+        
         #endregion
 
         #region display Data
@@ -740,6 +768,11 @@ namespace CardioLeaf
             // activity page, summary
             // temp page, summary
             // also save to log using the correct filename
+        }
+
+        private void UpdateTempratureTabData(double convertedTemp)
+        {
+            tbTemp.Text = Math.Round(convertedTemp,1).ToString();
         }
 
         private void UpdateActivityTabData(double[] acc, double smoothenedMag)
