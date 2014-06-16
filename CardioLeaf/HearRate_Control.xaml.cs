@@ -25,6 +25,7 @@ namespace CardioLeaf
         #region Plot data variables
         
         ChartControl ECGChartControl = new ChartControl(12);
+        HeartRateGraphControl HRGraphControl = new HeartRateGraphControl();
         #endregion
 
         public HearRate_Control()
@@ -36,19 +37,19 @@ namespace CardioLeaf
         {
             ChartHost.Child = ECGChartControl;
             ECGChartControl.resetChart();
-        }
 
-        public void AddToChart(int val1, int val2, int val3 )    //for 3 lead data
-        {
-            //chart1.Series[0].Points.AddY(val1);
-            //chart1.Series[1].Points.AddY(val2);
-            //chart1.Series[2].Points.AddY(val3);
-            //ScrollCharts(3);
+            HRGraphHost.Child = HRGraphControl;
+            HRGraphControl.resetGraph();
         }
 
         public void AddToChart(int[][] values)    //for 12 lead data
         {
             ECGChartControl.AddToChart(values,12);
+        }
+
+        public void AddToHRGraph(int HRVal)
+        {
+            HRGraphControl.AddToGraph(HRVal);
         }
 
         public void Reset() { }

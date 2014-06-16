@@ -98,6 +98,12 @@
     <Compile Include="ChartControl.Designer.cs">
       <DependentUpon>ChartControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="HeartRateGraphControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HeartRateGraphControl.Designer.cs">
+      <DependentUpon>HeartRateGraphControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Imp_Control.xaml.cs">
       <DependentUpon>Imp_Control.xaml</DependentUpon>
     </Compile>
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GraphControl.resx">
       <DependentUpon>GraphControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HeartRateGraphControl.resx">
+      <DependentUpon>HeartRateGraphControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
