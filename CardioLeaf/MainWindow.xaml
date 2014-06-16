@@ -143,7 +143,13 @@
             </Grid.ColumnDefinitions>
             <Image HorizontalAlignment="Left" Margin="10,5,0,2" Stretch="Uniform" Width="129" Source="Images/NUS.gif" />
             <Button Content="CONNECT" x:Name="ConnectDisconnectButton" Margin="10" FontSize="20" Foreground="White" Background="#FFA8C213" Click="ConnectDisconnectButton_Click" Grid.Column="2" />
-            <Image x:Name="imgBatt" Margin="20,15,10,15" Source="Images/full.png" Grid.Column="1"/>
+            <Image x:Name="imgBatt_shutdown" Margin="20,15,10,15" Source="Images/shutDown.png" Grid.Column="1"/>
+            <Image x:Name="imgBatt_critical" Margin="20,15,10,15" Source="Images/critical.png" Grid.Column="1"/>
+            <Image x:Name="imgBatt_medium" Margin="20,15,10,15" Source="Images/medium.png" Grid.Column="1"/>
+            <Image x:Name="imgBatt_full" Margin="20,15,10,15" Source="Images/full.png" Grid.Column="1"/>
+            
+            
+            
         </Grid>
         <Grid Grid.Row="2" Margin="0" x:Name="grid2" Background="#d5d5d5">
             <ComboBox x:Name="cbPort" Margin="0,5,5,0" HorizontalAlignment="Right" Width="106" Background="#00000000" DropDownOpened="cbPort_DropDownOpened" />

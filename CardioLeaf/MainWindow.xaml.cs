@@ -69,14 +69,23 @@ namespace CardioLeaf
             length,
             type,
             subType,
-            control,    
+            control,
             read,
             alert,
             temp,
-            contDataPayload_old, 
+            contDataPayload_old,
             contDataPayload_EcgImpAcc,
+            batt,
         }
         ParseStatus parseStep = ParseStatus.idle;
+
+        enum battStatus            //following PacketformatV2
+        {
+            full,
+            medium,
+            critical,
+            shutdown,
+        }
         #endregion
 
         // Methods
@@ -630,7 +639,7 @@ namespace CardioLeaf
 
                             case 0x06:
                                 //Batt. Strength TODO
-                                parseStep = ParseStatus.idle;
+                                parseStep = ParseStatus.batt;
                                 break;
 
                             case 0x07:
@@ -647,6 +656,44 @@ namespace CardioLeaf
                                 parseStep = ParseStatus.idle;   //reset
                                 break;
                         }
+                        break;
+
+                    case ParseStatus.batt:
+
+                        try
+                        {
+                            tempByte = (Byte)serialPort.ReadByte();
+                        }
+                        catch (Exception)
+                        {
+                            parseStep = ParseStatus.idle;
+                            break;
+                        }
+                        byteCount--;
+
+                        switch (tempByte)
+                        {
+                            case 0x00:
+                                //full
+                                SetBatt(battStatus.full);
+                                break;
+
+                            case 0x01:
+                                //medium
+                                SetBatt(battStatus.medium);
+                                break;
+                            
+                            case 0x02:
+                                //critical
+                                SetBatt(battStatus.critical);
+                                break;
+
+                            case 0x03:
+                                //shutdown
+                                SetBatt(battStatus.shutdown);
+                                break;
+                        }
+                        parseStep = ParseStatus.idle;   //reset
                         break;
 
                     case ParseStatus.temp:
@@ -737,6 +784,37 @@ namespace CardioLeaf
             }
             if (DataList.Count > 0)
                 DisplayData(DataList);
+        }
+
+        private void SetBatt(battStatus p)
+        {
+            switch (p)
+            {
+                case battStatus.full:
+                    imgBatt_full.Visibility = Visibility.Visible;
+                    imgBatt_medium.Visibility = Visibility.Hidden;
+                    imgBatt_critical.Visibility = Visibility.Hidden;
+                    imgBatt_shutdown.Visibility = Visibility.Hidden;
+                    break;
+                case battStatus.medium:
+                    imgBatt_full.Visibility = Visibility.Hidden;
+                    imgBatt_medium.Visibility = Visibility.Visible;
+                    imgBatt_critical.Visibility = Visibility.Hidden;
+                    imgBatt_shutdown.Visibility = Visibility.Hidden;
+                    break;
+                case battStatus.critical:
+                    imgBatt_full.Visibility = Visibility.Hidden;
+                    imgBatt_medium.Visibility = Visibility.Hidden;
+                    imgBatt_critical.Visibility = Visibility.Visible;
+                    imgBatt_shutdown.Visibility = Visibility.Hidden;
+                    break;
+                case battStatus.shutdown:
+                    imgBatt_full.Visibility = Visibility.Hidden;
+                    imgBatt_medium.Visibility = Visibility.Hidden;
+                    imgBatt_critical.Visibility = Visibility.Hidden;
+                    imgBatt_shutdown.Visibility = Visibility.Visible;
+                    break;
+            }
         }
 
         
