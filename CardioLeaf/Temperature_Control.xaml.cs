@@ -40,7 +40,8 @@ namespace CardioLeaf
 
         internal double ConvertRawTemp(int raw)
         {
-            return 1 / (((Math.Log(((double)raw + 1) / (4095 - (double)raw))) / 4250) + (1 / 298.15)) - 273.15;
+            double rawModified = (raw * 2.5) / 3;
+            return 1 / (((Math.Log((rawModified + 1) / (4095 - rawModified))) / 4250) + (1 / 298.15)) - 273.15;
         }
 
     }

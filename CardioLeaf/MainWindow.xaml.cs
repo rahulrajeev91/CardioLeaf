@@ -638,7 +638,7 @@ namespace CardioLeaf
                                 break;
 
                             case 0x06:
-                                //Batt. Strength TODO
+                                //Batt. Strength
                                 parseStep = ParseStatus.batt;
                                 break;
 
@@ -826,19 +826,24 @@ namespace CardioLeaf
 
             List<int[]> ecgDataList = new List<int[]>();
             List<double[]> accDataList = new List<double[]>();
-            
+            List<int[]> impDataList = new List<int[]>();
+
             foreach(ECGImpAccData dataPoint in DataList)
             {
                 ecgDataList.Add(dataPoint.getEcgData());
                 accDataList.Add(dataPoint.getAccData());
+                impDataList.Add(dataPoint.getImpData());
             }
 
             
             HRPage.AddToChart(ecgDataList.ToArray());
             SummaryPage.AddToChart(ecgDataList.ToArray());
             
+            
             ActivityPage.AddToChart(accDataList.ToArray());
             UpdateActivityTabData(DataList.Last().getAccData(), DataList.Last().getSmoothenActivityVal());
+
+            ImpPage.AddToChart(impDataList.ToArray());
 
             //parse function writes to all the pagez simu;ltaneously:
             // 12 leads: HR,
@@ -850,7 +855,7 @@ namespace CardioLeaf
 
         private void UpdateTempratureTabData(double convertedTemp)
         {
-            tbTemp.Text = Math.Round(convertedTemp,1).ToString();
+            tbTemp.Text = String.Format("{0:0.0}", Math.Round(convertedTemp, 1));
         }
 
         private void UpdateActivityTabData(double[] acc, double smoothenedMag)

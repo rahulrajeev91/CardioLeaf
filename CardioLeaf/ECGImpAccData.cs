@@ -64,6 +64,11 @@ namespace CardioLeaf
             return acc;
         }
 
+        public int[] getImpData()
+        {
+            return impedence;
+        }
+
         public double getSmoothenActivityVal()
         {
             return DSPStaticVariables.smoothenedMagnitude;

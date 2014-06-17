@@ -187,6 +187,14 @@ namespace CardioLeaf
                     }
                     break;
 
+                case 2:
+                    while (this.modularChart.Series[0].Points.Count >= CLSettings.GraphWidth)
+                    {
+                        for (int i = 0; i < 2; i++)
+                            this.modularChart.Series[i * 2].Points.RemoveAt(0);
+                    }
+                    break;
+
                 case 3:
                     while (this.modularChart.Series[0].Points.Count >= CLSettings.GraphWidth)
                     {
