@@ -33,8 +33,9 @@ namespace CardioLeaf
         Ppg_Control PpgPage = new Ppg_Control();
         Imp_Control ImpPage = new Imp_Control();
         Log_Control LogPage = new Log_Control();
+        Debug_Control DebugPage = new Debug_Control();
 
-        enum Page { Summary, HeartRate, Activity, Temp, Ppg, Imp, Settings, Log, Unknown };     //models the page tabs
+        enum Page { Summary, HeartRate, Activity, Temp, Ppg, Imp, Settings, Log, Unknown, Debug };     //models the page tabs
         Page CurrentPage;
         #endregion
 
@@ -86,6 +87,12 @@ namespace CardioLeaf
             critical,
             shutdown,
         }
+        #endregion
+
+        # region "heart Rate Variables"
+
+        HeartRateHelper HRHelper = HeartRateHelper.Instance;
+
         #endregion
 
         // Methods
@@ -242,12 +249,7 @@ namespace CardioLeaf
 
         private void oneSecStep_Tick(object sender, EventArgs e)
         {
-            //UpdateTemp();
-            //UpdateHeartRate();
-            //fallGridCheck();
-            //UpdateDataRate();
-            //if (devMode)
-            //    UpdateVpp();
+            UpdateHRGraph();
         }
 
         private void resetCounter()
@@ -335,6 +337,9 @@ namespace CardioLeaf
                 case Page.Log:
                     LogPage.Reset();
                     break;
+                case Page.Debug:
+                    DebugPage.Reset();
+                    break;
             }
         }
 
@@ -374,6 +379,9 @@ namespace CardioLeaf
 
                 case Page.Log:
                     DataGrid.Children.Add(LogPage);
+                    break;
+                case Page.Debug:
+                     DataGrid.Children.Add(DebugPage);
                     break;
                 default:
                     //ChangePage(Page.Summary);
@@ -421,6 +429,10 @@ namespace CardioLeaf
                 case Page.Log:
                     SetTabStyle(LogTab, toDefault);
                     break;
+                case Page.Debug:
+                    SetTabStyle(DebugTab, toDefault);
+                    break;
+
 
             }
             return true;
@@ -475,7 +487,11 @@ namespace CardioLeaf
         {
             ChangePage(Page.Log);
         }
-		
+
+        private void DebugTab_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ChangePage(Page.Debug);
+        }
 		
         #endregion
 
@@ -783,7 +799,7 @@ namespace CardioLeaf
                 }
             }
             if (DataList.Count > 0)
-                DisplayData(DataList);
+                ProcessAndDisplayData(DataList);
         }
 
         private void SetBatt(battStatus p)
@@ -821,20 +837,23 @@ namespace CardioLeaf
         #endregion
 
         #region display Data
-        private void DisplayData(List<ECGImpAccData> DataList)
+        private void ProcessAndDisplayData(List<ECGImpAccData> DataList)
         {
 
             List<int[]> ecgDataList = new List<int[]>();
             List<double[]> accDataList = new List<double[]>();
             List<int[]> impDataList = new List<int[]>();
 
+            List<int> HRList = new List<int>();
+
             foreach(ECGImpAccData dataPoint in DataList)
             {
                 ecgDataList.Add(dataPoint.getEcgData());
                 accDataList.Add(dataPoint.getAccData());
                 impDataList.Add(dataPoint.getImpData());
-            }
 
+                HRList.Add(dataPoint.getHRMetadata());
+            }
             
             HRPage.AddToChart(ecgDataList.ToArray());
             SummaryPage.AddToChart(ecgDataList.ToArray());
@@ -845,6 +864,10 @@ namespace CardioLeaf
 
             ImpPage.AddToChart(impDataList.ToArray());
 
+            UpdateHeartRateTabData(HRHelper.getHeartRate());
+
+            DebugPage.AddToChart(HRList.ToArray());
+
             //parse function writes to all the pagez simu;ltaneously:
             // 12 leads: HR,
             // 1 lead : summary
@@ -853,9 +876,19 @@ namespace CardioLeaf
             // also save to log using the correct filename
         }
 
+        private void UpdateHRGraph()
+        {
+            HRPage.AddToHRGraph(HRHelper.getHeartRate());
+        }
+
         private void UpdateTempratureTabData(double convertedTemp)
         {
             tbTemp.Text = String.Format("{0:0.0}", Math.Round(convertedTemp, 1));
+        }
+
+        private void UpdateHeartRateTabData(int HRVal)
+        {
+            tbHeartRate.Text = HRVal.ToString(); 
         }
 
         private void UpdateActivityTabData(double[] acc, double smoothenedMag)
@@ -886,6 +919,8 @@ namespace CardioLeaf
         }
 
         #endregion
+
+
     }
 }
 

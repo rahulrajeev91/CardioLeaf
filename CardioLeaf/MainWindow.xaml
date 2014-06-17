@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="CardioLeaf Scanner" Height="750" Width="993" MinWidth="800" MinHeight="600" Background="White" Loaded="Window_Loaded" Closing="Window_Closing">
+    Title="CardioLeaf Scanner" Height="931.5" Width="1116" MinWidth="800" MinHeight="600" Background="White" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
@@ -35,7 +35,8 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
@@ -47,13 +48,13 @@
 
                 <Grid x:Name="HeartRateTab" Grid.Row="1" Margin="0" Style="{DynamicResource GridStyle_hover}" MouseDown="HeartRateTab_MouseDown">
                     <Label Content="HEART RATE" FontSize="20" Height="35" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="tbHeartRate" Margin="20,20,40,0" TextWrapping="Wrap" Text="72" TextAlignment="Right" FontSize="60" FontWeight="Bold" Foreground="#FF678E25"/>
+                    <TextBlock x:Name="tbHeartRate" Margin="20,20,40,0" TextWrapping="Wrap" Text="--" TextAlignment="Right" FontSize="60" FontWeight="Bold" Foreground="#FF678E25"/>
                     <Label Content="BPM" HorizontalAlignment="Right" Margin="0,0,15,0" VerticalAlignment="Bottom" Padding="0,0,0,11"/>
                 </Grid>
 
                 <Grid x:Name="TempTab" Grid.Row="2" Margin="0,0,0,0" Style="{DynamicResource GridStyle_hover}" MouseDown="TempTab_MouseDown">
                     <Label Content="TEMPERATURE" FontSize="20" Height="35" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="tbTemp" Margin="10,20,40,0" TextWrapping="Wrap" Text="0.0" TextAlignment="Right" FontSize="40" FontWeight="Bold" Foreground="#FF678E25"/>
+                    <TextBlock x:Name="tbTemp" Margin="10,20,40,0" TextWrapping="Wrap" Text="--" TextAlignment="Right" FontSize="40" FontWeight="Bold" Foreground="#FF678E25"/>
                     <Label HorizontalAlignment="Right" Margin="0,0,15,0" VerticalAlignment="Bottom" Padding="0,0,0,11">
                         <Label.Content>
                             <TextBlock>
@@ -88,7 +89,7 @@
                 			Stretch="None" 
                 			Stroke="Gray" 
                 			StartAngle="-155" OpacityMask="Black" Fill="#FFD5D5D5" />
-                        <TextBlock x:Name="tbActivityIndex" Margin="0,30,0,0" TextWrapping="Wrap" Text="0" HorizontalAlignment="Center" FontSize="48" FontWeight="Bold" Foreground="#FF678E25" Height="56" VerticalAlignment="Top" OpacityMask="Black"/>
+                        <TextBlock x:Name="tbActivityIndex" Margin="0,30,0,0" TextWrapping="Wrap" Text="--" HorizontalAlignment="Center" FontSize="48" FontWeight="Bold" Foreground="#FF678E25" Height="56" VerticalAlignment="Top" OpacityMask="Black"/>
                         <TextBlock x:Name="tbActivityStatus" Margin="0,90,0,0" TextWrapping="Wrap" Text="--" FontSize="18.667" Foreground="#FF747474" Height="27.551" VerticalAlignment="Top" FontWeight="Bold" HorizontalAlignment="Center"/>
                         <Grid Margin="0,5,0,5" x:Name="Grid2" Grid.Row="1">
                             <Grid.ColumnDefinitions>
@@ -113,22 +114,26 @@
 
                 <Grid x:Name="PpgTab" Grid.Row="4" Margin="0,0,0,0" Style="{DynamicResource GridStyle_hover}" MouseDown="PpgTab_MouseDown">
                     <Label Content="PPG" FontSize="20" Height="35" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="tbPpg" Margin="10,20,40,0" TextWrapping="Wrap" Text="90" TextAlignment="Right" FontSize="40" FontWeight="Bold" Foreground="#FF678E25"/>
+                    <TextBlock x:Name="tbPpg" Margin="10,20,40,0" TextWrapping="Wrap" Text="--" TextAlignment="Right" FontSize="40" FontWeight="Bold" Foreground="#FF678E25"/>
                     <Label Content="%" HorizontalAlignment="Right" Margin="0,0,20,-4" VerticalAlignment="Bottom" Padding="0,0,0,11"/>
                 </Grid>
 
                 <Grid x:Name="ImpTab" Grid.Row="5" Margin="0,0,0,0" Style="{DynamicResource GridStyle_hover}" MouseDown="ImpTab_MouseDown">
                     <Label Content="RESPIRATORY RATE" FontSize="20" Height="35" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="tbImp" Margin="10,20,40,0" TextWrapping="Wrap" Text="20" TextAlignment="Right" FontSize="40" FontWeight="Bold" Foreground="#FF678E25"/>
+                    <TextBlock x:Name="tbImp" Margin="10,20,40,0" TextWrapping="Wrap" Text="--" TextAlignment="Right" FontSize="40" FontWeight="Bold" Foreground="#FF678E25"/>
 
                     <Label Content="BPM" HorizontalAlignment="Right" Margin="0,0,11,-4" VerticalAlignment="Bottom" Padding="0,0,0,11"/>
                 </Grid>
 
-                <Grid x:Name="LogTab" Grid.Row="7" Margin="0,0,0,10" Style="{DynamicResource GridStyle_hover}" MouseDown="LogTab_MouseDown">
+                <Grid x:Name="DebugTab" Grid.Row="7" Margin="0,0,0,10" Style="{DynamicResource GridStyle_hover}" MouseDown="DebugTab_MouseDown">
+                    <Label Content="DEBUG OPTIONS" FontSize="20" Height="35" VerticalAlignment="Top"/>
+                </Grid>
+                
+                <Grid x:Name="LogTab" Grid.Row="8" Margin="0,0,0,10" Style="{DynamicResource GridStyle_hover}" MouseDown="LogTab_MouseDown">
                     <Label Content="VIEW LOG" FontSize="20" Height="35" VerticalAlignment="Top"/>
                 </Grid>
 
-                <Grid x:Name="SettingsTab" Grid.Row="8" Margin="0,0,0,10" Style="{DynamicResource GridStyle_hover}" MouseDown="SettingsTab_MouseDown">
+                <Grid x:Name="SettingsTab" Grid.Row="9" Margin="0,0,0,10" Style="{DynamicResource GridStyle_hover}" MouseDown="SettingsTab_MouseDown">
                     <Label Content="VIEW SETTINGS" FontSize="20" Height="35" VerticalAlignment="Top"/>
                 </Grid>
 
@@ -147,9 +152,9 @@
             <Image x:Name="imgBatt_critical" Margin="20,15,10,15" Source="Images/critical.png" Grid.Column="1"/>
             <Image x:Name="imgBatt_medium" Margin="20,15,10,15" Source="Images/medium.png" Grid.Column="1"/>
             <Image x:Name="imgBatt_full" Margin="20,15,10,15" Source="Images/full.png" Grid.Column="1"/>
-            
-            
-            
+
+
+
         </Grid>
         <Grid Grid.Row="2" Margin="0" x:Name="grid2" Background="#d5d5d5">
             <ComboBox x:Name="cbPort" Margin="0,5,5,0" HorizontalAlignment="Right" Width="106" Background="#00000000" DropDownOpened="cbPort_DropDownOpened" />

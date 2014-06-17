@@ -11,15 +11,14 @@ namespace CardioLeaf
         #region variables
 
         private static HeartRateHelper heartRateHelperInstance = new HeartRateHelper();
-
-        public uint newVal = 0;
         int heartRate = 0;
+        private Boolean isLeadOff = false;
         private int thresholdResetCounter = 0;
         //===============================================
         // Baseline correction variables
         //===============================================
         private double baselineAvg = 0;
-        private const double BLFACTOR = 0.8;
+        private const double BLFACTOR = 0.95;
         private double valAfterBLCorrection = 0;
         //===============================================
         // HighPass filter variables
@@ -40,10 +39,10 @@ namespace CardioLeaf
         private double valAfterFilter = 0;
         private double localMaxima = 1;
         private int THRESHOLD_SAMPLING_WIDTH = 1000;
-        private const double FILTER_SCALING_FACTOR = 1;       //TO BE DIVIDED
-        private const double MAXIMA_RESET_FACTOR = 3;        //TO BE DIVIDED
-        private const double THRESHOLD_BALANCING_FACTOR = 0.5;
-        private const double THRESHOLD_CONVERSION_FACTOR = 0.3;
+        private const double FILTER_SCALING_FACTOR = 100;       //TO BE DIVIDED
+        private const double MAXIMA_RESET_FACTOR = 300;        //TO BE DIVIDED
+        private const double THRESHOLD_BALANCING_FACTOR = 0.6;
+        private const double THRESHOLD_CONVERSION_FACTOR = 0.15;
         //===============================================
         // HR calculation variables
         //===============================================
@@ -52,7 +51,8 @@ namespace CardioLeaf
         private int peakCounter = 0;
         private int interPeakCounter = 0;
         private System.Collections.ArrayList hrArray = new System.Collections.ArrayList();
-        public double dataRate = 100;            //readings per second
+
+        public const int DATA_RATE = 256;            //readings per second
 
         #endregion
 
@@ -66,13 +66,21 @@ namespace CardioLeaf
             }
         }
 
-        public void setHeartRate()
+        public void UpdateHeartRate(int[] ECGList)
         {
-            valAfterFilter = FilterInputToIsolatePeaks(Convert.ToDouble(newVal));
+            foreach(int val in ECGList)
+            {
+                UpdateHeartRate(val);
+            }
+        }
+
+        public void UpdateHeartRate(int val)
+        {
+            valAfterFilter = FilterInputToIsolatePeaks(Convert.ToDouble(val));
             valAfterThreshold = CutOffUsingThreshold(Convert.ToDouble(valAfterFilter));
             DetectRPeak(valAfterThreshold);
-            if (getAvgHR() > 160)
-                heartRate = 160;
+            if (getAvgHR() > 220)
+                heartRate = 220;
             else
                 heartRate = Convert.ToInt32(getAvgHR());
         }
@@ -106,11 +114,10 @@ namespace CardioLeaf
 
         private double FilterInputToIsolatePeaks(double myVal)
         {
-            valAfterBLCorrection = BaselineCorrection_2ndLevel(newVal);
-            //valAfterLPF = LowPassFilter(valAfterBLCorrection);
-            //valAfterHPF = HighPassFilter(valAfterLPF);
-            //return valAfterHPF / FILTER_SCALING_FACTOR;
-            return valAfterBLCorrection;
+            valAfterBLCorrection = BaselineCorrection_2ndLevel(myVal);
+            valAfterLPF = LowPassFilter(valAfterBLCorrection);
+            valAfterHPF = HighPassFilter(valAfterLPF);
+            return valAfterHPF / FILTER_SCALING_FACTOR;
         }
 
         private double BaselineCorrection_2ndLevel(double myVal)
@@ -169,7 +176,7 @@ namespace CardioLeaf
         private void UpdateThreshold()
         {
             if (threshold > localMaxima) //after unavoidable huge spikes
-                threshold = 0.4 * localMaxima;
+                threshold = 0.6 * localMaxima;
             else
                 threshold = THRESHOLD_BALANCING_FACTOR * threshold + (1 - THRESHOLD_BALANCING_FACTOR) * THRESHOLD_CONVERSION_FACTOR * localMaxima;
         }
@@ -244,7 +251,7 @@ namespace CardioLeaf
         private double ConvertCountToHeartRate(int myVal)
         {
             if (myVal > 0)
-                return (60 * dataRate) / myVal;
+                return (60 * DATA_RATE) / myVal;
             else
                 return 0;
         }
@@ -252,7 +259,7 @@ namespace CardioLeaf
         private double ConvertHeartRateToCount(double myVal)
         {
             if (myVal > 0)
-                return (60 * dataRate) / myVal;
+                return (60 * DATA_RATE) / myVal;
             else
                 return 0;
         }
@@ -274,14 +281,10 @@ namespace CardioLeaf
                     }
 
                 double avg = total / hrArray.Count;
-                if (avg > 200)
-                    return 200;
-                else return avg;
+                return avg;
             }
             return 0;
         }
         #endregion
-
-
     }
 }

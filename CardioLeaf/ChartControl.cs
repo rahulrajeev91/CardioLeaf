@@ -133,6 +133,13 @@ namespace CardioLeaf
             }
         }
 
+        internal void AddToChart(int val)
+        {
+            this.modularChart.Series[0].Points.AddY(val);
+            ScrollCharts(1);
+            UpdateChartScale();
+        }
+
         internal void AddToChart(int[] points)
         {
             foreach ( int val in points)

@@ -12,6 +12,9 @@ namespace CardioLeaf
         private static int _graphWidth = 300;
         private static int _tempWidth = 50;
         private static int _HRWidth = 200;
+        private static int _HRLead = 4;         //select shich lead to use for HR calculation
+
+
         public static int GraphWidth
         {
             get { return _graphWidth; }
@@ -39,6 +42,16 @@ namespace CardioLeaf
             {
                 if (value > 10 && value < 1000)
                     _HRWidth = value;
+            }
+        }
+
+        public static int HRLead
+        {
+            get { return _HRLead; }
+            set
+            {
+                if (value > 0 && value < 12)
+                    _HRLead = value;
             }
         }
     }

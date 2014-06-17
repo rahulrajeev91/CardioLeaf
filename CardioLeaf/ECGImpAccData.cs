@@ -12,9 +12,11 @@ namespace CardioLeaf
         double[] acc = new double[3];           //0-x, 1-y, 2-z
         double acc_magnitude;
         int[] impedence = new int[2];           //0-Resistive, 1-Capacitive
+
+        int HR_Threshhold;
         //const double HIGHPASS_DEGREE = 0.5;   //TODO : add high pass filter 
 
-       
+        HeartRateHelper HRHelper = HeartRateHelper.Instance;
 
         private const double GRAVITY_LOW_PASS_MULTIPLIER = 0.8;
         private const double MAGNITUDE_SMOOTHENING = 0.999; 
@@ -52,6 +54,9 @@ namespace CardioLeaf
             points[11] = -(points[1] + points[0]/2);    //aV
 
             //get the other new leads from byte array to int 16
+
+            HRHelper.UpdateHeartRate(points[CLSettings.HRLead]);
+            HR_Threshhold = (int)HRHelper.getGraph();
         }
 
         public int[] getEcgData()
@@ -67,6 +72,11 @@ namespace CardioLeaf
         public int[] getImpData()
         {
             return impedence;
+        }
+
+        public int getHRMetadata()
+        {
+            return HR_Threshhold;
         }
 
         public double getSmoothenActivityVal()

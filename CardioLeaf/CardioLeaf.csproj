@@ -81,6 +81,9 @@
     <Compile Include="datatableControl.Designer.cs">
       <DependentUpon>datatableControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Debug_Control.xaml.cs">
+      <DependentUpon>Debug_Control.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DSPStaticVariables.cs" />
     <Compile Include="ECGImpAccData.cs" />
     <Compile Include="GraphControl.cs">
@@ -104,6 +107,7 @@
     <Compile Include="HeartRateGraphControl.Designer.cs">
       <DependentUpon>HeartRateGraphControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="HeartRateHelper.cs" />
     <Compile Include="Imp_Control.xaml.cs">
       <DependentUpon>Imp_Control.xaml</DependentUpon>
     </Compile>
@@ -123,6 +127,10 @@
       <DependentUpon>Temperature_Control.xaml</DependentUpon>
     </Compile>
     <Page Include="Activity_Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Debug_Control.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
