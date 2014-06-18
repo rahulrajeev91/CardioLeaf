@@ -430,6 +430,9 @@ namespace CardioLeaf
                 case Page.Log:
                     SetTabStyle(LogTab, toDefault);
                     break;
+                case Page.Imp:
+                    SetTabStyle(ImpTab, toDefault);
+                    break;
                 case Page.Debug:
                     SetTabStyle(DebugTab, toDefault);
                     break;
