@@ -141,6 +141,9 @@
         </Grid>
 
         <Grid x:Name="top" Background="#d5d5d5">
+            <Grid.Effect>
+                <DropShadowEffect Direction="269" Opacity="0.3"/>
+            </Grid.Effect>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="98"/>

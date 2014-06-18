@@ -694,15 +694,15 @@ namespace CardioLeaf
                                 break;
 
                             case 0x04:
-                                //CL Connected !
+                                //CL Connected
                                 connectedAckReceived();
                                 parseStep = ParseStatus.idle;
                                 break;
 
                             case 0x05:
-                                //CL Disconnected !
+                                //CL Disconnected
                                 disconnectedAckReceived();
-                                return;
+                                return;             //discard all the remaining bytes
 
                             case 0x06:
                                 //Batt. Strength

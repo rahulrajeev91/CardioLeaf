@@ -4,8 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Label Content="Settings Page" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+             d:DesignHeight="424" d:DesignWidth="632">
+    <Grid Background="#FFF3F3F3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Background="White" Grid.Column="1">
+            <Grid.Effect>
+                <DropShadowEffect ShadowDepth="0"/>
+            </Grid.Effect>
+            <Grid Margin="20,20,20,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="CardioLeaf Data Rate" HorizontalAlignment="Left" FontSize="20"/>
+                <Label Content="ECG Chart Width" HorizontalAlignment="Left" FontSize="20" Grid.Row="1"/>
+                <Label Content="Heart Rate vs Time Graph Width" HorizontalAlignment="Left" FontSize="20" Grid.Row="2"/>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>
