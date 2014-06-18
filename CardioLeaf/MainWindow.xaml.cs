@@ -249,7 +249,8 @@ namespace CardioLeaf
 
         private void oneSecStep_Tick(object sender, EventArgs e)
         {
-            UpdateHRGraph();
+            if (connection == connectionStatus.connected) 
+                UpdateHRGraph();
         }
 
         private void resetCounter()
