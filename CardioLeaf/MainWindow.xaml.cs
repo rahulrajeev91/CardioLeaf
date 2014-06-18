@@ -49,6 +49,9 @@ namespace CardioLeaf
 
         #region connection variables
 
+        int connectFlag = 0;
+        int disconnectFlag = 0;
+
         private System.IO.Ports.SerialPort serialPort = new SerialPort();
         private const int BAUD_RATE = 9600;
 
@@ -142,6 +145,8 @@ namespace CardioLeaf
                 try
                 {
                     sendDisconnectCommand();
+                    disconnectFlag = 1;
+                    ConnectDisconnectButton.IsEnabled = false;
                 }
                 catch (Exception)
                 {
@@ -174,10 +179,32 @@ namespace CardioLeaf
             if (serialPort.IsOpen)
             {
                 sendConnectCommand();
+                connectFlag = 1;
+                ConnectDisconnectButton.IsEnabled = false;
             }
 
         }
 
+        private void CancelConnect()
+        {
+            try
+            {
+                serialPort.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("System Error.");
+            }
+            connectFlag = 0;
+            ConnectDisconnectButton.IsEnabled = true;
+            MessageBox.Show("Connection timeout.");
+        }
+
+        private void CancelDisconnect()
+        {
+            disconnectFlag = 0;
+            ConnectDisconnectButton.IsEnabled = true;
+        }
 
         private void disconnectedAckReceived()
         {
@@ -193,6 +220,8 @@ namespace CardioLeaf
                 }
                 connection = connectionStatus.disconnected;
                 ConnectDisconnectButton.Content = "CONNECT";
+                disconnectFlag = 0;
+                ConnectDisconnectButton.IsEnabled = true;
             }
         }
 
@@ -200,21 +229,26 @@ namespace CardioLeaf
         {
             connection = connectionStatus.connected;
             ConnectDisconnectButton.Content = "DISCONNECT";
+            connectFlag = 0;
+            ConnectDisconnectButton.IsEnabled = true;
         }
 
         private void sendConnectCommand()
         {
             var connectCommand = new Byte[] { 0xFF, 0xFE, 0x01, 0x00, 0x00 };
-            sendDataOverSerial(connectCommand);
+               
+            if(!sendDataOverSerial(connectCommand))
+                CancelConnect();
         }
 
         private void sendDisconnectCommand()
         {
             var disconnectCommand = new Byte[] { 0xFF, 0xFE, 0x01, 0x00, 0x01 };
-            sendDataOverSerial(disconnectCommand);
+            if(!sendDataOverSerial(disconnectCommand))
+                CancelDisconnect();
         }
 
-        private void sendDataOverSerial(Byte[] data)
+        private Boolean sendDataOverSerial(Byte[] data)
         {
             if (serialPort.IsOpen)
             {
@@ -224,76 +258,12 @@ namespace CardioLeaf
                 }
                 catch (Exception)
                 {
-                    //exception caught
-                    throw;
+                    return false;
                 }
+                return true;
             }
+            return false;
         }
-        //private Boolean Disconnect()
-        //{
-        //    if (comPortClose())
-        //    {
-        //        connection = connectionStatus.disconnected;
-        //        return true;
-        //    }
-        //    else
-        //        return false;
-        //}
-        
-        //private bool comPortClose()
-        //{
-        //    if (serialPort.IsOpen)
-        //    {
-        //        try
-        //        {
-        //            sendDisconnectCommand();
-        //            serialPort.Close();
-        //        }
-        //        catch (Exception)
-        //        {
-        //            return false;
-        //        }
-        //        return true;
-        //    }
-        //    else
-        //        return true;
-        //}
-
-        //private Boolean Connect()
-        //{
-        //    if (ComPortOpen())
-        //    {
-        //        if (serialPort.IsOpen)
-        //        {
-        //            connection = connectionStatus.connected;
-        //            sendConnectCommand();
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
-
-        
-
-        //private bool ComPortOpen()
-        //{
-        //    string portName = cbPort.Text;
-        //    if (portName.CompareTo("None") == 0)
-        //        return false;
-        //    serialPort.PortName = portName;
-        //    serialPort.BaudRate = BAUD_RATE;
-
-        //    try
-        //    {
-        //        serialPort.Open();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return false;
-        //    }
-        //    return true;
-        //}
-
         #endregion
 
         #region Timer functions
@@ -305,7 +275,7 @@ namespace CardioLeaf
                 //prevent overflow
                 resetCounter();
             timerTick.Content = counter;
-            if (connection == connectionStatus.connected)
+            if (serialPort.IsOpen)
             {
                 ParseData();
             }
@@ -315,11 +285,32 @@ namespace CardioLeaf
         {
             if (connection == connectionStatus.connected) 
                 UpdateHRGraph();
+            CheckConnectionTimer();
         }
 
         private void resetCounter()
         {
             counter = 0;
+        }
+
+        private void CheckConnectionTimer()
+        {
+            if (connectFlag >0 )
+            {
+                connectFlag++;
+                if (connectFlag > 3)
+                {
+                    CancelConnect();
+                }
+            }
+            else if (disconnectFlag > 0)
+            {
+                disconnectFlag++;
+                if (disconnectFlag > 3)
+                {
+                    CancelDisconnect();
+                }
+            }
         }
 
         #endregion
@@ -711,8 +702,7 @@ namespace CardioLeaf
                             case 0x05:
                                 //CL Disconnected !
                                 disconnectedAckReceived();
-                                parseStep = ParseStatus.idle;
-                                break;
+                                return;
 
                             case 0x06:
                                 //Batt. Strength
