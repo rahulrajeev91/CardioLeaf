@@ -135,85 +135,85 @@ namespace CardioLeaf
             cbPort.SelectedIndex = 0;
         }
 
-        private Boolean Disconnect()
-        {
-            if (comPortClose())
-            {
-                connection = connectionStatus.disconnected;
-                return true;
-            }
-            else
-                return false;
-        }
-        
-        private bool comPortClose()
+        private void Disconnect()
         {
             if (serialPort.IsOpen)
             {
                 try
                 {
                     sendDisconnectCommand();
-                    serialPort.Close();
                 }
                 catch (Exception)
                 {
-                    return false;
-                }
-                return true;
-            }
-            else
-                return true;
-        }
-
-        private Boolean Connect()
-        {
-            if (ComPortOpen())
-            {
-                if (serialPort.IsOpen)
-                {
-                    connection = connectionStatus.connected;
-                    sendConnectCommand();
-                    return true;
+                    //do nothing
                 }
             }
-            return false;
         }
 
-        
-
-        private bool ComPortOpen()
+        private void Connect()
         {
             string portName = cbPort.Text;
             if (portName.CompareTo("None") == 0)
-                return false;
+            {
+                MessageBox.Show("Please select a valid COM port."); 
+                return;
+            }
+                
             serialPort.PortName = portName;
             serialPort.BaudRate = BAUD_RATE;
-
             try
             {
                 serialPort.Open();
             }
             catch (Exception)
             {
-                return false;
+                MessageBox.Show("Connection failed. Could not connect to selected COM port.");
+                return;
             }
-            return true;
+
+            if (serialPort.IsOpen)
+            {
+                sendConnectCommand();
+            }
+
         }
 
 
-        // TODO: Make sure that the connect and disconnect cannot change state without ack from cardioleaf
+        private void disconnectedAckReceived()
+        {
+            if (serialPort.IsOpen)
+            {
+                try
+                {
+                    serialPort.Close();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("System Error. Could not disconnect COM port");
+                }
+                connection = connectionStatus.disconnected;
+                ConnectDisconnectButton.Content = "CONNECT";
+            }
+        }
+
+        private void connectedAckReceived()
+        {
+            connection = connectionStatus.connected;
+            ConnectDisconnectButton.Content = "DISCONNECT";
+        }
+
         private void sendConnectCommand()
         {
-            var connectCommand = new Byte[] {0xFF, 0xFE, 0x01, 0x00, 0x00};
+            var connectCommand = new Byte[] { 0xFF, 0xFE, 0x01, 0x00, 0x00 };
             sendDataOverSerial(connectCommand);
         }
 
         private void sendDisconnectCommand()
         {
-            var connectCommand = new Byte[] { 0xFF, 0xFE, 0x01, 0x00, 0x01 };
-            sendDataOverSerial(connectCommand);
+            var disconnectCommand = new Byte[] { 0xFF, 0xFE, 0x01, 0x00, 0x01 };
+            sendDataOverSerial(disconnectCommand);
         }
-        
+
         private void sendDataOverSerial(Byte[] data)
         {
             if (serialPort.IsOpen)
@@ -229,6 +229,70 @@ namespace CardioLeaf
                 }
             }
         }
+        //private Boolean Disconnect()
+        //{
+        //    if (comPortClose())
+        //    {
+        //        connection = connectionStatus.disconnected;
+        //        return true;
+        //    }
+        //    else
+        //        return false;
+        //}
+        
+        //private bool comPortClose()
+        //{
+        //    if (serialPort.IsOpen)
+        //    {
+        //        try
+        //        {
+        //            sendDisconnectCommand();
+        //            serialPort.Close();
+        //        }
+        //        catch (Exception)
+        //        {
+        //            return false;
+        //        }
+        //        return true;
+        //    }
+        //    else
+        //        return true;
+        //}
+
+        //private Boolean Connect()
+        //{
+        //    if (ComPortOpen())
+        //    {
+        //        if (serialPort.IsOpen)
+        //        {
+        //            connection = connectionStatus.connected;
+        //            sendConnectCommand();
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
+
+        
+
+        //private bool ComPortOpen()
+        //{
+        //    string portName = cbPort.Text;
+        //    if (portName.CompareTo("None") == 0)
+        //        return false;
+        //    serialPort.PortName = portName;
+        //    serialPort.BaudRate = BAUD_RATE;
+
+        //    try
+        //    {
+        //        serialPort.Open();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return false;
+        //    }
+        //    return true;
+        //}
 
         #endregion
 
@@ -271,20 +335,11 @@ namespace CardioLeaf
         {
             if (connection == connectionStatus.disconnected)
             {
-                if (Connect())
-                {
-                    ConnectDisconnectButton.Content = "DISCONNECT";
-                    ResetAll();
-                }
-                else
-                    MessageBox.Show("Connection failed. Could not open COM port");
+                Connect();
             }
             else if (connection == connectionStatus.connected)
             {
-                if (Disconnect())
-                    ConnectDisconnectButton.Content = "CONNECT";
-                else
-                    MessageBox.Show("Disconnect failed.  Could not close COM port");
+                Disconnect();
             }
             else
             {
@@ -648,12 +703,14 @@ namespace CardioLeaf
                                 break;
 
                             case 0x04:
-                                //CL Connected !TODO
+                                //CL Connected !
+                                connectedAckReceived();
                                 parseStep = ParseStatus.idle;
                                 break;
 
                             case 0x05:
-                                //CL Disconnected !TODO
+                                //CL Disconnected !
+                                disconnectedAckReceived();
                                 parseStep = ParseStatus.idle;
                                 break;
 
@@ -673,7 +730,7 @@ namespace CardioLeaf
                                 break;
 
                             default:
-                                parseStep = ParseStatus.idle;   //reset
+                                parseStep = ParseStatus.idle;   //reset+-
                                 break;
                         }
                         break;
