@@ -110,6 +110,9 @@ namespace CardioLeaf
         {
             CurrentPage = Page.Unknown;
             ChangePage(Page.Summary);
+
+            SettingsPage.updateMainWindowInstance(this);
+
             InitializeTimer();
             UpdateComPortList();
         }

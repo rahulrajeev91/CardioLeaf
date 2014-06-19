@@ -52,8 +52,6 @@ namespace CardioLeaf
         private int interPeakCounter = 0;
         private System.Collections.ArrayList hrArray = new System.Collections.ArrayList();
 
-        public const int DATA_RATE = 256;            //readings per second
-
         #endregion
 
         private HeartRateHelper() { }
@@ -251,7 +249,7 @@ namespace CardioLeaf
         private double ConvertCountToHeartRate(int myVal)
         {
             if (myVal > 0)
-                return (60 * DATA_RATE) / myVal;
+                return (60 * CLSettings.DataRate) / myVal;
             else
                 return 0;
         }
@@ -259,7 +257,7 @@ namespace CardioLeaf
         private double ConvertHeartRateToCount(double myVal)
         {
             if (myVal > 0)
-                return (60 * DATA_RATE) / myVal;
+                return (60 * CLSettings.DataRate) / myVal;
             else
                 return 0;
         }

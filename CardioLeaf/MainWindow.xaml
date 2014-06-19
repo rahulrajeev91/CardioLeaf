@@ -149,7 +149,7 @@
                 <ColumnDefinition Width="98"/>
                 <ColumnDefinition Width="170"/>
             </Grid.ColumnDefinitions>
-            <Image HorizontalAlignment="Left" Margin="10,5,0,2" Stretch="Uniform" Width="129" Source="Images/NUS.gif" />
+            <Image HorizontalAlignment="Left" Margin="10,5,0,2" Stretch="Uniform" Width="129" Source="Images/NUS.png" />
             <Button Content="CONNECT" x:Name="ConnectDisconnectButton" Margin="10" FontSize="20" Foreground="White" Background="#FFA8C213" Click="ConnectDisconnectButton_Click" Grid.Column="2" />
             <Image x:Name="imgBatt_shutdown" Margin="20,15,10,15" Source="Images/shutDown.png" Grid.Column="1"/>
             <Image x:Name="imgBatt_critical" Margin="20,15,10,15" Source="Images/critical.png" Grid.Column="1"/>

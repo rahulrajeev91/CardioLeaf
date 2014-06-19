@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="424" d:DesignWidth="632">
+             mc:Ignorable="d">
     <Grid Background="#FFF3F3F3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -21,15 +20,92 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="320"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition Width="Auto" MinWidth="38"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="CardioLeaf Data Rate" HorizontalAlignment="Left" FontSize="20"/>
+                <Label Content="CardioLeaf Data Rate (pkts/s)" HorizontalAlignment="Left" FontSize="20"/>
                 <Label Content="ECG Chart Width" HorizontalAlignment="Left" FontSize="20" Grid.Row="1"/>
-                <Label Content="Heart Rate vs Time Graph Width" HorizontalAlignment="Left" FontSize="20" Grid.Row="2"/>
+                <Label Content="HR,PPG,RR vs Time Graph Width" HorizontalAlignment="Left" FontSize="20" Grid.Row="2" />
+                <Label Content="Temp. vs Time Graph Width" HorizontalAlignment="Left" FontSize="20" Grid.Row="3"/>
+                <Label Content="Primary Heart Rate Lead" HorizontalAlignment="Left" FontSize="20" Grid.Row="4" />
+                <Label Content="Primary PPG Lead" HorizontalAlignment="Left" FontSize="20" Grid.Row="5" />
+                <Label Content="Primary Respiratory Rate Lead" HorizontalAlignment="Left" FontSize="20" Grid.Row="6" />
+                <Label Content="Enable Developer Mode" HorizontalAlignment="Left" FontSize="20" Grid.Row="9"/>
+                <CheckBox x:Name="cbDevMode" Content="" Grid.Column="1" Margin="0,10,1,0" Grid.Row="9" FontSize="18" IsChecked="True" Click="cbDevMode_Click" Background="{x:Null}"/>
+                <ComboBox x:Name="cbHRLead" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,-25,8" Grid.Row="4" Width="120" Background="#00000000" IsTextSearchCaseSensitive="True" SelectionChanged="cbHRLead_SelectionChanged" >
+                    <ComboBoxItem Content="Lead III"/>
+                    <ComboBoxItem Content="Lead I"/>
+                    <ComboBoxItem Content="V1"/>
+                    <ComboBoxItem Content="V2"/>
+                    <ComboBoxItem Content="V3" IsSelected="True" />
+                    <ComboBoxItem Content="V4"/>
+                    <ComboBoxItem Content="V5"/>
+                    <ComboBoxItem Content="V6"/>
+                    <ComboBoxItem Content="Lead II"/>
+                    <ComboBoxItem Content="aVL"/>
+                    <ComboBoxItem Content="aVF"/>
+                    <ComboBoxItem Content="aV"/>
+                </ComboBox>
+                <ComboBox x:Name="cbPPGLead" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,-25,8" Grid.Row="5" Width="120" Background="#00000000" IsTextSearchCaseSensitive="True" SelectionChanged="cbPPGLead_SelectionChanged" >
+                    <ComboBoxItem Content="Lead I" IsSelected="True" />
+                    <ComboBoxItem Content="Lead II"/>
+                </ComboBox>
+                <ComboBox x:Name="cbRRLead" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,-25,8" Grid.Row="6" Width="120" Background="#00000000" IsTextSearchCaseSensitive="True" SelectionChanged="cbRRLead_SelectionChanged" >
+                    <ComboBoxItem Content="Lead I" IsSelected="True" />
+                    <ComboBoxItem Content="Lead II"/>
+                </ComboBox>
+                <ComboBox x:Name="cbTempWidth" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,-25,8" Grid.Row="3" Width="120" Background="#00000000" SelectionChanged="cbTempWidth_SelectionChanged" >
+                    <ComboBoxItem Content="10"/>
+                    <ComboBoxItem Content="25"/>
+                    <ComboBoxItem Content="50" IsSelected="True" />
+                    <ComboBoxItem Content="75"/>
+                    <ComboBoxItem Content="100"/>
+                    <ComboBoxItem Content="150"/>
+                    <ComboBoxItem Content="200"/>
+                    <ComboBoxItem Content="300"/>
+                    <ComboBoxItem Content="500"/>
+                </ComboBox>
+                <ComboBox x:Name="cbHRWidth" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,-25,8" Grid.Row="2" Width="120" Background="#00000000" SelectionChanged="cbHRWidth_SelectionChanged" >
+                    <ComboBoxItem Content="10"/>
+                    <ComboBoxItem Content="25"/>
+                    <ComboBoxItem Content="50"/>
+                    <ComboBoxItem Content="75"/>
+                    <ComboBoxItem Content="100" IsSelected="True" />
+                    <ComboBoxItem Content="150"/>
+                    <ComboBoxItem Content="200"/>
+                    <ComboBoxItem Content="300"/>
+                    <ComboBoxItem Content="500"/>
+                </ComboBox>
+                <ComboBox x:Name="cdECGWidth" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,-25,8" Grid.Row="1" Width="120" Background="#00000000" IsEnabled="False" SelectionChanged="cdECGWidth_SelectionChanged" >
+                    <ComboBoxItem Content="100"/>
+                    <ComboBoxItem Content="300" IsSelected="True" />
+                    <ComboBoxItem Content="500"/>
+                    <ComboBoxItem Content="700"/>
+                    <ComboBoxItem Content="1000"/>
+                    <ComboBoxItem Content="1500"/>
+                    <ComboBoxItem Content="2000"/>
+                    <ComboBoxItem Content="3000"/>
+                </ComboBox>
+                <TextBox x:Name="tbDataRate" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,-23,7" TextWrapping="Wrap" Text="256" Width="120"/>
+                <Button x:Name="btnChangeDataRate" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-103,8" Width="70"  Background="#00000000" Click="btnChangeDataRate_Click"/>
+                <Label Content="Log File Save Location" HorizontalAlignment="Left" FontSize="20" Grid.Row="7" />
+                <TextBox Grid.Column="1" Margin="0,10,-104,30" Grid.Row="7" TextWrapping="Wrap" Text="C:\Users\Administrator\Desktop\" HorizontalAlignment="Left" Width="209" IsEnabled="False" />
+                <Button Content="Change Location" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="0,35,-18,0" Grid.Row="7" VerticalAlignment="Top" Width="120" Background="{x:Null}" IsEnabled="False"/>
+                <Button x:Name="btnUpdateECGWidth" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,11,-101,7" Width="70"  Background="#00000000" Grid.Row="1" Visibility="Hidden"/>
+                <Button x:Name="btnUpdateHRGraphWidth" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-98,8" Width="70"  Background="#00000000" Grid.Row="2" RenderTransformOrigin="0.529,0.455" Click="btnUpdateHRGraphWidth_Click" Visibility="Hidden"/>
+                <Button x:Name="btnUpdateTempGraphWidth" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-96,8" Width="70"  Background="#00000000" Grid.Row="3" RenderTransformOrigin="0.529,0.455" Click="btnUpdateTempGraphWidth_Click" Visibility="Hidden"/>
+                <Button x:Name="btnUpdateHRLead" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-94,8" Width="70"  Background="#00000000" Grid.Row="4" RenderTransformOrigin="0.529,0.455" Click="btnUpdateHRLead_Click" Visibility="Hidden"/>
+                <Button x:Name="btnUpdatePPGLead" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-92,8" Width="70"  Background="#00000000" Grid.Row="5" RenderTransformOrigin="0.529,0.455" Click="btnUpdatePPGLead_Click" Visibility="Hidden"/>
+                <Button x:Name="btnUpdateRRLead" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-90,8" Width="70"  Background="#00000000" Grid.Row="6" RenderTransformOrigin="0.529,0.455" Click="btnUpdateRRLead_Click" Visibility="Hidden"/>
+
             </Grid>
         </Grid>
     </Grid>

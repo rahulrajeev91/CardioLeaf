@@ -20,14 +20,129 @@ namespace CardioLeaf
     /// </summary>
     public partial class Settings_Control : UserControl, ChildControl
     {
+        private MainWindow mainWindow;
+
         public Settings_Control()
         {
             InitializeComponent();
         }
 
+        public void updateMainWindowInstance(MainWindow mainWindow)
+        {
+            // TODO: Complete member initialization
+            this.mainWindow = mainWindow;
+        }
+
         public void Reset()
         {
             throw new NotImplementedException();
+        }
+
+        private void cbDevMode_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbDevMode.IsChecked == true)
+            {
+                mainWindow.DebugTab.IsEnabled = true;
+                mainWindow.DebugTab.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                mainWindow.DebugTab.IsEnabled = false;
+                mainWindow.DebugTab.Visibility = Visibility.Collapsed;
+            }
+
+        }
+
+        private void btnChangeDataRate_Click(object sender, RoutedEventArgs e)
+        {
+            int dataRate;
+            try
+            {
+                dataRate = int.Parse(tbDataRate.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Invalid input. Please enter an integer.");
+                tbDataRate.Text = CLSettings.DataRate.ToString();
+                return;
+            }
+
+            if (dataRate <= 0 || dataRate >= 500)
+            {
+                MessageBox.Show("Invalid input. Please enter an integer between 0 and 500.");
+                tbDataRate.Text = CLSettings.DataRate.ToString();
+                return;
+            }
+            CLSettings.DataRate = dataRate;
+        }
+
+        private void cbHRWidth_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.IsLoaded)
+                btnUpdateHRGraphWidth.Visibility = Visibility.Visible;
+        }
+
+        private void cbTempWidth_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.IsLoaded)
+                btnUpdateTempGraphWidth.Visibility = Visibility.Visible;
+                
+        }
+
+        private void cbHRLead_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.IsLoaded)
+                btnUpdateHRLead.Visibility = Visibility.Visible;
+        }
+
+        private void cbPPGLead_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.IsLoaded)
+                btnUpdatePPGLead.Visibility = Visibility.Visible;
+        }
+
+        private void cbRRLead_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.IsLoaded)
+                btnUpdateRRLead.Visibility = Visibility.Visible;
+        }
+
+        private void cdECGWidth_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // update later
+        }
+
+        /*
+         * update buttons
+         */
+        private void btnUpdateHRGraphWidth_Click(object sender, RoutedEventArgs e)
+        {
+            CLSettings.HRGraphWidth = int.Parse(cbHRWidth.Text);
+            btnUpdateHRGraphWidth.Visibility = Visibility.Hidden;
+        }
+
+        private void btnUpdateTempGraphWidth_Click(object sender, RoutedEventArgs e)
+        {
+            CLSettings.tempGraphWidth = int.Parse(cbTempWidth.Text);
+            btnUpdateTempGraphWidth.Visibility = Visibility.Hidden;
+        }
+
+        private void btnUpdateHRLead_Click(object sender, RoutedEventArgs e)
+        {
+            CLSettings.HRLead = cbHRLead.SelectedIndex;
+            btnUpdateHRLead.Visibility = Visibility.Hidden;
+        }
+
+        private void btnUpdatePPGLead_Click(object sender, RoutedEventArgs e)
+        {
+            CLSettings.PPGLead = cbPPGLead.SelectedIndex;
+            btnUpdatePPGLead.Visibility = Visibility.Hidden;
+        }
+
+        private void btnUpdateRRLead_Click(object sender, RoutedEventArgs e)
+        {
+            CLSettings.RRLead = cbRRLead.SelectedIndex;
+            btnUpdateRRLead.Visibility = Visibility.Hidden;
         }
     }
 }
