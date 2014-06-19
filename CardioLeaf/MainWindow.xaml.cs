@@ -45,6 +45,9 @@ namespace CardioLeaf
         //private int fallCounter = 0;
         private System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
         private System.Windows.Threading.DispatcherTimer oneSecStep = new System.Windows.Threading.DispatcherTimer();
+
+        private int errorFlag = 0;
+
         #endregion
 
         #region connection variables
@@ -289,7 +292,10 @@ namespace CardioLeaf
             if (connection == connectionStatus.connected) 
                 UpdateHRGraph();
             CheckConnectionTimer();
+            CheckErrorFlag();
         }
+
+        
 
         private void resetCounter()
         {
@@ -314,6 +320,14 @@ namespace CardioLeaf
                     CancelDisconnect();
                 }
             }
+        }
+        
+        private void CheckErrorFlag()
+        {
+            if (errorFlag > 0)
+                errorFlag--;
+            else
+                HideErrorMsg();
         }
 
         #endregion
@@ -678,12 +692,14 @@ namespace CardioLeaf
                         switch (tempByte)
                         {
                             case 0x00:
-                                //Free fall TODO
+                                //Free fall
+                                ShowError("FALL DETECTED");
                                 parseStep = ParseStatus.idle;
                                 break;
 
                             case 0x01:
                                 //battery overheat TODO
+                                ShowError("BATT. OVERHEAT");
                                 parseStep = ParseStatus.idle;
                                 break;
                             
@@ -693,6 +709,19 @@ namespace CardioLeaf
                                 break;
                             case 0x03:
                                 //Lead Status TODO
+                                try
+                                {
+                                    tempByte = (Byte)serialPort.ReadByte();
+                                }
+                                catch (Exception)
+                                {
+                                    parseStep = ParseStatus.idle;
+                                    break;
+                                }
+                                byteCount--;
+
+                                if (tempByte != 0x00)
+                                    ShowError("LEAD OFF");
                                 parseStep = ParseStatus.idle;
                                 break;
 
@@ -792,22 +821,6 @@ namespace CardioLeaf
                         break;
 
                     case ParseStatus.contDataPayload_old:   //old format
-                        //try
-                        //{
-                        //    val1 = (int)serialPort.ReadByte();
-                        //    val1 = val1  + (int)serialPort.ReadByte() * 256;
-                        //    val3 = (int)serialPort.ReadByte();
-                        //    val3 = val3 + (int)serialPort.ReadByte() * 256;
-                        //    val2 = val1 + val3;
-                        //}
-                        //catch (Exception)
-                        //{
-                        //    parseStep = ParseStatus.idle;
-                        //    break;
-                        //}  
-                        ////HRPage.AddToChart(val1,val2,val3);      //add to chart
-                        //byteCount -= 2;
-
                         parseStep = ParseStatus.idle;           //reset
                         break;
 
@@ -855,6 +868,7 @@ namespace CardioLeaf
             if (DataList.Count > 0)
                 ProcessAndDisplayData(DataList);
         }
+
 
         private void SetBatt(battStatus p)
         {
@@ -970,6 +984,19 @@ namespace CardioLeaf
             else
                 tbActivityStatus.Text = "INTENSIVE";
 
+        }
+
+
+        private void ShowError(string msg)
+        {
+            errorFlag = 3;
+            labelError.Content = msg;
+            labelError.Visibility = Visibility.Visible;
+        }
+
+        private void HideErrorMsg()
+        {
+            labelError.Visibility = Visibility.Hidden;
         }
 
         #endregion
