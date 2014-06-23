@@ -20,8 +20,8 @@ namespace CardioLeaf
     /// </summary>
     public partial class Summary_Control : UserControl, ChildControl
     {
-        ChartControl SummaryChartControl = new ChartControl(); 
-        private System.Collections.ArrayList points = new System.Collections.ArrayList();    
+        ChartControl SummaryChartControl = new ChartControl();
+        HeartRateGraphControl SummaryGraphControl = new HeartRateGraphControl();
 
         public Summary_Control()
         {
@@ -32,6 +32,8 @@ namespace CardioLeaf
         {
             SummaryChartControl.SetChartDisplayMode(3);     //show only 1 lead
             ChartHost.Child = SummaryChartControl;
+
+            GraphHost.Child = SummaryGraphControl;
         }
 
         public void AddToChart(int[][] values)    //for 12 lead data

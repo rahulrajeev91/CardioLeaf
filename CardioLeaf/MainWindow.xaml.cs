@@ -83,6 +83,7 @@ namespace CardioLeaf
             contDataPayload_old,
             contDataPayload_EcgImpAcc,
             batt,
+            spo2,
         }
         ParseStatus parseStep = ParseStatus.idle;
 
@@ -572,7 +573,7 @@ namespace CardioLeaf
 
             List<ECGImpAccData> DataList = new List<ECGImpAccData>();
             ECGImpAccData DataPoint;
-            int[] ecgData,impData, accData;
+            int[] ecgData,impData, accData,spo2Data;
             int payloadLength;
             Byte tempByte;
 
@@ -861,6 +862,35 @@ namespace CardioLeaf
                             break;
                         }
 
+                        parseStep = ParseStatus.idle;
+                        break;
+
+                    case ParseStatus.spo2:   //0X06 FORMAT
+
+                        spo2Data = new int[2];
+
+                        try
+                        {
+                            for (int i = 0; i < 2; i++)
+                            {
+                                spo2Data[i] = (int)serialPort.ReadByte();
+                                spo2Data[i] = spo2Data[i] + (int)serialPort.ReadByte() * 256;
+                                byteCount -= 2;
+                            }
+
+                            // add spo2 to the 
+                           
+                        }
+                        catch (Exception)
+                        {
+                            parseStep = ParseStatus.idle;
+                            break;
+                        }
+
+                        parseStep = ParseStatus.idle;
+                        break;
+
+                    default:
                         parseStep = ParseStatus.idle;
                         break;
                 }
