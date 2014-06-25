@@ -76,14 +76,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.modularChart.BackColor = System.Drawing.Color.Transparent;
             this.modularChart.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea1.AxisX.LabelStyle.Enabled = false;
-            chartArea1.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisX.LineColor = System.Drawing.Color.Transparent;
             chartArea1.AxisX.MajorGrid.Enabled = false;
             chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisX.MajorTickMark.Enabled = false;
             chartArea1.AxisX.MajorTickMark.LineColor = System.Drawing.Color.White;
             chartArea1.AxisX.Maximum = 300D;
             chartArea1.AxisX.Minimum = 0D;
+            chartArea1.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea1.AxisX.Title = "Lead III";
+            chartArea1.AxisX.TitleForeColor = System.Drawing.Color.White;
             chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea1.AxisY.LabelStyle.Enabled = false;
             chartArea1.AxisY.LineColor = System.Drawing.Color.Silver;
@@ -101,14 +105,19 @@
             chartArea1.BorderColor = System.Drawing.Color.Transparent;
             chartArea1.BorderWidth = 0;
             chartArea1.Name = "ChartArea1";
-            chartArea2.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+
+            chartArea2.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea2.AxisX.LabelStyle.Enabled = false;
-            chartArea2.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea2.AxisX.LineColor = System.Drawing.Color.Transparent;
             chartArea2.AxisX.MajorGrid.Enabled = false;
             chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea2.AxisX.MajorTickMark.Enabled = false;
             chartArea2.AxisX.MajorTickMark.LineColor = System.Drawing.Color.White;
             chartArea2.AxisX.Maximum = 300D;
             chartArea2.AxisX.Minimum = 0D;
+            chartArea2.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea2.AxisX.Title = "Lead I";
+            chartArea2.AxisX.TitleForeColor = System.Drawing.Color.White;
             chartArea2.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea2.AxisY.LabelStyle.Enabled = false;
             chartArea2.AxisY.LineColor = System.Drawing.Color.Silver;
@@ -126,14 +135,19 @@
             chartArea2.BorderColor = System.Drawing.Color.Transparent;
             chartArea2.BorderWidth = 0;
             chartArea2.Name = "ChartArea2";
-            chartArea3.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+
+            chartArea3.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea3.AxisX.LabelStyle.Enabled = false;
-            chartArea3.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisX.LineColor = System.Drawing.Color.Transparent;
             chartArea3.AxisX.MajorGrid.Enabled = false;
             chartArea3.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisX.MajorTickMark.Enabled = false;
             chartArea3.AxisX.MajorTickMark.LineColor = System.Drawing.Color.White;
             chartArea3.AxisX.Maximum = 300D;
             chartArea3.AxisX.Minimum = 0D;
+            chartArea3.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea3.AxisX.Title = "V1";
+            chartArea3.AxisX.TitleForeColor = System.Drawing.Color.White;
             chartArea3.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea3.AxisY.LabelStyle.Enabled = false;
             chartArea3.AxisY.LineColor = System.Drawing.Color.Silver;
@@ -151,14 +165,19 @@
             chartArea3.BorderColor = System.Drawing.Color.Transparent;
             chartArea3.BorderWidth = 0;
             chartArea3.Name = "ChartArea3";
-            chartArea4.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+
+            chartArea4.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea4.AxisX.LabelStyle.Enabled = false;
-            chartArea4.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea4.AxisX.LineColor = System.Drawing.Color.Transparent;
             chartArea4.AxisX.MajorGrid.Enabled = false;
             chartArea4.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea4.AxisX.MajorTickMark.Enabled = false;
             chartArea4.AxisX.MajorTickMark.LineColor = System.Drawing.Color.White;
             chartArea4.AxisX.Maximum = 300D;
             chartArea4.AxisX.Minimum = 0D;
+            chartArea4.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea4.AxisX.Title = "V2";
+            chartArea4.AxisX.TitleForeColor = System.Drawing.Color.White;
             chartArea4.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea4.AxisY.LabelStyle.Enabled = false;
             chartArea4.AxisY.LineColor = System.Drawing.Color.Silver;
@@ -176,14 +195,19 @@
             chartArea4.BorderColor = System.Drawing.Color.Transparent;
             chartArea4.BorderWidth = 0;
             chartArea4.Name = "ChartArea4";
-            chartArea5.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+
+            chartArea5.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea5.AxisX.LabelStyle.Enabled = false;
-            chartArea5.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea5.AxisX.LineColor = System.Drawing.Color.Transparent;
             chartArea5.AxisX.MajorGrid.Enabled = false;
             chartArea5.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea5.AxisX.MajorTickMark.Enabled = false;
             chartArea5.AxisX.MajorTickMark.LineColor = System.Drawing.Color.White;
             chartArea5.AxisX.Maximum = 300D;
             chartArea5.AxisX.Minimum = 0D;
+            chartArea5.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea5.AxisX.Title = "V3";
+            chartArea5.AxisX.TitleForeColor = System.Drawing.Color.White;
             chartArea5.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea5.AxisY.LabelStyle.Enabled = false;
             chartArea5.AxisY.LineColor = System.Drawing.Color.Silver;
@@ -201,14 +225,19 @@
             chartArea5.BorderColor = System.Drawing.Color.Transparent;
             chartArea5.BorderWidth = 0;
             chartArea5.Name = "ChartArea5";
-            chartArea6.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+
+            chartArea6.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea6.AxisX.LabelStyle.Enabled = false;
-            chartArea6.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea6.AxisX.LineColor = System.Drawing.Color.Transparent;
             chartArea6.AxisX.MajorGrid.Enabled = false;
             chartArea6.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea6.AxisX.MajorTickMark.Enabled = false;
             chartArea6.AxisX.MajorTickMark.LineColor = System.Drawing.Color.White;
             chartArea6.AxisX.Maximum = 300D;
             chartArea6.AxisX.Minimum = 0D;
+            chartArea6.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea6.AxisX.Title = "V4";
+            chartArea6.AxisX.TitleForeColor = System.Drawing.Color.White;
             chartArea6.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea6.AxisY.LabelStyle.Enabled = false;
             chartArea6.AxisY.LineColor = System.Drawing.Color.Silver;
@@ -226,14 +255,19 @@
             chartArea6.BorderColor = System.Drawing.Color.Transparent;
             chartArea6.BorderWidth = 0;
             chartArea6.Name = "ChartArea6";
-            chartArea7.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+
+            chartArea7.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea7.AxisX.LabelStyle.Enabled = false;
-            chartArea7.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea7.AxisX.LineColor = System.Drawing.Color.Transparent;
             chartArea7.AxisX.MajorGrid.Enabled = false;
             chartArea7.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea7.AxisX.MajorTickMark.Enabled = false;
             chartArea7.AxisX.MajorTickMark.LineColor = System.Drawing.Color.White;
             chartArea7.AxisX.Maximum = 300D;
             chartArea7.AxisX.Minimum = 0D;
+            chartArea7.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea7.AxisX.Title = "V5";
+            chartArea7.AxisX.TitleForeColor = System.Drawing.Color.White;
             chartArea7.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea7.AxisY.LabelStyle.Enabled = false;
             chartArea7.AxisY.LineColor = System.Drawing.Color.Silver;
@@ -251,14 +285,19 @@
             chartArea7.BorderColor = System.Drawing.Color.Transparent;
             chartArea7.BorderWidth = 0;
             chartArea7.Name = "ChartArea7";
-            chartArea8.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+
+            chartArea8.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea8.AxisX.LabelStyle.Enabled = false;
-            chartArea8.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea8.AxisX.LineColor = System.Drawing.Color.Transparent;
             chartArea8.AxisX.MajorGrid.Enabled = false;
             chartArea8.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea8.AxisX.MajorTickMark.Enabled = false;
             chartArea8.AxisX.MajorTickMark.LineColor = System.Drawing.Color.White;
             chartArea8.AxisX.Maximum = 300D;
             chartArea8.AxisX.Minimum = 0D;
+            chartArea8.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea8.AxisX.Title = "V6";
+            chartArea8.AxisX.TitleForeColor = System.Drawing.Color.White;
             chartArea8.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea8.AxisY.LabelStyle.Enabled = false;
             chartArea8.AxisY.LineColor = System.Drawing.Color.Silver;
@@ -276,14 +315,19 @@
             chartArea8.BorderColor = System.Drawing.Color.Transparent;
             chartArea8.BorderWidth = 0;
             chartArea8.Name = "ChartArea8";
-            chartArea9.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+
+            chartArea9.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea9.AxisX.LabelStyle.Enabled = false;
-            chartArea9.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea9.AxisX.LineColor = System.Drawing.Color.Transparent;
             chartArea9.AxisX.MajorGrid.Enabled = false;
             chartArea9.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea9.AxisX.MajorTickMark.Enabled = false;
             chartArea9.AxisX.MajorTickMark.LineColor = System.Drawing.Color.White;
             chartArea9.AxisX.Maximum = 300D;
             chartArea9.AxisX.Minimum = 0D;
+            chartArea9.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea9.AxisX.Title = "Lead II";
+            chartArea9.AxisX.TitleForeColor = System.Drawing.Color.White;
             chartArea9.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea9.AxisY.LabelStyle.Enabled = false;
             chartArea9.AxisY.LineColor = System.Drawing.Color.Silver;
@@ -301,14 +345,19 @@
             chartArea9.BorderColor = System.Drawing.Color.Transparent;
             chartArea9.BorderWidth = 0;
             chartArea9.Name = "ChartArea9";
-            chartArea10.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+
+            chartArea10.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea10.AxisX.LabelStyle.Enabled = false;
-            chartArea10.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea10.AxisX.LineColor = System.Drawing.Color.Transparent;
             chartArea10.AxisX.MajorGrid.Enabled = false;
             chartArea10.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea10.AxisX.MajorTickMark.Enabled = false;
             chartArea10.AxisX.MajorTickMark.LineColor = System.Drawing.Color.White;
             chartArea10.AxisX.Maximum = 300D;
             chartArea10.AxisX.Minimum = 0D;
+            chartArea10.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea10.AxisX.Title = "aVL";
+            chartArea10.AxisX.TitleForeColor = System.Drawing.Color.White;
             chartArea10.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea10.AxisY.LabelStyle.Enabled = false;
             chartArea10.AxisY.LineColor = System.Drawing.Color.Silver;
@@ -326,14 +375,19 @@
             chartArea10.BorderColor = System.Drawing.Color.Transparent;
             chartArea10.BorderWidth = 0;
             chartArea10.Name = "ChartArea10";
-            chartArea11.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+
+            chartArea11.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea11.AxisX.LabelStyle.Enabled = false;
-            chartArea11.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea11.AxisX.LineColor = System.Drawing.Color.Transparent;
             chartArea11.AxisX.MajorGrid.Enabled = false;
             chartArea11.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea11.AxisX.MajorTickMark.Enabled = false;
             chartArea11.AxisX.MajorTickMark.LineColor = System.Drawing.Color.White;
             chartArea11.AxisX.Maximum = 300D;
             chartArea11.AxisX.Minimum = 0D;
+            chartArea11.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea11.AxisX.Title = "aVF";
+            chartArea11.AxisX.TitleForeColor = System.Drawing.Color.White;
             chartArea11.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea11.AxisY.LabelStyle.Enabled = false;
             chartArea11.AxisY.LineColor = System.Drawing.Color.Silver;
@@ -351,14 +405,19 @@
             chartArea11.BorderColor = System.Drawing.Color.Transparent;
             chartArea11.BorderWidth = 0;
             chartArea11.Name = "ChartArea11";
-            chartArea12.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+
+            chartArea12.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea12.AxisX.LabelStyle.Enabled = false;
-            chartArea12.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea12.AxisX.LineColor = System.Drawing.Color.Transparent;
             chartArea12.AxisX.MajorGrid.Enabled = false;
             chartArea12.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea12.AxisX.MajorTickMark.Enabled = false;
             chartArea12.AxisX.MajorTickMark.LineColor = System.Drawing.Color.White;
             chartArea12.AxisX.Maximum = 300D;
             chartArea12.AxisX.Minimum = 0D;
+            chartArea12.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea12.AxisX.Title = "aV";
+            chartArea12.AxisX.TitleForeColor = System.Drawing.Color.White;
             chartArea12.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea12.AxisY.LabelStyle.Enabled = false;
             chartArea12.AxisY.LineColor = System.Drawing.Color.Silver;
@@ -376,6 +435,10 @@
             chartArea12.BorderColor = System.Drawing.Color.Transparent;
             chartArea12.BorderWidth = 0;
             chartArea12.Name = "ChartArea12";
+
+
+            
+
             this.modularChart.ChartAreas.Add(chartArea1);
             this.modularChart.ChartAreas.Add(chartArea2);
             this.modularChart.ChartAreas.Add(chartArea3);
@@ -419,18 +482,18 @@
             series4.Color = System.Drawing.Color.Green;
             series4.Name = "Series4";
             series4.SmartLabelStyle.Enabled = false;
-            series5.BorderColor = System.Drawing.Color.RosyBrown;
+            series5.BorderColor = System.Drawing.Color.DodgerBlue;
             series5.BorderWidth = 2;
             series5.ChartArea = "ChartArea3";
             series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series5.Color = System.Drawing.Color.RosyBrown;
+            series5.Color = System.Drawing.Color.DodgerBlue;
             series5.Name = "series5";
             series5.SmartLabelStyle.Enabled = false;
-            series6.BorderColor = System.Drawing.Color.RosyBrown;
+            series6.BorderColor = System.Drawing.Color.DodgerBlue;
             series6.BorderWidth = 2;
             series6.ChartArea = "ChartArea3";
             series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series6.Color = System.Drawing.Color.RosyBrown;
+            series6.Color = System.Drawing.Color.DodgerBlue;
             series6.Name = "series6";
             series6.SmartLabelStyle.Enabled = false;
             series7.BorderColor = System.Drawing.Color.Cyan;
@@ -603,6 +666,7 @@
 
         #endregion
 
-        public System.Windows.Forms.DataVisualization.Charting.Chart modularChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart modularChart;
+
     }
 }

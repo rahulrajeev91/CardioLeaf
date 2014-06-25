@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Initialized="UserControl_Initialized">
-    <Grid>
+    <Grid Margin="0,0,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="10"/>
-            <RowDefinition Height="150"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <WindowsFormsHost Margin="0,0,0,0" x:Name="ChartHost" Grid.Row="0" />
         <WindowsFormsHost x:Name="HRGraphHost" Margin="0,0,0,0" Grid.Row="2"/>

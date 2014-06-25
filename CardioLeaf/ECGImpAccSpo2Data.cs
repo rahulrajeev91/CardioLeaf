@@ -60,6 +60,17 @@ namespace CardioLeaf
             HRHelper.UpdateHeartRate(points[CLSettings.HRLead]);
             HR_Threshhold = (int)HRHelper.getGraph();
         }
+        
+        internal int[] getSummaryData()
+        {
+            int[] summaryData = new int[3];
+
+            summaryData[0] = points[CLSettings.HRLead];
+            summaryData[1] = impedence[CLSettings.RRLead];
+            summaryData[2] = ppg[CLSettings.PPGLead];
+
+            return summaryData;
+        }
 
         public int[] getEcgData()
         {
@@ -112,6 +123,8 @@ namespace CardioLeaf
         }
         #endregion
 
+
+        
     }
 
 

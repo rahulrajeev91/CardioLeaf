@@ -39,6 +39,7 @@ namespace CardioLeaf
         //12    -> all twelve graphs
         internal void SetChartDisplayMode(int mode)
         {
+            DisableLabels();
             switch (mode)
             {
                 case 1:
@@ -101,7 +102,7 @@ namespace CardioLeaf
                     this.modularChart.ChartAreas[9].Visible = true;
                     this.modularChart.ChartAreas[10].Visible = true;
                     this.modularChart.ChartAreas[11].Visible = true;
-
+                    EnableECGLabels();
                     break;
 
                 default:
@@ -122,6 +123,40 @@ namespace CardioLeaf
                     break;
 
             }
+        }
+
+        private void DisableLabels()
+        {
+            foreach (var chartArea in this.modularChart.ChartAreas)
+            {
+                chartArea.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            }
+        }
+
+        private void EnableECGLabels()
+        {
+            foreach (var chartArea in this.modularChart.ChartAreas)
+            {
+                chartArea.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            }
+        }
+
+        internal void EnableAccLabels()
+        {
+            for(int i=0;i<3;i++)
+                this.modularChart.ChartAreas[i].AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            this.modularChart.ChartAreas[0].AxisX.Title = "X Axis";
+            this.modularChart.ChartAreas[1].AxisX.Title = "Y Axis";
+            this.modularChart.ChartAreas[2].AxisX.Title = "Z Axis";
+        }
+
+        internal void EnableSummaryLabels()
+        {
+            for (int i = 0; i < 3; i++)
+                this.modularChart.ChartAreas[i].AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            this.modularChart.ChartAreas[0].AxisX.Title = "ECG";
+            this.modularChart.ChartAreas[1].AxisX.Title = "Impedence";
+            this.modularChart.ChartAreas[2].AxisX.Title = "PPG";
         }
 
         internal void resetChart()

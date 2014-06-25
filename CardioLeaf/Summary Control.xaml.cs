@@ -32,6 +32,7 @@ namespace CardioLeaf
         {
             SummaryChartControl.SetChartDisplayMode(3);     //show only 1 lead
             ChartHost.Child = SummaryChartControl;
+            SummaryChartControl.EnableSummaryLabels();
 
             GraphHost.Child = SummaryGraphControl;
         }
@@ -39,6 +40,11 @@ namespace CardioLeaf
         public void AddToChart(int[][] values)    //for 12 lead data
         {
             SummaryChartControl.AddToChart(values, 3);
+        }
+
+        public void AddToGraph(int[] values)    //for the HR value, RR value and the SPO2 value
+        {
+            SummaryGraphControl.AddToGraph(values);
         }
 
         public void Reset() { }

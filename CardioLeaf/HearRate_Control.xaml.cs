@@ -25,7 +25,7 @@ namespace CardioLeaf
         #region Plot data variables
         
         ChartControl ECGChartControl = new ChartControl(12);
-        GraphControl HRGraphControl = new GraphControl(1);
+        GraphControl HRGraphControl = new GraphControl(0);
         #endregion
 
         public HearRate_Control()
@@ -49,7 +49,7 @@ namespace CardioLeaf
 
         public void AddToHRGraph(int HRVal)
         {
-            HRGraphControl.AddToGraph(HRVal);
+            HRGraphControl.AddToGraph(HRVal,0);
         }
 
         public void Reset() { }

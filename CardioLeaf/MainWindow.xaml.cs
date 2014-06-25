@@ -294,7 +294,7 @@ namespace CardioLeaf
         private void oneSecStep_Tick(object sender, EventArgs e)
         {
             if (connection == connectionStatus.connected) 
-                UpdateHRGraph();
+                UpdateGraphs();
             CheckConnectionTimer();
             CheckErrorFlag();
         }
@@ -960,20 +960,24 @@ namespace CardioLeaf
             List<int[]> impDataList = new List<int[]>();
             List<int[]> ppgDataList = new List<int[]>();
 
+            List<int[]> summaryDataList = new List<int[]>();
+
             List<int> HRList = new List<int>();
 
             foreach(ECGImpAccSpo2Data dataPoint in DataList)
             {
+                summaryDataList.Add(dataPoint.getSummaryData());
+
                 ecgDataList.Add(dataPoint.getEcgData());
                 accDataList.Add(dataPoint.getAccData());
                 impDataList.Add(dataPoint.getImpData());
                 ppgDataList.Add(dataPoint.getPpgData());
                 HRList.Add(dataPoint.getHRMetadata());
             }
+
+            SummaryPage.AddToChart(summaryDataList.ToArray());
             
-            HRPage.AddToChart(ecgDataList.ToArray());
-            SummaryPage.AddToChart(ecgDataList.ToArray());
-            
+            HRPage.AddToChart(ecgDataList.ToArray());            
             
             ActivityPage.AddToChart(accDataList.ToArray());
             UpdateActivityTabData(DataList.Last().getAccData(), DataList.Last().getSmoothenActivityVal());
@@ -998,6 +1002,25 @@ namespace CardioLeaf
         {
             HRPage.AddToHRGraph(HRHelper.getHeartRate());
         }
+
+        private void UpdateGraphs()
+        {
+            UpdateHRGraph();
+            UpdateSummaryGraph();
+            //add update functipos for more graphs
+        }
+
+        Random random = new Random(); //temp variable - delete in final version
+        private void UpdateSummaryGraph()
+        {
+            int[] temp = new int[3];
+            temp[0] = HRHelper.getHeartRate();
+            temp[1] = random.Next(10,60);    //replace with function
+            temp[2] = random.Next(0, 100);    //replace with function
+
+            SummaryPage.AddToGraph(temp);
+        }
+
 
         private void UpdateTempratureTabData(double convertedTemp)
         {

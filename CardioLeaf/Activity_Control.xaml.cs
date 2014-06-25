@@ -29,6 +29,8 @@ namespace CardioLeaf
         {
             InitializeComponent();
             ActivityChartHost.Child = ActivityChart;
+
+            ActivityChart.EnableAccLabels();
         }
 
         internal void AddToChart(double[][] activityData)

@@ -21,12 +21,16 @@ namespace CardioLeaf
         public GraphControl(int i)
         {
             InitializeComponent();
-            if (i == 1)
-            {
-                ChartDesign.Series[1].IsVisibleInLegend = false;
-                ChartDesign.Series[2].IsVisibleInLegend = false;
-            }
             resetGraph();
+
+            if (i<0 || i>2)
+                return;
+            for (int x = 0; x < 3; x++)
+            {
+                if (x == i)
+                    continue;
+                ChartDesign.ChartAreas[x].Visible = false;
+            }
         }
 
         internal void resetGraph()
@@ -39,16 +43,34 @@ namespace CardioLeaf
             ChartDesign.Series[2].Points.AddY(0);
         }
 
-        internal void AddToGraph(int HRVal)
+        internal void AddToGraph(int val,int mode)
         {
-            ChartDesign.Series[0].Points.AddY(HRVal);
+            if (mode < 0 || mode > 2)
+                return;
+            ChartDesign.Series[mode].Points.AddY(val);
+            ScrollGraph(mode);
+        }
+
+        internal void AddToGraph(int[] val)
+        {
+            for (int i = 0; i < 3; i++)
+                ChartDesign.Series[i].Points.AddY(val[i]);
             ScrollGraph();
         }
 
         private void ScrollGraph()
         {
             while (ChartDesign.Series[0].Points.Count > CLSettings.HRGraphWidth)
-                ChartDesign.Series[0].Points.RemoveAt(0);
+            {
+                for(int i=0;i<3;i++)
+                    ChartDesign.Series[i].Points.RemoveAt(0);
+            }
+        }
+
+        private void ScrollGraph(int mode)
+        {
+            while (ChartDesign.Series[mode].Points.Count > CLSettings.HRGraphWidth)
+                ChartDesign.Series[mode].Points.RemoveAt(0);
         }
     }
 }
