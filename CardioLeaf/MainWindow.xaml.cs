@@ -46,7 +46,7 @@ namespace CardioLeaf
         private System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
         private System.Windows.Threading.DispatcherTimer oneSecStep = new System.Windows.Threading.DispatcherTimer();
 
-        private int errorFlag = 0;
+        private int errorFlag_LeadOff, errorFlag_Fall, errorFlag_Batt;
 
         #endregion
 
@@ -325,10 +325,24 @@ namespace CardioLeaf
         
         private void CheckErrorFlag()
         {
-            if (errorFlag > 0)
-                errorFlag--;
-            else
-                HideErrorMsg();
+            if (errorFlag_LeadOff > 0)
+            {
+                errorFlag_LeadOff--;
+                if (errorFlag_LeadOff == 0)
+                    HideError(0);
+            }
+            if (errorFlag_Fall > 0)
+            {
+                errorFlag_Fall--;
+                if (errorFlag_Fall == 0)
+                    HideError(0);
+            }
+            if (errorFlag_Batt > 0)
+            {
+                errorFlag_Batt--;
+                if (errorFlag_Batt == 0)
+                    HideError(0);
+            }
         }
 
         #endregion
@@ -694,13 +708,13 @@ namespace CardioLeaf
                         {
                             case 0x00:
                                 //Free fall
-                                ShowError("FALL DETECTED");
+                                ShowError(1);
                                 parseStep = ParseStatus.idle;
                                 break;
 
                             case 0x01:
                                 //battery overheat TODO
-                                ShowError("BATT. OVERHEAT");
+                                ShowError(2);
                                 parseStep = ParseStatus.idle;
                                 break;
                             
@@ -722,7 +736,7 @@ namespace CardioLeaf
                                 byteCount--;
 
                                 if (tempByte != 0x00)
-                                    ShowError("LEAD OFF");
+                                    ShowError(0);
                                 parseStep = ParseStatus.idle;
                                 break;
 
@@ -1017,16 +1031,58 @@ namespace CardioLeaf
         }
 
 
-        private void ShowError(string msg)
+        private void ShowError(int err)
         {
-            errorFlag = 3;
-            labelError.Content = msg;
-            labelError.Visibility = Visibility.Visible;
+
+            switch(err)
+            {
+                case 0:
+                    //lead off
+                    labelError_LeadOff.Visibility = Visibility.Visible;
+                    errorFlag_LeadOff = 3;
+                    break;
+                case 1:
+                    //fall
+                    labelError_Fall.Visibility = Visibility.Visible;
+                    errorFlag_Fall = 3;
+                    break;
+                case 2:
+                    //batt
+                    labelError_Batt.Visibility = Visibility.Visible;
+                    errorFlag_Batt = 3;
+                    break;
+            }
+            
+            
         }
 
-        private void HideErrorMsg()
+        private void HideAllErrorMsg()
         {
-            labelError.Visibility = Visibility.Hidden;
+            labelError_LeadOff.Visibility = Visibility.Collapsed;
+            labelError_Fall.Visibility = Visibility.Collapsed;
+            labelError_Batt.Visibility = Visibility.Collapsed;
+        }
+
+        private void HideError(int err)
+        {
+
+            switch (err)
+            {
+                case 0:
+                    //lead off
+                    labelError_LeadOff.Visibility = Visibility.Collapsed;
+                    break;
+                case 1:
+                    //fall
+                    labelError_Fall.Visibility = Visibility.Collapsed;
+                    break;
+                case 2:
+                    //batt
+                    labelError_Batt.Visibility = Visibility.Collapsed;
+                    break;
+            }
+
+
         }
 
         #endregion
@@ -1035,11 +1091,8 @@ namespace CardioLeaf
     }
 }
 
-
-// TODO and task organization
-
-// update the connection and disconnect procedures to acount for errors
-// steps : make HR page work... then worry qabt the others. need to have a separate thread for the incoming data and the data processing
-
-
-
+/*
+ * upon connect  
+ * - clear error
+ * - clear graphs
+*/

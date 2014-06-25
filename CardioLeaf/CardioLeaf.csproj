@@ -86,11 +86,11 @@
     </Compile>
     <Compile Include="DSPStaticVariables.cs" />
     <Compile Include="ECGImpAccData.cs" />
-    <Compile Include="GraphControl.cs">
+    <Compile Include="TempGraphControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GraphControl.Designer.cs">
-      <DependentUpon>GraphControl.cs</DependentUpon>
+    <Compile Include="TempGraphControl.Designer.cs">
+      <DependentUpon>TempGraphControl.cs</DependentUpon>
     </Compile>
     <Compile Include="HearRate_Control.xaml.cs">
       <DependentUpon>HearRate_Control.xaml</DependentUpon>
@@ -101,11 +101,11 @@
     <Compile Include="ChartControl.Designer.cs">
       <DependentUpon>ChartControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="HeartRateGraphControl.cs">
+    <Compile Include="GraphControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HeartRateGraphControl.Designer.cs">
-      <DependentUpon>HeartRateGraphControl.cs</DependentUpon>
+    <Compile Include="GraphControl.Designer.cs">
+      <DependentUpon>GraphControl.cs</DependentUpon>
     </Compile>
     <Compile Include="HeartRateHelper.cs" />
     <Compile Include="Imp_Control.xaml.cs">
@@ -195,11 +195,11 @@
     <EmbeddedResource Include="ChartControl.resx">
       <DependentUpon>ChartControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TempGraphControl.resx">
+      <DependentUpon>TempGraphControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GraphControl.resx">
       <DependentUpon>GraphControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HeartRateGraphControl.resx">
-      <DependentUpon>HeartRateGraphControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

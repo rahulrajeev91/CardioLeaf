@@ -146,17 +146,41 @@
             </Grid.Effect>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="221"/>
-                <ColumnDefinition Width="98"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="170"/>
             </Grid.ColumnDefinitions>
             <Image HorizontalAlignment="Left" Margin="10,5,0,2" Stretch="Uniform" Width="129" Source="Images/NUS.png" />
-            <Button Content="CONNECT" x:Name="ConnectDisconnectButton" Margin="10" FontSize="20" Foreground="White" Background="#FFA8C213" Click="ConnectDisconnectButton_Click" Grid.Column="3" />
-            <Image x:Name="imgBatt_shutdown" Margin="20,15,10,15" Source="Images/shutDown.png" Grid.Column="2"/>
-            <Image x:Name="imgBatt_critical" Margin="20,15,10,15" Source="Images/critical.png" Grid.Column="2"/>
-            <Image x:Name="imgBatt_medium" Margin="20,15,10,15" Source="Images/medium.png" Grid.Column="2"/>
-            <Image x:Name="imgBatt_full" Margin="20,15,10,15" Source="Images/full.png" Grid.Column="2"/>
-            <Label x:Name="labelError" Content="ERROR" Margin="0,10"  Foreground="White" FontSize="22" Grid.Column="1" BorderBrush="#FF7E7E7E" BorderThickness="0" Padding="25,5" HorizontalAlignment="Right" Visibility="Hidden" >
+            <Button Content="CONNECT" x:Name="ConnectDisconnectButton" Margin="10" FontSize="20" Foreground="White" Background="#FFA8C213" Click="ConnectDisconnectButton_Click" Grid.Column="5" />
+            <Image x:Name="imgBatt_shutdown" Margin="0,15,10,15" Source="Images/shutDown.png" Grid.Column="4" HorizontalAlignment="Right" Width="70"/>
+            <Image x:Name="imgBatt_critical" Margin="0,15,10,15" Source="Images/critical.png" Grid.Column="4" HorizontalAlignment="Right" Width="70"/>
+            <Image x:Name="imgBatt_medium" Margin="0,15,10,15" Source="Images/medium.png" Grid.Column="4" HorizontalAlignment="Right" Width="70"/>
+            <Image x:Name="imgBatt_full" Margin="0,15,10,15" Source="Images/full.png" Grid.Column="4" HorizontalAlignment="Right" Width="70"/>
+            <Label x:Name="labelError_LeadOff" Content="ECG Lead Off" Margin="0,10,10,10"  Foreground="White" FontSize="22" Grid.Column="3" BorderBrush="#FF7E7E7E" BorderThickness="0" Padding="25,5" HorizontalAlignment="Right" Visibility="Collapsed" Width="178">
+                <Label.Effect>
+                    <DropShadowEffect ShadowDepth="0"/>
+                </Label.Effect>
+                <Label.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFE00000" Offset="0.006"/>
+                        <GradientStop Color="#FFBF0000" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Background>
+            </Label>
+            <Label x:Name="labelError_Fall" Content="Fall Detected" Margin="0,10,10,10"  Foreground="White" FontSize="22" Grid.Column="2" BorderBrush="#FF7E7E7E" BorderThickness="0" Padding="25,5" HorizontalAlignment="Right" Visibility="Collapsed" Width="177">
+                <Label.Effect>
+                    <DropShadowEffect ShadowDepth="0"/>
+                </Label.Effect>
+                <Label.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFE00000" Offset="0.006"/>
+                        <GradientStop Color="#FFBF0000" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Background>
+            </Label>
+            <Label x:Name="labelError_Batt" Content="Batt. Overheat" Margin="0,10,10,10"  Foreground="White" FontSize="22" Grid.Column="1" BorderBrush="#FF7E7E7E" BorderThickness="0" Padding="25,5" Visibility="Collapsed" HorizontalAlignment="Right" Width="188">
                 <Label.Effect>
                     <DropShadowEffect ShadowDepth="0"/>
                 </Label.Effect>

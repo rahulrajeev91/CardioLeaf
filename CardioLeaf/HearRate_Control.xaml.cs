@@ -25,7 +25,7 @@ namespace CardioLeaf
         #region Plot data variables
         
         ChartControl ECGChartControl = new ChartControl(12);
-        HeartRateGraphControl HRGraphControl = new HeartRateGraphControl(1);
+        GraphControl HRGraphControl = new GraphControl(1);
         #endregion
 
         public HearRate_Control()

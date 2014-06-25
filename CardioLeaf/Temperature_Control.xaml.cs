@@ -20,7 +20,7 @@ namespace CardioLeaf
     /// </summary>
     public partial class Temperature_Control : UserControl, ChildControl
     {
-        GraphControl TemperatureGraphControl = new GraphControl();
+        TempGraphControl TemperatureGraphControl = new TempGraphControl();
 
         public Temperature_Control()
         {

@@ -21,7 +21,7 @@ namespace CardioLeaf
     public partial class Summary_Control : UserControl, ChildControl
     {
         ChartControl SummaryChartControl = new ChartControl();
-        HeartRateGraphControl SummaryGraphControl = new HeartRateGraphControl();
+        GraphControl SummaryGraphControl = new GraphControl();
 
         public Summary_Control()
         {

@@ -1,6 +1,6 @@
 ﻿namespace CardioLeaf
 {
-    partial class HeartRateGraphControl
+    partial class TempGraphControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,10 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ChartDesign = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.ChartDesign)).BeginInit();
             this.SuspendLayout();
@@ -52,13 +49,14 @@
             chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(164)))), ((int)(((byte)(164)))));
             chartArea1.AxisX.MajorTickMark.Enabled = false;
             chartArea1.AxisX.Minimum = 0D;
-            chartArea1.AxisY.Interval = 20D;
             chartArea1.AxisY.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(164)))), ((int)(((byte)(164)))));
             chartArea1.AxisY.LineWidth = 2;
             chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(164)))), ((int)(((byte)(164)))));
             chartArea1.AxisY.MajorTickMark.LineColor = System.Drawing.Color.DimGray;
+            chartArea1.AxisY.Maximum = 45D;
+            chartArea1.AxisY.Minimum = 15D;
             chartArea1.AxisY.MinorGrid.Enabled = true;
-            chartArea1.AxisY.MinorGrid.Interval = 1D;
+            chartArea1.AxisY.MinorGrid.Interval = 0.2D;
             chartArea1.AxisY.MinorGrid.LineColor = System.Drawing.Color.Gainsboro;
             chartArea1.AxisY.MinorTickMark.Enabled = true;
             chartArea1.AxisY.MinorTickMark.Interval = 1D;
@@ -69,40 +67,25 @@
             chartArea1.BorderColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "ChartArea1";
             this.ChartDesign.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.ChartDesign.Legends.Add(legend1);
             this.ChartDesign.Location = new System.Drawing.Point(0, 0);
             this.ChartDesign.Name = "ChartDesign";
-            series1.BorderWidth = 2;
+            series1.BorderWidth = 3;
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series1.Color = System.Drawing.Color.DarkRed;
-            series1.Legend = "Legend1";
-            series1.Name = "Heart Rate";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series2.Legend = "Legend1";
-            series2.Name = "SPO2";
-            series3.BorderWidth = 2;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series3.Color = System.Drawing.Color.DarkGreen;
-            series3.Legend = "Legend1";
-            series3.Name = "Resp. Rate";
+            series1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(132)))), ((int)(((byte)(230)))));
+            series1.IsVisibleInLegend = false;
+            series1.Name = "Series1";
             this.ChartDesign.Series.Add(series1);
-            this.ChartDesign.Series.Add(series2);
-            this.ChartDesign.Series.Add(series3);
             this.ChartDesign.Size = new System.Drawing.Size(457, 342);
             this.ChartDesign.TabIndex = 0;
             this.ChartDesign.Text = "chart1";
             // 
-            // HeartRateGraphControl
+            // GraphControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ChartDesign);
-            this.Name = "HeartRateGraphControl";
+            this.Name = "GraphControl";
             this.Size = new System.Drawing.Size(533, 394);
             ((System.ComponentModel.ISupportInitialize)(this.ChartDesign)).EndInit();
             this.ResumeLayout(false);
