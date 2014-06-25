@@ -94,6 +94,9 @@ namespace CardioLeaf
             critical,
             shutdown,
         }
+
+        int[] ppgBuffer = new int[2];
+
         #endregion
 
         # region "heart Rate Variables"
@@ -585,9 +588,9 @@ namespace CardioLeaf
 
             //int val1,val2,val3;
 
-            List<ECGImpAccData> DataList = new List<ECGImpAccData>();
-            ECGImpAccData DataPoint;
-            int[] ecgData,impData, accData,spo2Data;
+            List<ECGImpAccSpo2Data> DataList = new List<ECGImpAccSpo2Data>();
+            ECGImpAccSpo2Data DataPoint;
+            int[] ecgData,impData, accData;
             int payloadLength;
             Byte tempByte;
 
@@ -682,6 +685,11 @@ namespace CardioLeaf
                                 //Continious Data
                                 parseStep = ParseStatus.contDataPayload_EcgImpAcc;
                                 //parseStep = ParseStatus.idle;
+                                break;
+
+                            case 0x06:
+                                //PPG Data
+                                parseStep = ParseStatus.spo2;
                                 break;
 
                             default:
@@ -841,7 +849,7 @@ namespace CardioLeaf
 
                     case ParseStatus.contDataPayload_EcgImpAcc:   //0X05 FORMAT
 
-                        DataPoint = new ECGImpAccData();
+                        DataPoint = new ECGImpAccSpo2Data();
                         ecgData = new int[8];
                         accData = new int[3];
                         impData = new int[2];
@@ -866,7 +874,7 @@ namespace CardioLeaf
                                 byteCount -= 1;
                             }
 
-                            DataPoint.updateData(ecgData, accData, impData);
+                            DataPoint.updateData(ecgData, accData, impData, ppgBuffer);
 
                             DataList.Add(DataPoint);        //adding the data point to the data list collection
                         }
@@ -881,19 +889,14 @@ namespace CardioLeaf
 
                     case ParseStatus.spo2:   //0X06 FORMAT
 
-                        spo2Data = new int[2];
-
                         try
                         {
                             for (int i = 0; i < 2; i++)
                             {
-                                spo2Data[i] = (int)serialPort.ReadByte();
-                                spo2Data[i] = spo2Data[i] + (int)serialPort.ReadByte() * 256;
+                                ppgBuffer[i] = (int)serialPort.ReadByte();
+                                ppgBuffer[i] = ppgBuffer[i] + (int)serialPort.ReadByte() * 256;
                                 byteCount -= 2;
-                            }
-
-                            // add spo2 to the 
-                           
+                            }                           
                         }
                         catch (Exception)
                         {
@@ -949,21 +952,22 @@ namespace CardioLeaf
         #endregion
 
         #region display Data
-        private void ProcessAndDisplayData(List<ECGImpAccData> DataList)
+        private void ProcessAndDisplayData(List<ECGImpAccSpo2Data> DataList)
         {
 
             List<int[]> ecgDataList = new List<int[]>();
             List<double[]> accDataList = new List<double[]>();
             List<int[]> impDataList = new List<int[]>();
+            List<int[]> ppgDataList = new List<int[]>();
 
             List<int> HRList = new List<int>();
 
-            foreach(ECGImpAccData dataPoint in DataList)
+            foreach(ECGImpAccSpo2Data dataPoint in DataList)
             {
                 ecgDataList.Add(dataPoint.getEcgData());
                 accDataList.Add(dataPoint.getAccData());
                 impDataList.Add(dataPoint.getImpData());
-
+                ppgDataList.Add(dataPoint.getPpgData());
                 HRList.Add(dataPoint.getHRMetadata());
             }
             
@@ -975,6 +979,8 @@ namespace CardioLeaf
             UpdateActivityTabData(DataList.Last().getAccData(), DataList.Last().getSmoothenActivityVal());
 
             ImpPage.AddToChart(impDataList.ToArray());
+
+            PpgPage.AddToChart(ppgDataList.ToArray());
 
             UpdateHeartRateTabData(HRHelper.getHeartRate());
 

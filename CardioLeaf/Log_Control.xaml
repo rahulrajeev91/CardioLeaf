@@ -34,6 +34,7 @@
             <Button x:Name="btnReverse" Content="&lt;" MouseEnter="btnReverse_MouseEnter" MouseLeave="btnReverse_MouseLeave" IsEnabled="False"/>
             <Button x:Name="btnForward" Content="&gt;" Margin="0,0,0,0" Grid.Column="2" MouseEnter="btnForward_MouseEnter" MouseLeave="btnForward_MouseLeave"/>
         </Grid>
-        <GridSplitter HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="2"/>
+        <Image Grid.Row="2" Source="Images/draggable.png"/>
+        <GridSplitter HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="2" Background="#00000000"/>
     </Grid>
 </UserControl>

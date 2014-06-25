@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace CardioLeaf
 {
-    class ECGImpAccData
+    class ECGImpAccSpo2Data
     {
         int[] points = new int[12];             //12 points in the data
         double[] acc = new double[3];           //0-x, 1-y, 2-z
         double acc_magnitude;
         int[] impedence = new int[2];           //0-Resistive, 1-Capacitive
+        int[] ppg = new int[2];
 
         int HR_Threshhold;
         //const double HIGHPASS_DEGREE = 0.5;   //TODO : add high pass filter 
@@ -26,11 +27,12 @@ namespace CardioLeaf
         //    //default contstructor
         //}
 
-        public void updateData(int[]inputData, int[] raw_acc, int[]imp)
+        public void updateData(int[]inputData, int[] raw_acc, int[]imp, int[] ppg_in)
         {
             addToPoints(inputData);
             addToAcc(raw_acc);
             impedence = imp;
+            ppg = ppg_in;
 
         }
 
@@ -72,6 +74,11 @@ namespace CardioLeaf
         public int[] getImpData()
         {
             return impedence;
+        }
+
+        public int[] getPpgData()
+        {
+            return ppg;
         }
 
         public int getHRMetadata()

@@ -85,7 +85,7 @@
       <DependentUpon>Debug_Control.xaml</DependentUpon>
     </Compile>
     <Compile Include="DSPStaticVariables.cs" />
-    <Compile Include="ECGImpAccData.cs" />
+    <Compile Include="ECGImpAccSpo2Data.cs" />
     <Compile Include="TempGraphControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -237,6 +237,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\NUS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\draggable.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -13,7 +13,8 @@
         </Grid.RowDefinitions>
         <WindowsFormsHost Margin="0,0,0,0" x:Name="ChartHost" Grid.Row="0" />
         <WindowsFormsHost x:Name="HRGraphHost" Margin="0,0,0,0" Grid.Row="2"/>
-        <GridSplitter HorizontalAlignment="Stretch" Height="10" Margin="0,0,0,0" Grid.Row="1" />
+        <Image Grid.Row="1" Source="Images/draggable.png"/>
+        <GridSplitter HorizontalAlignment="Stretch" Height="10" Margin="0,0,0,0" Grid.Row="1" Background="#00000000" />
 
     </Grid>
 </UserControl>
