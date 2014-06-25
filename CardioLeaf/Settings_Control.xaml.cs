@@ -144,5 +144,16 @@ namespace CardioLeaf
             CLSettings.RRLead = cbRRLead.SelectedIndex;
             btnUpdateRRLead.Visibility = Visibility.Hidden;
         }
+
+        private void btnFolderSelect_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.FolderBrowserDialog fbd = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = fbd.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                tbLogPath.Text = fbd.SelectedPath;
+                CLSettings.logFilePath = fbd.SelectedPath;
+            }
+        }
     }
 }

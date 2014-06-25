@@ -23,7 +23,7 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
-                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="90"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
@@ -97,8 +97,8 @@
                 <TextBox x:Name="tbDataRate" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,-23,7" TextWrapping="Wrap" Text="256" Width="120"/>
                 <Button x:Name="btnChangeDataRate" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-103,8" Width="70"  Background="#00000000" Click="btnChangeDataRate_Click"/>
                 <Label Content="Log File Save Location" HorizontalAlignment="Left" FontSize="20" Grid.Row="7" />
-                <TextBox Grid.Column="1" Margin="0,10,-104,30" Grid.Row="7" TextWrapping="Wrap" Text="C:\Users\Administrator\Desktop\" HorizontalAlignment="Left" Width="209" IsEnabled="False" />
-                <Button Content="Change Location" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="0,35,-18,0" Grid.Row="7" VerticalAlignment="Top" Width="120" Background="{x:Null}" IsEnabled="False"/>
+                <TextBox x:Name="tbLogPath" Grid.Column="1" Margin="0,10,-104,30" Grid.Row="7" TextWrapping="Wrap" Text="Desktop\clLog" HorizontalAlignment="Left" Width="209" />
+                <Button x:Name="btnFolderSelect" Content="Change Location" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="1,65,0,0" Grid.Row="7" VerticalAlignment="Top" Width="120" Background="{x:Null}" Click="btnFolderSelect_Click"/>
                 <Button x:Name="btnUpdateECGWidth" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,11,-101,7" Width="70"  Background="#00000000" Grid.Row="1" Visibility="Hidden"/>
                 <Button x:Name="btnUpdateHRGraphWidth" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-98,8" Width="70"  Background="#00000000" Grid.Row="2" RenderTransformOrigin="0.529,0.455" Click="btnUpdateHRGraphWidth_Click" Visibility="Hidden"/>
                 <Button x:Name="btnUpdateTempGraphWidth" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-96,8" Width="70"  Background="#00000000" Grid.Row="3" RenderTransformOrigin="0.529,0.455" Click="btnUpdateTempGraphWidth_Click" Visibility="Hidden"/>

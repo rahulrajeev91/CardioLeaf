@@ -12,7 +12,10 @@ namespace CardioLeaf
         private static int _graphWidth = 300;
         private static int _tempWidth = 50;
         private static int _HRWidth = 100;
-        private static int _HRLead = 4;         //select shich lead to use for HR calculation
+        private static int _HRLead = 4;         //select which lead to use for HR calculation
+
+        public static string logFilePath= "";
+        public static string fileName = "";
 
 
 

@@ -105,6 +105,10 @@ namespace CardioLeaf
 
         #endregion
 
+        #region "logging variables"
+        LoggingHelper logger = new LoggingHelper();
+        #endregion
+
         // Methods
 
         #region initialization functions
@@ -241,6 +245,8 @@ namespace CardioLeaf
             ConnectDisconnectButton.Content = "DISCONNECT";
             connectFlag = 0;
             ConnectDisconnectButton.IsEnabled = true;
+
+            logger.StartLogging();
         }
 
         private void sendConnectCommand()
@@ -833,6 +839,8 @@ namespace CardioLeaf
                             TempPage.AddToGraph(convertedTemp);
                             UpdateTempratureTabData(convertedTemp);
 
+                            DSPStaticVariables.Temperature = convertedTemp;
+
                         }
                         catch (Exception)
                         {
@@ -973,6 +981,8 @@ namespace CardioLeaf
                 impDataList.Add(dataPoint.getImpData());
                 ppgDataList.Add(dataPoint.getPpgData());
                 HRList.Add(dataPoint.getHRMetadata());
+
+                logger.addToFile(dataPoint);
             }
 
             SummaryPage.AddToChart(summaryDataList.ToArray());

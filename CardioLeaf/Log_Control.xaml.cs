@@ -25,7 +25,6 @@ namespace CardioLeaf
         datatableControl dtController;
         ChartControl LogChartControl = new ChartControl(1);
         private System.Collections.ArrayList points = new System.Collections.ArrayList();
-        const int MAX_POINTS = 300;
 
         Boolean forwardChartMove = false;
         Boolean reverseChartMove = false;

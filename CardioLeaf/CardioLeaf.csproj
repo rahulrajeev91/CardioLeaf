@@ -86,6 +86,7 @@
     </Compile>
     <Compile Include="DSPStaticVariables.cs" />
     <Compile Include="ECGImpAccSpo2Data.cs" />
+    <Compile Include="LoggingHelper.cs" />
     <Compile Include="TempGraphControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

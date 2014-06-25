@@ -42,6 +42,14 @@
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,7 +59,7 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -68,7 +76,15 @@
             this.Column10,
             this.Column11,
             this.Column12,
-            this.Column13});
+            this.Column13,
+            this.Column14,
+            this.Column15,
+            this.Column16,
+            this.Column17,
+            this.Column18,
+            this.Column19,
+            this.Column20,
+            this.Column21});
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridView1.MultiSelect = false;
@@ -165,9 +181,57 @@
             // Column13
             // 
             this.Column13.FillWeight = 3.208555F;
-            this.Column13.HeaderText = "";
+            this.Column13.HeaderText = "Heart Rate";
             this.Column13.Name = "Column13";
-            this.Column13.Width = 19;
+            this.Column13.Width = 84;
+            // 
+            // Column14
+            // 
+            this.Column14.HeaderText = "X Axis";
+            this.Column14.Name = "Column14";
+            this.Column14.Width = 61;
+            // 
+            // Column15
+            // 
+            this.Column15.HeaderText = "Y Axis";
+            this.Column15.Name = "Column15";
+            this.Column15.Width = 61;
+            // 
+            // Column16
+            // 
+            this.Column16.HeaderText = "Z Axis";
+            this.Column16.Name = "Column16";
+            this.Column16.Width = 61;
+            // 
+            // Column17
+            // 
+            this.Column17.HeaderText = "Impedence_1";
+            this.Column17.Name = "Column17";
+            this.Column17.Width = 97;
+            // 
+            // Column18
+            // 
+            this.Column18.HeaderText = "Impedence_2";
+            this.Column18.Name = "Column18";
+            this.Column18.Width = 97;
+            // 
+            // Column19
+            // 
+            this.Column19.HeaderText = "PPG_1";
+            this.Column19.Name = "Column19";
+            this.Column19.Width = 66;
+            // 
+            // Column20
+            // 
+            this.Column20.HeaderText = "PPG_2";
+            this.Column20.Name = "Column20";
+            this.Column20.Width = 66;
+            // 
+            // Column21
+            // 
+            this.Column21.HeaderText = "Temperature";
+            this.Column21.Name = "Column21";
+            this.Column21.Width = 92;
             // 
             // datatableControl
             // 
@@ -197,5 +261,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
     }
 }

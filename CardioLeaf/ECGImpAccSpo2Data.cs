@@ -77,6 +77,11 @@ namespace CardioLeaf
             return points;
         }
 
+        public int getHR()
+        {
+            return HRHelper.getHeartRate();
+        }
+
         public double[] getAccData()
         {
             return acc;
