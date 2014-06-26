@@ -21,16 +21,18 @@ namespace CardioLeaf
     public partial class Activity_Control : UserControl, ChildControl
     {
         ChartControl ActivityChart = new ChartControl(3);
+        GraphControl ActGraphControl = new GraphControl(0);
         //private double[] acc = new double[3];
-
-        
 
         public Activity_Control()
         {
             InitializeComponent();
-            ActivityChartHost.Child = ActivityChart;
-
+            ChartHost.Child = ActivityChart;
+            ActivityChart.resetChart();
             ActivityChart.EnableAccLabels();
+
+            ActGraphHost.Child = ActGraphControl;
+            ActGraphControl.resetGraph();
         }
 
         internal void AddToChart(double[][] activityData)
@@ -38,11 +40,12 @@ namespace CardioLeaf
             ActivityChart.AddToChart(activityData,3);
         }
 
-        public void Reset()
+        public void AddToActGraph(int ActVal)
         {
+            ActGraphControl.AddToGraph(ActVal, 0);
         }
 
-        
+        public void Reset() { }
     }
 }
  

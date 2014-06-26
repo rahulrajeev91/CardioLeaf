@@ -5,8 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Initialized="UserControl_Initialized">
-    <Grid>
+    <Grid Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <WindowsFormsHost Margin="0,0,0,0" x:Name="ChartHost" Grid.Row="0" />
-        <Label Content="Impedance Page" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <WindowsFormsHost x:Name="ImpGraphHost" Margin="0,0,0,0" Grid.Row="2"/>
+        <Image Grid.Row="1" Source="Images/draggable.png"/>
+        <GridSplitter HorizontalAlignment="Stretch" Height="10" Margin="0,0,0,0" Grid.Row="1" Background="#00000000" />
+
     </Grid>
 </UserControl>

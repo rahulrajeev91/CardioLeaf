@@ -23,6 +23,8 @@ namespace CardioLeaf
         #region Plot data variables
         ChartControl ImpChartControl = new ChartControl(2);
         private System.Collections.ArrayList points = new System.Collections.ArrayList();
+
+        GraphControl ImpGraphControl = new GraphControl(0);
         #endregion
 
         public Imp_Control()
@@ -34,11 +36,21 @@ namespace CardioLeaf
         {
             ChartHost.Child = ImpChartControl;
             ImpChartControl.resetChart();
+
+            ImpGraphHost.Child = ImpGraphControl;
+            ImpGraphControl.resetGraph();
+
+            ImpGraphControl.EnableGraphLabel();
         }
 
         public void AddToChart(int[][] values)    //for 2 PPG
         {
             ImpChartControl.AddToChart(values, 2);
+        }
+
+        public void AddToImpGraph(int ImpVal)
+        {
+            ImpGraphControl.AddToGraph(ImpVal, 0);
         }
 
         public void Reset() { }
