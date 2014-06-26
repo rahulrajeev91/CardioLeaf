@@ -138,13 +138,13 @@ namespace CardioLeaf
             int val = 0;
             datagridSelectedData dataToSend = new datagridSelectedData();
 
-            if (dataGridView1.Rows.Count <= row + CLSettings.GraphWidth)
+            if (dataGridView1.Rows.Count <= row + CLSettings.ChartWidth)
                 dataToSend.isEnd = true;
 
             if (row == 0)
                 dataToSend.isBeginning = true;
 
-            for (int i = row; i < dataGridView1.Rows.Count && dataToSend.selectedPoints.Count < CLSettings.GraphWidth; i++)
+            for (int i = row; i < dataGridView1.Rows.Count && dataToSend.selectedPoints.Count < CLSettings.ChartWidth; i++)
             {
                 try
                 {
