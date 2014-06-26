@@ -46,6 +46,11 @@ namespace CardioLeaf
         }
 
         public void Reset() { }
+
+        internal void UpdateChartWidth()
+        {
+            ActivityChart.UpdateChartWidth();
+        }
     }
 }
  

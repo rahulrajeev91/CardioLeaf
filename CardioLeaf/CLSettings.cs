@@ -9,13 +9,14 @@ namespace CardioLeaf
     public static class CLSettings
     {
         private static int _dataRate = 256;
-        private static int _graphWidth = 300;
+        private static int _chartWidth = 1000;
         private static int _tempWidth = 50;
         private static int _HRWidth = 100;
         private static int _HRLead = 4;         //select which lead to use for HR calculation
 
         public static string logFilePath= "";
         public static string fileName = "";
+        public static bool loggingEnabled = true;
 
 
 
@@ -31,12 +32,12 @@ namespace CardioLeaf
         }
         
         
-        public static int GraphWidth
+        public static int ChartWidth
         {
-            get { return _graphWidth; }
+            get { return _chartWidth; }
             set { 
-                if (value>0 && value<2000)
-                    _graphWidth = value; 
+                if (value>0 && value<=3000)
+                    _chartWidth = value; 
             }
         }
 

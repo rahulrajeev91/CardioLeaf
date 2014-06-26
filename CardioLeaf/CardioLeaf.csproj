@@ -84,7 +84,7 @@
     <Compile Include="Debug_Control.xaml.cs">
       <DependentUpon>Debug_Control.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DSPStaticVariables.cs" />
+    <Compile Include="StaticVariables.cs" />
     <Compile Include="ECGImpAccSpo2Data.cs" />
     <Compile Include="LoggingHelper.cs" />
     <Compile Include="TempGraphControl.cs">

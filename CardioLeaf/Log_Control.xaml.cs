@@ -167,5 +167,10 @@ namespace CardioLeaf
         {
             //do nothing
         }
+
+        internal void UpdateChartWidth()
+        {
+            LogChartControl.UpdateChartWidth();
+        }
     }
 }

@@ -104,7 +104,7 @@ namespace CardioLeaf
 
         public double getSmoothenActivityVal()
         {
-            return DSPStaticVariables.smoothenedMagnitude;
+            return StaticVariables.smoothenedMagnitude;
         }
 
 
@@ -117,14 +117,14 @@ namespace CardioLeaf
             for (int i = 0; i < 3; i++)
             {
                 tempAcc[i] = acc[i];
-                DSPStaticVariables.gravity[i] = GRAVITY_LOW_PASS_MULTIPLIER * DSPStaticVariables.gravity[i] + (1 - GRAVITY_LOW_PASS_MULTIPLIER) * tempAcc[i];
-                tempAcc[i] -= DSPStaticVariables.gravity[i];
+                StaticVariables.gravity[i] = GRAVITY_LOW_PASS_MULTIPLIER * StaticVariables.gravity[i] + (1 - GRAVITY_LOW_PASS_MULTIPLIER) * tempAcc[i];
+                tempAcc[i] -= StaticVariables.gravity[i];
             }
 
             double magnitude = Math.Pow((Math.Pow(tempAcc[0], 2) + Math.Pow(tempAcc[1], 2) + Math.Pow(tempAcc[2], 2)), 0.5);
-            DSPStaticVariables.smoothenedMagnitude = MAGNITUDE_SMOOTHENING * DSPStaticVariables.smoothenedMagnitude + (1 - MAGNITUDE_SMOOTHENING) * magnitude;
+            StaticVariables.smoothenedMagnitude = MAGNITUDE_SMOOTHENING * StaticVariables.smoothenedMagnitude + (1 - MAGNITUDE_SMOOTHENING) * magnitude;
 
-            return DSPStaticVariables.smoothenedMagnitude;
+            return StaticVariables.smoothenedMagnitude;
         }
         #endregion
 
