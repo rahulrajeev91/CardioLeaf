@@ -22,6 +22,7 @@ namespace CardioLeaf
     {
         #region Plot data variables
         ChartControl PpgChartControl = new ChartControl(2);
+        GraphControl PpgGraphControl = new GraphControl(0);
         private System.Collections.ArrayList points = new System.Collections.ArrayList();        
         #endregion
 
@@ -34,11 +35,19 @@ namespace CardioLeaf
         {
             ChartHost.Child = PpgChartControl;
             PpgChartControl.resetChart();
+
+            PpgGraphHost.Child = PpgGraphControl;
+            PpgGraphControl.resetGraph();
         }
 
         public void AddToChart(int[][] values)    //for 2 PPG
         {
             PpgChartControl.AddToChart(values, 2);
+        }
+
+        public void AddToPpgGraph(int PpgVal)
+        {
+            PpgGraphControl.AddToGraph(PpgVal, 0);
         }
 
         public void Reset() { }

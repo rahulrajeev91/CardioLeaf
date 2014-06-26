@@ -72,5 +72,46 @@ namespace CardioLeaf
             while (ChartDesign.Series[mode].Points.Count > CLSettings.HRGraphWidth)
                 ChartDesign.Series[mode].Points.RemoveAt(0);
         }
+
+        internal void EnableGraphLabel()
+        {
+
+            this.ChartDesign.ChartAreas[0].AxisX.Title = "TestX";
+            this.ChartDesign.ChartAreas[0].AxisY.Title = "TestY";
+        }
+
+        internal void EnableGraphLabel(Page a)
+        {
+            switch (a) {
+                case Page.Summary:
+                    break;
+
+                case Page.HeartRate:
+                    break;
+
+                case Page.Imp:
+                    this.ChartDesign.ChartAreas[0].AxisX.Title = "Time (s)";
+                    this.ChartDesign.ChartAreas[0].AxisY.Title = "TestY";
+                    this.ChartDesign.ChartAreas[1].AxisX.Title = "Time (s)";
+                    this.ChartDesign.ChartAreas[1].AxisY.Title = "TestY";
+
+                    break;
+
+                case Page.Ppg:
+                    this.ChartDesign.ChartAreas[0].AxisX.Title = "Time (s)";
+                    this.ChartDesign.ChartAreas[0].AxisY.Title = "TestY";
+                    this.ChartDesign.ChartAreas[1].AxisX.Title = "Time (s)";
+                    this.ChartDesign.ChartAreas[1].AxisY.Title = "TestY";
+
+                    break;
+
+                case Page.Activity:
+                    this.ChartDesign.ChartAreas[0].AxisX.Title = "Time (s)";
+                    this.ChartDesign.ChartAreas[0].AxisY.Title = "TestY";
+                    break;
+            
+            }
+
+        }
     }
 }

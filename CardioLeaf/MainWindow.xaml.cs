@@ -19,6 +19,9 @@ namespace CardioLeaf
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+    enum Page { Summary, HeartRate, Activity, Temp, Ppg, Imp, Settings, Log, Unknown, Debug };     //models the page tabs
+        
     public partial class MainWindow : Window
     {
         // Variables
@@ -35,7 +38,6 @@ namespace CardioLeaf
         Log_Control LogPage = new Log_Control();
         Debug_Control DebugPage = new Debug_Control();
 
-        enum Page { Summary, HeartRate, Activity, Temp, Ppg, Imp, Settings, Log, Unknown, Debug };     //models the page tabs
         Page CurrentPage;
         #endregion
 
@@ -104,7 +106,7 @@ namespace CardioLeaf
         HeartRateHelper HRHelper = HeartRateHelper.Instance;
 
         #endregion
-
+        
         // Methods
 
         #region initialization functions
@@ -998,16 +1000,34 @@ namespace CardioLeaf
             // also save to log using the correct filename
         }
 
+        private void UpdateGraphs()
+        {
+            UpdateHRGraph();
+            UpdateSummaryGraph();
+            UpdatePpgGraph();
+            UpdateActGraph();
+            UpdateImpGraph();
+            //add update functipos for more graphs
+        }
+
         private void UpdateHRGraph()
         {
             HRPage.AddToHRGraph(HRHelper.getHeartRate());
         }
 
-        private void UpdateGraphs()
+        private void UpdatePpgGraph()
         {
-            UpdateHRGraph();
-            UpdateSummaryGraph();
-            //add update functipos for more graphs
+            PpgPage.AddToPpgGraph(HRHelper.getHeartRate());
+        }
+
+        private void UpdateActGraph()
+        {
+            ActivityPage.AddToActGraph(HRHelper.getHeartRate());
+        }
+
+        private void UpdateImpGraph()
+        {
+            ImpPage.AddToImpGraph(HRHelper.getHeartRate());
         }
 
         Random random = new Random(); //temp variable - delete in final version
