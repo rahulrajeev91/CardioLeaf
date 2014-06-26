@@ -52,7 +52,11 @@ namespace CardioLeaf
             HRGraphControl.AddToGraph(HRVal,0);
         }
 
-        public void Reset() { }
+        public void Reset()
+        {
+            ECGChartControl.resetChart();
+            HRGraphControl.resetGraph();
+        }
 
         internal void UpdateChartWidth()
         {

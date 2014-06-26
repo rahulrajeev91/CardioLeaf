@@ -53,7 +53,11 @@ namespace CardioLeaf
             ImpGraphControl.AddToGraph(ImpVal, 0);
         }
 
-        public void Reset() { }
+        public void Reset()
+        {
+            ImpChartControl.resetChart();
+            ImpGraphControl.resetGraph();
+        }
 
         internal void UpdateChartWidth()
         {

@@ -30,7 +30,7 @@ namespace CardioLeaf
 
         public void Reset()
         {
-            //do something
+            debugChart.resetChart();
         }
 
         public void AddToChart(int val)

@@ -47,7 +47,11 @@ namespace CardioLeaf
             SummaryGraphControl.AddToGraph(values);
         }
 
-        public void Reset() { }
+        public void Reset() 
+        {
+            SummaryGraphControl.resetGraph();
+            SummaryChartControl.resetChart();
+        }
 
         internal void UpdateChartWidth()
         {
