@@ -164,8 +164,8 @@ namespace CardioLeaf
             foreach (var series in this.modularChart.Series)
             {
                 series.Points.Clear();
-                series.Points.Add(0);
             }
+            StaticVariables.osciloscopeCnt = 0;
         }
 
         internal void AddToChart(int val)
@@ -183,7 +183,36 @@ namespace CardioLeaf
             UpdateChartScale();
         }
 
-        internal void AddToChart(int[][] values,int type)
+        internal void AddToChart(int[][] values,int type)   //in osciloscope style
+        {
+            if (type != 2 && type != 3 && type != 12)
+                return;
+            foreach (int[] points in values)
+            {
+                for (int i = 0; i < type; i++)
+                    this.modularChart.Series[i * 2].Points.Add(points[i]);
+                
+                if (this.modularChart.Series[0].Points.Count() >= CLSettings.ChartWidth)
+                {
+                    for (int i = 0; i < type; i++)
+                    {
+                        this.modularChart.Series[(i * 2) + 1].Points.Clear();
+                        for (int j = 50; j < CLSettings.ChartWidth; j++)
+                            this.modularChart.Series[(i * 2) + 1].Points.AddXY(this.modularChart.Series[(i * 2) + 1].Points.Count()+50, this.modularChart.Series[i * 2].Points[j].YValues[0]);
+                        this.modularChart.Series[i * 2].Points.Clear();
+                    }
+                }
+                if (this.modularChart.Series[1].Points.Count() > 0)
+                {
+                    for (int i = 0; i < type; i++)
+                        this.modularChart.Series[i * 2 + 1].Points.RemoveAt(0);
+                }
+
+            }
+            UpdateChartScale();
+        }
+
+        internal void AddToChart_sliding(int[][] values, int type)
         {
             if (type != 2 && type != 3 && type != 12)
                 return;

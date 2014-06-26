@@ -10,6 +10,7 @@ namespace CardioLeaf
     {
         public static double smoothenedMagnitude;
         public static double[] gravity = { 0, 0, 0 };
-        public static double Temperature;
+        public static double Temperature = 0;
+        public static int osciloscopeCnt = 0;
     }
 }
