@@ -223,14 +223,14 @@ namespace CardioLeaf
             switch (Mode)
             {
                 case 1:
-                    while (this.modularChart.Series[0].Points.Count >= CLSettings.GraphWidth)
+                    while (this.modularChart.Series[0].Points.Count >= CLSettings.ChartWidth)
                     {
                         this.modularChart.Series[0].Points.RemoveAt(0);
                     }
                     break;
 
                 case 2:
-                    while (this.modularChart.Series[0].Points.Count >= CLSettings.GraphWidth)
+                    while (this.modularChart.Series[0].Points.Count >= CLSettings.ChartWidth)
                     {
                         for (int i = 0; i < 2; i++)
                             this.modularChart.Series[i * 2].Points.RemoveAt(0);
@@ -238,7 +238,7 @@ namespace CardioLeaf
                     break;
 
                 case 3:
-                    while (this.modularChart.Series[0].Points.Count >= CLSettings.GraphWidth)
+                    while (this.modularChart.Series[0].Points.Count >= CLSettings.ChartWidth)
                     {
                         for (int i=0;i<3;i++)
                             this.modularChart.Series[i*2].Points.RemoveAt(0);
@@ -246,7 +246,7 @@ namespace CardioLeaf
                     break;
 
                 case 12:
-                    while (this.modularChart.Series[0].Points.Count >= CLSettings.GraphWidth)
+                    while (this.modularChart.Series[0].Points.Count >= CLSettings.ChartWidth)
                     {
                         for (int i=0;i<12;i++)
                             this.modularChart.Series[i*2].Points.RemoveAt(0);
@@ -256,7 +256,7 @@ namespace CardioLeaf
                 default:
                     foreach (var series in this.modularChart.Series)
                     {
-                        if (series.Points.Count >= CLSettings.GraphWidth)
+                        if (series.Points.Count >= CLSettings.ChartWidth)
                         {
                             series.Points.RemoveAt(0);
                         }
@@ -265,6 +265,12 @@ namespace CardioLeaf
 
             }
             
+        }
+
+        internal void UpdateChartWidth()
+        {
+            foreach (var chartarea in this.modularChart.ChartAreas)
+                chartarea.AxisX.Maximum = CLSettings.ChartWidth;
         }
     }
 }

@@ -41,6 +41,7 @@ namespace CardioLeaf
 
         public void Reset() { }
 
+
         private void UserControl_Initialized(object sender, EventArgs e)
         {
             ChartHost.Child = ActivityChart;
@@ -51,6 +52,11 @@ namespace CardioLeaf
             ActGraphControl.resetGraph();
 
             ActGraphControl.EnableGraphLabel(Page.Activity);
+        }
+
+        internal void UpdateChartWidth()
+        {
+            ActivityChart.UpdateChartWidth();
         }
     }
 }

@@ -127,6 +127,7 @@ namespace CardioLeaf
 
             InitializeTimer();
             UpdateComPortList();
+            UpdateChartWidth();
         }
 
         private void InitializeTimer()
@@ -840,7 +841,7 @@ namespace CardioLeaf
                             TempPage.AddToGraph(convertedTemp);
                             UpdateTempratureTabData(convertedTemp);
 
-                            DSPStaticVariables.Temperature = convertedTemp;
+                            StaticVariables.Temperature = convertedTemp;
 
                         }
                         catch (Exception)
@@ -1145,7 +1146,27 @@ namespace CardioLeaf
 
         #endregion
 
+        #region "Chart Functions"
 
+        internal void UpdateChartWidth()
+        {
+            SummaryPage.UpdateChartWidth();
+            HRPage.UpdateChartWidth();
+            //TempPage
+            ActivityPage.UpdateChartWidth();
+            //SettingsPage
+            PpgPage.UpdateChartWidth();
+            ImpPage.UpdateChartWidth();
+            LogPage.UpdateChartWidth();
+            DebugPage.UpdateChartWidth();
+           
+        }
+
+        internal void clearAllCharts()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }
 

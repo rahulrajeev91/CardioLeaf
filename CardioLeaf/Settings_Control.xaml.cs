@@ -109,7 +109,8 @@ namespace CardioLeaf
 
         private void cdECGWidth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // update later
+            if (this.IsLoaded)
+                btnUpdateECGWidth.Visibility = Visibility.Visible;
         }
 
         /*
@@ -154,6 +155,18 @@ namespace CardioLeaf
                 tbLogPath.Text = fbd.SelectedPath;
                 CLSettings.logFilePath = fbd.SelectedPath;
             }
+        }
+
+        private void btnUpdateECGWidth_Click(object sender, RoutedEventArgs e)
+        {
+            CLSettings.ChartWidth = int.Parse(cdECGWidth.Text);
+            btnUpdateECGWidth.Visibility = Visibility.Hidden;
+            mainWindow.UpdateChartWidth();
+        }
+
+        private void cbLogging_Click(object sender, RoutedEventArgs e)
+        {
+            CLSettings.loggingEnabled = (bool)cbLogging.IsChecked;
         }
     }
 }

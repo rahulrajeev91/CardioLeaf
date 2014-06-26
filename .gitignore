@@ -213,3 +213,5 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+CardioLeaf/bin/Debug/CardioLeaf.exe
+CardioLeaf/bin/Debug/CardioLeaf.pdb

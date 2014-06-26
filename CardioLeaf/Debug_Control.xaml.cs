@@ -42,5 +42,10 @@ namespace CardioLeaf
         {
             debugChart.AddToChart(val);
         }
+
+        internal void UpdateChartWidth()
+        {
+            debugChart.UpdateChartWidth();
+        }
     }
 }

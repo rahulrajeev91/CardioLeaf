@@ -32,7 +32,9 @@ namespace CardioLeaf
 
         public void addToFile(ECGImpAccSpo2Data datapoint)
         {
-            String entry = string.Join(",", datapoint.getEcgData()) + "," +datapoint.getHR().ToString() + ","+ string.Join(",", datapoint.getAccData()) + "," + string.Join(",", datapoint.getImpData()) + "," + string.Join(",", datapoint.getPpgData()) + "," + DSPStaticVariables.Temperature.ToString();
+            if (!CLSettings.loggingEnabled)
+                return;
+            String entry = string.Join(",", datapoint.getEcgData()) + "," +datapoint.getHR().ToString() + ","+ string.Join(",", datapoint.getAccData()) + "," + string.Join(",", datapoint.getImpData()) + "," + string.Join(",", datapoint.getPpgData()) + "," + StaticVariables.Temperature.ToString();
            
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@""+CLSettings.logFilePath + "\\" + CLSettings.fileName + ".CLL", true))
             {
