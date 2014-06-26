@@ -190,22 +190,26 @@ namespace CardioLeaf
             foreach (int[] points in values)
             {
                 for (int i = 0; i < type; i++)
-                    this.modularChart.Series[i * 2].Points.Add(points[i]);
+                    this.modularChart.Series[i * 2].Points.Add(points[i]);              //add to primary series
                 
                 if (this.modularChart.Series[0].Points.Count() >= CLSettings.ChartWidth)
                 {
                     for (int i = 0; i < type; i++)
                     {
-                        this.modularChart.Series[(i * 2) + 1].Points.Clear();
+                        this.modularChart.Series[(i * 2) + 1].Points.Clear();           //clear secondary series - just as a precaution
                         for (int j = 50; j < CLSettings.ChartWidth; j++)
-                            this.modularChart.Series[(i * 2) + 1].Points.AddXY(this.modularChart.Series[(i * 2) + 1].Points.Count()+50, this.modularChart.Series[i * 2].Points[j].YValues[0]);
-                        this.modularChart.Series[i * 2].Points.Clear();
+                        {
+                            double yValue = this.modularChart.Series[i * 2].Points[j].YValues[0];
+                            this.modularChart.Series[(i * 2) + 1].Points.AddXY(j,yValue);
+                            //copy over the 50th to the last element of the primary series within the specified rande to the secondary series
+                        }
+                        this.modularChart.Series[i * 2].Points.Clear();     //clear primary series
                     }
                 }
                 if (this.modularChart.Series[1].Points.Count() > 0)
                 {
                     for (int i = 0; i < type; i++)
-                        this.modularChart.Series[i * 2 + 1].Points.RemoveAt(0);
+                        this.modularChart.Series[i * 2 + 1].Points.RemoveAt(0);         //clear out one point from the secondary series
                 }
 
             }
