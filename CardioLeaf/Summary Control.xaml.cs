@@ -37,7 +37,7 @@ namespace CardioLeaf
             GraphHost.Child = SummaryGraphControl;
         }
 
-        public void AddToChart(int[][] values)    //for 12 lead data
+        public void AddToChart(int[][] values)    
         {
             SummaryChartControl.AddToChart(values, 3);
         }
