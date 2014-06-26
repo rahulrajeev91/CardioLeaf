@@ -38,6 +38,8 @@ namespace CardioLeaf
 
             PpgGraphHost.Child = PpgGraphControl;
             PpgGraphControl.resetGraph();
+
+            PpgGraphControl.EnableGraphLabel(Page.Ppg);
         }
 
         public void AddToChart(int[][] values)    //for 2 PPG

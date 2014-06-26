@@ -47,8 +47,10 @@
             chartArea1.AxisX.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(164)))), ((int)(((byte)(164)))));
             chartArea1.AxisX.LineWidth = 2;
             chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(164)))), ((int)(((byte)(164)))));
-            chartArea1.AxisX.MajorTickMark.Enabled = false;
+            chartArea1.AxisX.MajorTickMark.LineColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisX.MajorTickMark.Size = 5F;
             chartArea1.AxisX.Minimum = 0D;
+            chartArea1.AxisX.Title = "Time (s)";
             chartArea1.AxisY.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(164)))), ((int)(((byte)(164)))));
             chartArea1.AxisY.LineWidth = 2;
             chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(164)))), ((int)(((byte)(164)))));
@@ -61,6 +63,7 @@
             chartArea1.AxisY.MinorTickMark.Enabled = true;
             chartArea1.AxisY.MinorTickMark.Interval = 1D;
             chartArea1.AxisY.MinorTickMark.LineColor = System.Drawing.Color.Gainsboro;
+            chartArea1.AxisY.Title = "Temperature (Celsius)";
             chartArea1.BackColor = System.Drawing.Color.Transparent;
             chartArea1.BackImageTransparentColor = System.Drawing.Color.Transparent;
             chartArea1.BackSecondaryColor = System.Drawing.Color.Transparent;
@@ -80,12 +83,12 @@
             this.ChartDesign.TabIndex = 0;
             this.ChartDesign.Text = "chart1";
             // 
-            // GraphControl
+            // TempGraphControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ChartDesign);
-            this.Name = "GraphControl";
+            this.Name = "TempGraphControl";
             this.Size = new System.Drawing.Size(533, 394);
             ((System.ComponentModel.ISupportInitialize)(this.ChartDesign)).EndInit();
             this.ResumeLayout(false);

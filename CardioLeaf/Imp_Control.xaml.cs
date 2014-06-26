@@ -40,7 +40,7 @@ namespace CardioLeaf
             ImpGraphHost.Child = ImpGraphControl;
             ImpGraphControl.resetGraph();
 
-            ImpGraphControl.EnableGraphLabel();
+            ImpGraphControl.EnableGraphLabel(Page.Imp);
         }
 
         public void AddToChart(int[][] values)    //for 2 PPG

@@ -27,12 +27,6 @@ namespace CardioLeaf
         public Activity_Control()
         {
             InitializeComponent();
-            ChartHost.Child = ActivityChart;
-            ActivityChart.resetChart();
-            ActivityChart.EnableAccLabels();
-
-            ActGraphHost.Child = ActGraphControl;
-            ActGraphControl.resetGraph();
         }
 
         internal void AddToChart(double[][] activityData)
@@ -46,6 +40,18 @@ namespace CardioLeaf
         }
 
         public void Reset() { }
+
+        private void UserControl_Initialized(object sender, EventArgs e)
+        {
+            ChartHost.Child = ActivityChart;
+            ActivityChart.resetChart();
+            ActivityChart.EnableAccLabels();
+
+            ActGraphHost.Child = ActGraphControl;
+            ActGraphControl.resetGraph();
+
+            ActGraphControl.EnableGraphLabel(Page.Activity);
+        }
     }
 }
  

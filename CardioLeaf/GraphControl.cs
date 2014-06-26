@@ -80,36 +80,43 @@ namespace CardioLeaf
             this.ChartDesign.ChartAreas[0].AxisY.Title = "TestY";
         }
 
-        internal void EnableGraphLabel(Page a)
+        internal void EnableGraphLabel(Page type)
         {
-            switch (a) {
+            switch (type)
+            {
                 case Page.Summary:
+                    this.ChartDesign.ChartAreas[0].AxisX.Title = "Time (1 minutes)";
+                    this.ChartDesign.ChartAreas[0].AxisY.Title = "Beats Per Minute";
+                    this.ChartDesign.ChartAreas[1].AxisX.Title = "Time (1 minutes)";
+                    this.ChartDesign.ChartAreas[1].AxisY.Title = "Breathes Per Minute";
+                    this.ChartDesign.ChartAreas[2].AxisX.Title = "Time (3 minutes)";
+                    this.ChartDesign.ChartAreas[2].AxisY.Title = "Oxygen Level (%)";
                     break;
 
                 case Page.HeartRate:
+                    this.ChartDesign.ChartAreas[0].AxisX.Title = "Time (1 minutes)";
+                    this.ChartDesign.ChartAreas[0].AxisY.Title = "Beats Per Minute";
                     break;
 
                 case Page.Imp:
-                    this.ChartDesign.ChartAreas[0].AxisX.Title = "Time (s)";
-                    this.ChartDesign.ChartAreas[0].AxisY.Title = "TestY";
-                    this.ChartDesign.ChartAreas[1].AxisX.Title = "Time (s)";
-                    this.ChartDesign.ChartAreas[1].AxisY.Title = "TestY";
+                    this.ChartDesign.ChartAreas[0].AxisX.Title = "Time (1 minutes)";
+                    this.ChartDesign.ChartAreas[0].AxisY.Title = "Breathes Per Minute";
+                    break;
 
+                case Page.Temp:
+                    this.ChartDesign.ChartAreas[0].AxisX.Title = "Time (1 minutes)";
+                    this.ChartDesign.ChartAreas[0].AxisY.Title = "Temp (C)";
                     break;
 
                 case Page.Ppg:
-                    this.ChartDesign.ChartAreas[0].AxisX.Title = "Time (s)";
-                    this.ChartDesign.ChartAreas[0].AxisY.Title = "TestY";
-                    this.ChartDesign.ChartAreas[1].AxisX.Title = "Time (s)";
-                    this.ChartDesign.ChartAreas[1].AxisY.Title = "TestY";
-
+                    this.ChartDesign.ChartAreas[0].AxisX.Title = "Time (3 minutes)";
+                    this.ChartDesign.ChartAreas[0].AxisY.Title = "Oxygen Level (%)";
                     break;
 
                 case Page.Activity:
                     this.ChartDesign.ChartAreas[0].AxisX.Title = "Time (s)";
-                    this.ChartDesign.ChartAreas[0].AxisY.Title = "TestY";
+                    this.ChartDesign.ChartAreas[0].AxisY.Title = "Active Intensity";
                     break;
-            
             }
 
         }

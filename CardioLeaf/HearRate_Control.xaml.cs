@@ -40,6 +40,8 @@ namespace CardioLeaf
 
             HRGraphHost.Child = HRGraphControl;
             HRGraphControl.resetGraph();
+
+            HRGraphControl.EnableGraphLabel(Page.HeartRate);
         }
 
         public void AddToChart(int[][] values)    //for 12 lead data

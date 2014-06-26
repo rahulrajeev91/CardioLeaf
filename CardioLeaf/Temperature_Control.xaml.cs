@@ -26,6 +26,7 @@ namespace CardioLeaf
         {
             InitializeComponent();
             TempChartHost.Child = TemperatureGraphControl;
+
         }
 
         public void Reset()
