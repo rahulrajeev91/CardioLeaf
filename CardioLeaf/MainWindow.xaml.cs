@@ -248,7 +248,14 @@ namespace CardioLeaf
             connectFlag = 0;
             ConnectDisconnectButton.IsEnabled = true;
 
+            RefreshApplication();
+
             logger.StartLogging();
+        }
+
+        private void RefreshApplication()
+        {
+            throw new NotImplementedException();
         }
 
         private void sendConnectCommand()

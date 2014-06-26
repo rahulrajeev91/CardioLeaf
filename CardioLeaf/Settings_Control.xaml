@@ -25,7 +25,8 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="90"/>
                     <RowDefinition Height="40"/>
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
                     <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -39,8 +40,8 @@
                 <Label Content="Primary Heart Rate Lead" HorizontalAlignment="Left" FontSize="20" Grid.Row="4" />
                 <Label Content="Primary PPG Lead" HorizontalAlignment="Left" FontSize="20" Grid.Row="5" />
                 <Label Content="Primary Respiratory Rate Lead" HorizontalAlignment="Left" FontSize="20" Grid.Row="6" />
-                <Label Content="Enable Developer Mode" HorizontalAlignment="Left" FontSize="20" Grid.Row="10"/>
-                <CheckBox x:Name="cbDevMode" Content="" Grid.Column="1" Margin="0,10,1,0" Grid.Row="10" FontSize="18" IsChecked="True" Click="cbDevMode_Click" Background="{x:Null}"/>
+                <Label Content="Enable Developer Mode" HorizontalAlignment="Left" FontSize="20" Grid.Row="11"/>
+                <CheckBox x:Name="cbDevMode" Content="" Grid.Column="1" Margin="0,10,1,0" Grid.Row="11" FontSize="18" IsChecked="True" Click="cbDevMode_Click" Background="{x:Null}"/>
                 <ComboBox x:Name="cbHRLead" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,0,8" Grid.Row="4" Width="120" Background="#00000000" IsTextSearchCaseSensitive="True" SelectionChanged="cbHRLead_SelectionChanged" >
                     <ComboBoxItem Content="Lead III"/>
                     <ComboBoxItem Content="Lead I"/>
@@ -101,18 +102,26 @@
                     <ComboBoxItem Content="3000"/>
                 </ComboBox>
                 <TextBox x:Name="tbDataRate" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,0,7" TextWrapping="Wrap" Text="256" Width="120"/>
-                <Button x:Name="btnChangeDataRate" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-87,8" Width="70"  Background="#00000000" Click="btnChangeDataRate_Click"/>
+                <Button x:Name="btnChangeDataRate" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-84,8" Width="70"  Background="#00000000" Click="btnChangeDataRate_Click"/>
                 <Label Content="Log File Save Location" HorizontalAlignment="Left" FontSize="20" Grid.Row="7" />
-                <TextBox x:Name="tbLogPath" Grid.Column="1" Margin="0,10,-87,30" Grid.Row="7" TextWrapping="Wrap" Text="Desktop\clLog" HorizontalAlignment="Left" Width="209" />
-                <Button x:Name="btnFolderSelect" Content="Change Location" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="1,65,0,0" Grid.Row="7" VerticalAlignment="Top" Width="120" Background="{x:Null}" Click="btnFolderSelect_Click"/>
-                <Button x:Name="btnUpdateECGWidth" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,11,-87,7" Width="70"  Background="#00000000" Grid.Row="1" Visibility="Hidden" Click="btnUpdateECGWidth_Click"/>
-                <Button x:Name="btnUpdateHRGraphWidth" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-87,8" Width="70"  Background="#00000000" Grid.Row="2" RenderTransformOrigin="0.529,0.455" Click="btnUpdateHRGraphWidth_Click" Visibility="Hidden"/>
-                <Button x:Name="btnUpdateTempGraphWidth" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-87,8" Width="70"  Background="#00000000" Grid.Row="3" RenderTransformOrigin="0.529,0.455" Click="btnUpdateTempGraphWidth_Click" Visibility="Hidden"/>
-                <Button x:Name="btnUpdateHRLead" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-87,8" Width="70"  Background="#00000000" Grid.Row="4" RenderTransformOrigin="0.529,0.455" Click="btnUpdateHRLead_Click" Visibility="Hidden"/>
-                <Button x:Name="btnUpdatePPGLead" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-87,8" Width="70"  Background="#00000000" Grid.Row="5" RenderTransformOrigin="0.529,0.455" Click="btnUpdatePPGLead_Click" Visibility="Hidden"/>
-                <Button x:Name="btnUpdateRRLead" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-87,8" Width="70"  Background="#00000000" Grid.Row="6" RenderTransformOrigin="0.529,0.455" Click="btnUpdateRRLead_Click" Visibility="Hidden"/>
+                <TextBox x:Name="tbLogPath" Grid.Column="1" Margin="0,10,-80,0" Grid.Row="7" TextWrapping="Wrap" Text="Desktop\clLog" HorizontalAlignment="Left" Width="209" Height="43" VerticalAlignment="Top" />
+                <Button x:Name="btnFolderSelect" Content="Change Location" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="0,58,0,0" Grid.Row="7" VerticalAlignment="Top" Width="120" Background="{x:Null}" Click="btnFolderSelect_Click"/>
+                <Button x:Name="btnUpdateECGWidth" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,11,-84,7" Width="70"  Background="#00000000" Grid.Row="1" Visibility="Hidden" Click="btnUpdateECGWidth_Click"/>
+                <Button x:Name="btnUpdateHRGraphWidth" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-84,8" Width="70"  Background="#00000000" Grid.Row="2" RenderTransformOrigin="0.529,0.455" Click="btnUpdateHRGraphWidth_Click" Visibility="Hidden"/>
+                <Button x:Name="btnUpdateTempGraphWidth" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-84,8" Width="70"  Background="#00000000" Grid.Row="3" RenderTransformOrigin="0.529,0.455" Click="btnUpdateTempGraphWidth_Click" Visibility="Hidden"/>
+                <Button x:Name="btnUpdateHRLead" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-84,8" Width="70"  Background="#00000000" Grid.Row="4" RenderTransformOrigin="0.529,0.455" Click="btnUpdateHRLead_Click" Visibility="Hidden"/>
+                <Button x:Name="btnUpdatePPGLead" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-84,8" Width="70"  Background="#00000000" Grid.Row="5" RenderTransformOrigin="0.529,0.455" Click="btnUpdatePPGLead_Click" Visibility="Hidden"/>
+                <Button x:Name="btnUpdateRRLead" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-84,8" Width="70"  Background="#00000000" Grid.Row="6" RenderTransformOrigin="0.529,0.455" Click="btnUpdateRRLead_Click" Visibility="Hidden"/>
                 <Label Content="Log Data" HorizontalAlignment="Left" FontSize="20" Grid.Row="8" />
                 <CheckBox x:Name="cbLogging" Content="" Grid.Column="1" Margin="1,10,0,0" Grid.Row="8" FontSize="18" IsChecked="True" Click="cbLogging_Click" Background="{x:Null}"/>
+                <Label Content="Choose Gain" HorizontalAlignment="Left" FontSize="20" Grid.Row="9" />
+                <ComboBox x:Name="cbGain" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,0,8" Grid.Row="9" Width="120" Background="#00000000" IsTextSearchCaseSensitive="True" SelectionChanged="cbRRLead_SelectionChanged"  IsEnabled="False">
+                    <ComboBoxItem Content="250" />
+                    <ComboBoxItem Content="500"/>
+                    <ComboBoxItem Content="1000" IsSelected="True"/>
+                    <ComboBoxItem Content="2000"/>
+                </ComboBox>
+                <Button x:Name="btnUpdategain" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-82,8" Width="70"  Background="#00000000" Grid.Row="8" RenderTransformOrigin="0.529,0.455" Click="btnUpdateRRLead_Click" Visibility="Hidden"/>
 
             </Grid>
         </Grid>
