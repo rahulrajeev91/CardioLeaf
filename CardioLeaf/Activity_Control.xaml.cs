@@ -39,7 +39,11 @@ namespace CardioLeaf
             ActGraphControl.AddToGraph(ActVal, 0);
         }
 
-        public void Reset() { }
+        public void Reset()
+        {
+            ActivityChart.resetChart();
+            ActGraphControl.resetGraph();
+        }
 
 
         private void UserControl_Initialized(object sender, EventArgs e)

@@ -52,7 +52,11 @@ namespace CardioLeaf
             PpgGraphControl.AddToGraph(PpgVal, 0);
         }
 
-        public void Reset() { }
+        public void Reset()
+        {
+            PpgChartControl.resetChart();
+            PpgGraphControl.resetGraph();
+        }
 
         internal void UpdateChartWidth()
         {

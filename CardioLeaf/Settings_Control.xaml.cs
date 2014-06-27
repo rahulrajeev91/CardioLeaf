@@ -35,7 +35,7 @@ namespace CardioLeaf
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            //do nothing
         }
 
         private void cbDevMode_Click(object sender, RoutedEventArgs e)

@@ -139,6 +139,16 @@ namespace CardioLeaf
             oneSecStep.Interval = new TimeSpan(0, 0, 1);
             oneSecStep.Start();
         }
+
+        private void RefreshApplication()
+        {
+            clearAllCharts();
+            resetHR();
+            resetTemp();
+        }
+
+
+
         #endregion
 
         #region Connection Functions
@@ -247,6 +257,8 @@ namespace CardioLeaf
             ConnectDisconnectButton.Content = "DISCONNECT";
             connectFlag = 0;
             ConnectDisconnectButton.IsEnabled = true;
+
+            RefreshApplication();
 
             logger.StartLogging();
         }
@@ -383,12 +395,6 @@ namespace CardioLeaf
 
         }
 
-        private void ResetAll()
-        {
-            resetCounter();
-            ResetChild(CurrentPage);
-        }
-
         #endregion
 
         #region onclose function
@@ -401,37 +407,6 @@ namespace CardioLeaf
 		#endregion
 
         #region TabControl Functions
-
-        private void ResetChild(Page CurrentPage)
-        {
-            switch (CurrentPage)
-            {
-                case Page.Summary:
-                    SummaryPage.Reset();
-                    break;
-                case Page.HeartRate:
-                    HRPage.Reset();
-                    break;
-                case Page.Activity:
-                    ActivityPage.Reset();
-                    break;
-                case Page.Temp:
-                    TempPage.Reset();
-                    break;
-                case Page.Imp:
-                    ImpPage.Reset();
-                    break;
-                case Page.Settings:
-                    SettingsPage.Reset();
-                    break;
-                case Page.Log:
-                    LogPage.Reset();
-                    break;
-                case Page.Debug:
-                    DebugPage.Reset();
-                    break;
-            }
-        }
 
         private bool ChangePage(Page topage)
         {
@@ -1144,6 +1119,17 @@ namespace CardioLeaf
 
         }
 
+        private void resetHR()
+        {
+            HRHelper.ResetHeartRate();
+        }
+
+
+        private void resetTemp()
+        {
+            UpdateTempratureTabData(0);
+        }
+
         #endregion
 
         #region "Chart Functions"
@@ -1164,7 +1150,15 @@ namespace CardioLeaf
 
         internal void clearAllCharts()
         {
-            throw new NotImplementedException();
+            SummaryPage.Reset();
+            HRPage.Reset();
+            TempPage.Reset();
+            ActivityPage.Reset();
+            SettingsPage.Reset();
+            PpgPage.Reset();
+            ImpPage.Reset();
+            LogPage.Reset();
+            DebugPage.Reset();
         }
         #endregion
     }

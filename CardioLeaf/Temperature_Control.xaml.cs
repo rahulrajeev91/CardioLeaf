@@ -31,7 +31,7 @@ namespace CardioLeaf
 
         public void Reset()
         {
-            //throw new NotImplementedException();
+            TemperatureGraphControl.resetGraph();
         }
 
         internal void AddToGraph(double convertedTemp)

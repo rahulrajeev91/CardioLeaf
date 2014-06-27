@@ -39,7 +39,7 @@ namespace CardioLeaf
             SummaryGraphControl.EnableGraphLabel(Page.Summary);
         }
 
-        public void AddToChart(int[][] values)    //for 12 lead data
+        public void AddToChart(int[][] values)    
         {
             SummaryChartControl.AddToChart(values, 3);
         }
@@ -49,7 +49,11 @@ namespace CardioLeaf
             SummaryGraphControl.AddToGraph(values);
         }
 
-        public void Reset() { }
+        public void Reset() 
+        {
+            SummaryGraphControl.resetGraph();
+            SummaryChartControl.resetChart();
+        }
 
         internal void UpdateChartWidth()
         {
