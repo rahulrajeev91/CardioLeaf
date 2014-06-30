@@ -16,7 +16,7 @@ namespace CardioLeaf
 
         public static string logFilePath= "";
         public static string fileName = "";
-        public static bool loggingEnabled = true;
+        public static bool loggingEnabled = false;
 
 
 

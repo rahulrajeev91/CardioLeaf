@@ -358,13 +358,13 @@ namespace CardioLeaf
             {
                 errorFlag_Fall--;
                 if (errorFlag_Fall == 0)
-                    HideError(0);
+                    HideError(1);
             }
             if (errorFlag_Batt > 0)
             {
                 errorFlag_Batt--;
                 if (errorFlag_Batt == 0)
-                    HideError(0);
+                    HideError(2);
             }
         }
 
@@ -711,6 +711,7 @@ namespace CardioLeaf
                             
                             case 0x02:
                                 //Marker TODO
+                                SummaryPage.SetUserMarkerAlert();
                                 parseStep = ParseStatus.idle;
                                 break;
                             case 0x03:

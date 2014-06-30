@@ -20,7 +20,7 @@ namespace CardioLeaf
     /// </summary>
     public partial class Summary_Control : UserControl, ChildControl
     {
-        ChartControl SummaryChartControl = new ChartControl();
+        ChartControl SummaryChartControl = new ChartControl(3);
         GraphControl SummaryGraphControl = new GraphControl();
 
         public Summary_Control()
@@ -30,13 +30,15 @@ namespace CardioLeaf
 
         private void UserControl_Initialized(object sender, EventArgs e)
         {
-            SummaryChartControl.SetChartDisplayMode(3);     //show only 1 lead
+            //SummaryChartControl.SetChartDisplayMode(3);     //show only 1 lead
             ChartHost.Child = SummaryChartControl;
             SummaryChartControl.EnableSummaryLabels();
-
+            
+            
             GraphHost.Child = SummaryGraphControl;
 
             SummaryGraphControl.EnableGraphLabel(Page.Summary);
+            //SummaryChartControl.SetUserMarker();
         }
 
         public void AddToChart(int[][] values)    
@@ -59,5 +61,16 @@ namespace CardioLeaf
         {
             SummaryChartControl.UpdateChartWidth();
         }
+
+        internal void SetUserMarkerAlert()
+        {
+            SummaryChartControl.SetUserMarker();
+        }
+
+        internal void RemoveUserMarkerAlert()
+        {
+            SummaryChartControl.RemoveUserMarker();
+        }
+
     }
 }

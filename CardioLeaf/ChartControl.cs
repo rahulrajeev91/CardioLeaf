@@ -13,6 +13,8 @@ namespace CardioLeaf
     public partial class ChartControl : UserControl
     {
         private int ChartMode;
+        private int ChartCursor;
+        private int FlagLocation;
 
         public ChartControl()
         {
@@ -26,6 +28,7 @@ namespace CardioLeaf
             InitializeComponent();
             this.ChartMode = mode;
             this.SetChartDisplayMode(mode);
+            ChartCursor = 0;
         }
         
         
@@ -166,6 +169,7 @@ namespace CardioLeaf
                 series.Points.Clear();
             }
             StaticVariables.osciloscopeCnt = 0;
+            ChartCursor = 0;
         }
 
         internal void AddToChart(int val)
@@ -210,6 +214,18 @@ namespace CardioLeaf
                 {
                     for (int i = 0; i < type; i++)
                         this.modularChart.Series[i * 2 + 1].Points.RemoveAt(0);         //clear out one point from the secondary series
+                }
+
+                
+                ChartCursor++;
+                if (ChartCursor > CLSettings.ChartWidth)
+                {
+                    ChartCursor = 0;
+                }
+
+                if (ChartCursor == FlagLocation) 
+                {
+                    RemoveUserMarker();
                 }
 
             }
@@ -297,13 +313,32 @@ namespace CardioLeaf
                     break;
 
             }
-            
         }
 
         internal void UpdateChartWidth()
         {
             foreach (var chartarea in this.modularChart.ChartAreas)
                 chartarea.AxisX.Maximum = CLSettings.ChartWidth;
+        }
+
+        internal void SetUserMarker()
+        {
+            int CurrrentFlag;
+
+            FlagLocation = ChartCursor;
+            CurrrentFlag = ((ChartCursor * (this.modularChart.Width - 120)) / CLSettings.ChartWidth) + 60;
+            
+            userMarker.Visible = true;
+            userMarker.Location = new System.Drawing.Point(CurrrentFlag, 20);
+            flag.Visible = true;
+            flag.Location = new System.Drawing.Point(CurrrentFlag, 2);
+
+        }
+
+        internal void RemoveUserMarker()
+        {
+            userMarker.Visible = false;
+            flag.Visible = false;
         }
     }
 }

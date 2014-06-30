@@ -66,7 +66,11 @@
             System.Windows.Forms.DataVisualization.Charting.Series series24 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartControl));
             this.modularChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.userMarker = new System.Windows.Forms.PictureBox();
+            this.flag = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.modularChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userMarker)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.flag)).BeginInit();
             this.SuspendLayout();
             // 
             // modularChart
@@ -105,7 +109,6 @@
             chartArea1.BorderColor = System.Drawing.Color.Transparent;
             chartArea1.BorderWidth = 0;
             chartArea1.Name = "ChartArea1";
-
             chartArea2.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea2.AxisX.LabelStyle.Enabled = false;
             chartArea2.AxisX.LineColor = System.Drawing.Color.Transparent;
@@ -135,7 +138,6 @@
             chartArea2.BorderColor = System.Drawing.Color.Transparent;
             chartArea2.BorderWidth = 0;
             chartArea2.Name = "ChartArea2";
-
             chartArea3.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea3.AxisX.LabelStyle.Enabled = false;
             chartArea3.AxisX.LineColor = System.Drawing.Color.Transparent;
@@ -165,7 +167,6 @@
             chartArea3.BorderColor = System.Drawing.Color.Transparent;
             chartArea3.BorderWidth = 0;
             chartArea3.Name = "ChartArea3";
-
             chartArea4.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea4.AxisX.LabelStyle.Enabled = false;
             chartArea4.AxisX.LineColor = System.Drawing.Color.Transparent;
@@ -195,7 +196,6 @@
             chartArea4.BorderColor = System.Drawing.Color.Transparent;
             chartArea4.BorderWidth = 0;
             chartArea4.Name = "ChartArea4";
-
             chartArea5.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea5.AxisX.LabelStyle.Enabled = false;
             chartArea5.AxisX.LineColor = System.Drawing.Color.Transparent;
@@ -225,7 +225,6 @@
             chartArea5.BorderColor = System.Drawing.Color.Transparent;
             chartArea5.BorderWidth = 0;
             chartArea5.Name = "ChartArea5";
-
             chartArea6.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea6.AxisX.LabelStyle.Enabled = false;
             chartArea6.AxisX.LineColor = System.Drawing.Color.Transparent;
@@ -255,7 +254,6 @@
             chartArea6.BorderColor = System.Drawing.Color.Transparent;
             chartArea6.BorderWidth = 0;
             chartArea6.Name = "ChartArea6";
-
             chartArea7.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea7.AxisX.LabelStyle.Enabled = false;
             chartArea7.AxisX.LineColor = System.Drawing.Color.Transparent;
@@ -285,7 +283,6 @@
             chartArea7.BorderColor = System.Drawing.Color.Transparent;
             chartArea7.BorderWidth = 0;
             chartArea7.Name = "ChartArea7";
-
             chartArea8.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea8.AxisX.LabelStyle.Enabled = false;
             chartArea8.AxisX.LineColor = System.Drawing.Color.Transparent;
@@ -315,7 +312,6 @@
             chartArea8.BorderColor = System.Drawing.Color.Transparent;
             chartArea8.BorderWidth = 0;
             chartArea8.Name = "ChartArea8";
-
             chartArea9.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea9.AxisX.LabelStyle.Enabled = false;
             chartArea9.AxisX.LineColor = System.Drawing.Color.Transparent;
@@ -345,7 +341,6 @@
             chartArea9.BorderColor = System.Drawing.Color.Transparent;
             chartArea9.BorderWidth = 0;
             chartArea9.Name = "ChartArea9";
-
             chartArea10.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea10.AxisX.LabelStyle.Enabled = false;
             chartArea10.AxisX.LineColor = System.Drawing.Color.Transparent;
@@ -375,7 +370,6 @@
             chartArea10.BorderColor = System.Drawing.Color.Transparent;
             chartArea10.BorderWidth = 0;
             chartArea10.Name = "ChartArea10";
-
             chartArea11.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea11.AxisX.LabelStyle.Enabled = false;
             chartArea11.AxisX.LineColor = System.Drawing.Color.Transparent;
@@ -405,7 +399,6 @@
             chartArea11.BorderColor = System.Drawing.Color.Transparent;
             chartArea11.BorderWidth = 0;
             chartArea11.Name = "ChartArea11";
-
             chartArea12.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea12.AxisX.LabelStyle.Enabled = false;
             chartArea12.AxisX.LineColor = System.Drawing.Color.Transparent;
@@ -435,10 +428,6 @@
             chartArea12.BorderColor = System.Drawing.Color.Transparent;
             chartArea12.BorderWidth = 0;
             chartArea12.Name = "ChartArea12";
-
-
-            
-
             this.modularChart.ChartAreas.Add(chartArea1);
             this.modularChart.ChartAreas.Add(chartArea2);
             this.modularChart.ChartAreas.Add(chartArea3);
@@ -650,16 +639,47 @@
             this.modularChart.TabIndex = 0;
             this.modularChart.Text = "chart1";
             // 
+            // userMarker
+            // 
+            this.userMarker.BackColor = System.Drawing.Color.Red;
+            this.userMarker.BackgroundImage = global::CardioLeaf.Properties.Resources.evBg;
+            this.userMarker.ErrorImage = null;
+            this.userMarker.InitialImage = null;
+            this.userMarker.Location = new System.Drawing.Point(150, 20);
+            this.userMarker.Name = "userMarker";
+            this.userMarker.Size = new System.Drawing.Size(2, 650);
+            this.userMarker.TabIndex = 1;
+            this.userMarker.TabStop = false;
+            this.userMarker.Visible = false;
+            // 
+            // flag
+            // 
+            this.flag.BackColor = System.Drawing.Color.Transparent;
+            this.flag.BackgroundImage = global::CardioLeaf.Properties.Resources.flag_red;
+            this.flag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.flag.ErrorImage = null;
+            this.flag.InitialImage = null;
+            this.flag.Location = new System.Drawing.Point(150, 0);
+            this.flag.Name = "flag";
+            this.flag.Size = new System.Drawing.Size(14, 19);
+            this.flag.TabIndex = 2;
+            this.flag.TabStop = false;
+            this.flag.Visible = false;
+            // 
             // ChartControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.Controls.Add(this.flag);
+            this.Controls.Add(this.userMarker);
             this.Controls.Add(this.modularChart);
             this.Name = "ChartControl";
             this.Size = new System.Drawing.Size(300, 300);
             ((System.ComponentModel.ISupportInitialize)(this.modularChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userMarker)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.flag)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -667,6 +687,8 @@
         #endregion
 
         private System.Windows.Forms.DataVisualization.Charting.Chart modularChart;
+        public System.Windows.Forms.PictureBox userMarker;
+        public System.Windows.Forms.PictureBox flag;
 
     }
 }
