@@ -115,13 +115,13 @@
                 <Label Content="Log Data" HorizontalAlignment="Left" FontSize="20" Grid.Row="8" />
                 <CheckBox x:Name="cbLogging" Content="" Grid.Column="1" Margin="1,10,0,0" Grid.Row="8" FontSize="18" IsChecked="False" Click="cbLogging_Click" Background="{x:Null}"/>
                 <Label Content="Choose Gain" HorizontalAlignment="Left" FontSize="20" Grid.Row="9" />
-                <ComboBox x:Name="cbGain" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,0,8" Grid.Row="9" Width="120" Background="#00000000" IsTextSearchCaseSensitive="True" SelectionChanged="cbRRLead_SelectionChanged"  IsEnabled="False">
+                <ComboBox x:Name="cbGain" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,0,8" Grid.Row="9" Width="120" Background="#00000000" IsTextSearchCaseSensitive="True" SelectionChanged="cbGain_SelectionChanged"  IsEnabled="True">
                     <ComboBoxItem Content="250" />
                     <ComboBoxItem Content="500"/>
                     <ComboBoxItem Content="1000" IsSelected="True"/>
                     <ComboBoxItem Content="2000"/>
                 </ComboBox>
-                <Button x:Name="btnUpdategain" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-82,8" Width="70"  Background="#00000000" Grid.Row="8" RenderTransformOrigin="0.529,0.455" Click="btnUpdateRRLead_Click" Visibility="Hidden"/>
+                <Button x:Name="btnUpdateGain" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-82,8" Width="70"  Background="#00000000" Grid.Row="9" RenderTransformOrigin="0.529,0.455" Click="btnUpdateGain_Click" Visibility="Hidden"/>
 
             </Grid>
         </Grid>

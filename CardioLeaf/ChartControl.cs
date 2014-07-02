@@ -92,6 +92,7 @@ namespace CardioLeaf
                     this.modularChart.ChartAreas[11].Visible = false;
 
                     break;
+
                 case 12:
                     this.modularChart.ChartAreas[0].Visible = true;
                     this.modularChart.ChartAreas[1].Visible = true;
@@ -142,6 +143,7 @@ namespace CardioLeaf
             {
                 chartArea.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             }
+            this.scaleLabel.Visible = true;
         }
 
         internal void EnableAccLabels()
@@ -160,6 +162,7 @@ namespace CardioLeaf
             this.modularChart.ChartAreas[0].AxisX.Title = "ECG";
             this.modularChart.ChartAreas[1].AxisX.Title = "Impedence";
             this.modularChart.ChartAreas[2].AxisX.Title = "PPG";
+            this.scaleLabel.Visible = true;
         }
 
         internal void resetChart()

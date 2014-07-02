@@ -8,11 +8,13 @@ namespace CardioLeaf
 {
     public static class CLSettings
     {
+        public static MainWindow mw;
         private static int _dataRate = 256;
         private static int _chartWidth = 1000;
         private static int _tempWidth = 50;
         private static int _HRWidth = 100;
         private static int _HRLead = 4;         //select which lead to use for HR calculation
+        private static int _ecgGain = 2; 
 
         public static string logFilePath= "";
         public static string fileName = "";
@@ -69,6 +71,25 @@ namespace CardioLeaf
             {
                 if (value > 0 && value < 12)
                     _HRLead = value;
+            }
+        }
+
+        public static int EcgGain
+        {
+            get { return _ecgGain; }
+            set
+            {
+                if (value >= 0 && value < 5)
+                {
+                    _ecgGain = value;
+
+                    byte[] intBytes = BitConverter.GetBytes(_ecgGain);
+                    if (BitConverter.IsLittleEndian)
+                        Array.Reverse(intBytes);
+                    byte[] result = intBytes;
+
+                    mw.resetEcgAfeGain(result[3]);
+                }
             }
         }
 

@@ -12,7 +12,7 @@ namespace CardioLeaf
 
         private static HeartRateHelper heartRateHelperInstance = new HeartRateHelper();
         int heartRate = 0;
-        private Boolean isLeadOff = false;
+
         private int thresholdResetCounter = 0;
         //===============================================
         // Baseline correction variables

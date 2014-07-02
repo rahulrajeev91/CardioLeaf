@@ -68,6 +68,7 @@
             this.modularChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.userMarker = new System.Windows.Forms.PictureBox();
             this.flag = new System.Windows.Forms.PictureBox();
+            this.scaleLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.modularChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userMarker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flag)).BeginInit();
@@ -666,12 +667,28 @@
             this.flag.TabStop = false;
             this.flag.Visible = false;
             // 
+            // scaleLabel
+            // 
+            this.scaleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.scaleLabel.AutoSize = true;
+            this.scaleLabel.BackColor = System.Drawing.Color.Transparent;
+            this.scaleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scaleLabel.ForeColor = System.Drawing.Color.Transparent;
+            this.scaleLabel.Location = new System.Drawing.Point(159, 237);
+            this.scaleLabel.Name = "scaleLabel";
+            this.scaleLabel.Size = new System.Drawing.Size(130, 12);
+            this.scaleLabel.TabIndex = 3;
+            this.scaleLabel.Text = "Scale : 1mV per Division";
+            this.scaleLabel.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.scaleLabel.Visible = false;
+            // 
             // ChartControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.Controls.Add(this.scaleLabel);
             this.Controls.Add(this.flag);
             this.Controls.Add(this.userMarker);
             this.Controls.Add(this.modularChart);
@@ -681,6 +698,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.userMarker)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.flag)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -689,6 +707,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart modularChart;
         public System.Windows.Forms.PictureBox userMarker;
         public System.Windows.Forms.PictureBox flag;
+        private System.Windows.Forms.Label scaleLabel;
 
     }
 }

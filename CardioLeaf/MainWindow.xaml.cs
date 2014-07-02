@@ -116,6 +116,7 @@ namespace CardioLeaf
         public MainWindow()
         {
             InitializeComponent();
+            CLSettings.mw = this;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -294,6 +295,25 @@ namespace CardioLeaf
             }
             return false;
         }
+
+        #endregion
+
+        #region Control Functions
+
+        internal void resetEcgAfeGain(byte type)
+        {
+            var resetCommand = new Byte[] { 0xFF, 0xFE, 0x02, 0x00, 0x02, type };
+
+            sendDataOverSerial(resetCommand);
+        }
+
+        public void resetEcgAfeGain()
+        {
+            var resetCommand = new Byte[] { 0xFF, 0xFE, 0x02, 0x00, 0x03 };
+
+            sendDataOverSerial(resetCommand);
+        }
+
         #endregion
 
         #region Timer functions
@@ -1097,6 +1117,7 @@ namespace CardioLeaf
             labelError_Fall.Visibility = Visibility.Collapsed;
             labelError_Batt.Visibility = Visibility.Collapsed;
         }
+
 
         private void HideError(int err)
         {

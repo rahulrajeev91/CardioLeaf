@@ -113,6 +113,12 @@ namespace CardioLeaf
                 btnUpdateECGWidth.Visibility = Visibility.Visible;
         }
 
+        private void cbGain_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.IsLoaded)
+                btnUpdateGain.Visibility = Visibility.Visible;
+        }
+
         /*
          * update buttons
          */
@@ -167,6 +173,12 @@ namespace CardioLeaf
         private void cbLogging_Click(object sender, RoutedEventArgs e)
         {
             CLSettings.loggingEnabled = (bool)cbLogging.IsChecked;
+        }
+
+        private void btnUpdateGain_Click(object sender, RoutedEventArgs e)
+        {
+            CLSettings.EcgGain = cbGain.SelectedIndex;
+            btnUpdateGain.Visibility = Visibility.Hidden;
         }
     }
 }
