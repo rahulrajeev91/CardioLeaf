@@ -42,6 +42,7 @@ namespace CardioLeaf
             HRGraphControl.resetGraph();
 
             HRGraphControl.EnableGraphLabel(Page.HeartRate);
+            CLSettings.cc = ECGChartControl;
         }
 
         public void AddToChart(int[][] values)    //for 12 lead data

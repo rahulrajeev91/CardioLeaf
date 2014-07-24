@@ -119,6 +119,12 @@ namespace CardioLeaf
                 btnUpdateGain.Visibility = Visibility.Visible;
         }
 
+        private void cbLeads_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.IsLoaded)
+                btnUpdateLeads.Visibility = Visibility.Visible;
+        }
+
         /*
          * update buttons
          */
@@ -179,6 +185,12 @@ namespace CardioLeaf
         {
             CLSettings.EcgGain = cbGain.SelectedIndex;
             btnUpdateGain.Visibility = Visibility.Hidden;
+        }
+
+        private void btnUpdateLeads_Click(object sender, RoutedEventArgs e)
+        {
+            CLSettings.NumberOfLeads = cbLeads.SelectedIndex;
+            btnUpdateLeads.Visibility = Visibility.Hidden;
         }
     }
 }

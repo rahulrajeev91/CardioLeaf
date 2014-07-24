@@ -29,6 +29,7 @@ namespace CardioLeaf
             this.ChartMode = mode;
             this.SetChartDisplayMode(mode);
             ChartCursor = 0;
+            
         }
         
         
@@ -40,7 +41,7 @@ namespace CardioLeaf
         //1     -> only graph 1
         //3     -> first three graphs
         //12    -> all twelve graphs
-        internal void SetChartDisplayMode(int mode)
+        public void SetChartDisplayMode(int mode)
         {
             DisableLabels();
             switch (mode)
@@ -58,7 +59,7 @@ namespace CardioLeaf
                     this.modularChart.ChartAreas[9].Visible = false;
                     this.modularChart.ChartAreas[10].Visible = false;
                     this.modularChart.ChartAreas[11].Visible = false;
-
+                    EnableECGLabels();
                     break;
 
                 case 2:
@@ -74,7 +75,6 @@ namespace CardioLeaf
                     this.modularChart.ChartAreas[9].Visible = false;
                     this.modularChart.ChartAreas[10].Visible = false;
                     this.modularChart.ChartAreas[11].Visible = false;
-
                     break;
 
                 case 3:
@@ -90,7 +90,7 @@ namespace CardioLeaf
                     this.modularChart.ChartAreas[9].Visible = false;
                     this.modularChart.ChartAreas[10].Visible = false;
                     this.modularChart.ChartAreas[11].Visible = false;
-
+                    EnableECGLabels();
                     break;
 
                 case 12:

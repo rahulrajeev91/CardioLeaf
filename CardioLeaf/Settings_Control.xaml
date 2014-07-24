@@ -26,6 +26,7 @@
                     <RowDefinition Height="90"/>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition/>
                     <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
@@ -40,8 +41,8 @@
                 <Label Content="Primary Heart Rate Lead" HorizontalAlignment="Left" FontSize="20" Grid.Row="4" />
                 <Label Content="Primary PPG Lead" HorizontalAlignment="Left" FontSize="20" Grid.Row="5" />
                 <Label Content="Primary Respiratory Rate Lead" HorizontalAlignment="Left" FontSize="20" Grid.Row="6" />
-                <Label Content="Enable Developer Mode" HorizontalAlignment="Left" FontSize="20" Grid.Row="11"/>
-                <CheckBox x:Name="cbDevMode" Content="" Grid.Column="1" Margin="0,10,1,0" Grid.Row="11" FontSize="18" IsChecked="True" Click="cbDevMode_Click" Background="{x:Null}"/>
+                <Label Content="Enable Developer Mode" HorizontalAlignment="Left" FontSize="20" Grid.Row="12"/>
+                <CheckBox x:Name="cbDevMode" Content="" Grid.Column="1" Margin="0,10,1,0" Grid.Row="12" FontSize="18" IsChecked="True" Click="cbDevMode_Click" Background="{x:Null}"/>
                 <ComboBox x:Name="cbHRLead" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,0,8" Grid.Row="4" Width="120" Background="#00000000" IsTextSearchCaseSensitive="True" SelectionChanged="cbHRLead_SelectionChanged" >
                     <ComboBoxItem Content="Lead III"/>
                     <ComboBoxItem Content="Lead I"/>
@@ -121,8 +122,14 @@
                     <ComboBoxItem Content="1000" IsSelected="True"/>
                     <ComboBoxItem Content="2000"/>
                 </ComboBox>
-                <Button x:Name="btnUpdateGain" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-82,8" Width="70"  Background="#00000000" Grid.Row="9" RenderTransformOrigin="0.529,0.455" Click="btnUpdateGain_Click" Visibility="Hidden"/>
-
+                <Button x:Name="btnUpdateGain" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-82,8" Width="70"  Background="#00000000" Grid.Row="10" RenderTransformOrigin="0.529,0.455" Click="btnUpdateGain_Click" Visibility="Hidden"/>
+                <Label Content="Choose Leads" HorizontalAlignment="Left" FontSize="20" Grid.Row="10" />
+                <ComboBox x:Name="cbLeads" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,0,8" Grid.Row="10" Width="120" Background="#00000000" IsTextSearchCaseSensitive="True" SelectionChanged="cbLeads_SelectionChanged"  IsEnabled="True">
+                    <ComboBoxItem Content="1 Lead" />
+                    <ComboBoxItem Content="3 Leads"/>
+                    <ComboBoxItem Content="12 Leads" IsSelected="True"/>
+                </ComboBox>
+                <Button x:Name="btnUpdateLeads" Content="Update" Grid.Column="1" HorizontalAlignment="Left" Margin="139,10,-82,8" Width="70"  Background="#00000000" Grid.Row="10" RenderTransformOrigin="0.529,0.455" Click="btnUpdateLeads_Click" Visibility="Hidden"/>
             </Grid>
         </Grid>
     </Grid>
